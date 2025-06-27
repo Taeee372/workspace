@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 300px;
+      text-align: center;
+    }
+    tr, td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  
+<table>
+  <tr>
+    <td>
+      <img src="네이버.png" width="100px">
+    </td>
+    <td>
+      <img src="구글.png" width="100px">
+    </td>
+  </tr>
+  <tr>
+    <td>네이버</td>
+    <td>구글</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://www.naver.com" target="_blank">홈페이지 방문</a>
+    </td>
+    <td>
+      <a href="https://www.google.co.kr">홈페이지 방문</a>
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<table>
+  <!-- thead, tbody = html에서는 정리해주는 느낌 / react에서는 무조건 써줘야 함 
+      / 안 쓰면 오류난다 --> 
+  <!-- thead = 제목줄 = 테이블1에서 국어점수, 영어점수, 수학점수에 해당하는 부분 = 헤드는 한 줄 -->
+  <!-- thead는 제목을 표시하는 거기 때문에 tbody 밑에 놔둬도 제목줄 위치에 표시됨 --> 
+  <!-- thead는 없을 때도 있다 / 굳이 바디와 헤드가 세트로 오지 않아도 됨 --> 
+<thead>
+  <tr>
+    <td>국어</td>
+    <td>영어</td>
+    <td>수학</td>
+  </tr>
+</thead>
+<!-- tbody = 테이블의 내용 = 테이블1에서 점수 숫자에 해당하는 부분 = 바디는 여러 줄도 가능-->
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+</tbody>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+.container{
+  height: 300px;
+  border: 1px solid black;
+  display: flex;
+  
+  /* 가로를 주축으로 지정 */
+  flex-direction: row;
+
+  /* 주축 방향 정렬 */
+  justify-content: space-evenly;
+
+  /* 교차축 방향 정렬 */
+  align-items: stretch;
+}
+
+.item{
+  border: 1px solid red;
+  width: 25%; /* 100%줘도 균등하게 분리됨 */
+  /* 각각 다른 비율을 주고 싶다면? ->html에서는 노가다 해야됨 */
+}
+
+/* .container > div:nth-child(2){
+  align-self: flex-start;
+} */
+
+
+.d1{
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d2{
+  border: 1px solid black;
+
+}

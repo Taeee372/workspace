@@ -1,0 +1,28 @@
+/* 
+
+중복된 속성은 가장 마지막 속성만 적용
+우선순위가 높은 선택자를 사용하면 해석이 마지막이 아니더라도 우선순위가 높은 선택자의 속성이 적용
+
+1순위 - !important 속성 부여
+2순위 - inline style (html 파일의 태그에 직접 style 속성을 사용하여 적용)
+3순위 - 아이디 선택자
+4순위 - 클래스 선택자
+5순위 - 태그명 선택자
+
+*/
+#d{
+  color: deepskyblue;
+  font-style: italic;
+}
+div{
+  color: red;
+}
+
+div{
+  background-color: lightgoldenrodyellow;
+  color: blue;
+}
+
+.d1{
+  color: darkmagenta !important;
+}

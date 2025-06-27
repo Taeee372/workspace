@@ -1,0 +1,167 @@
+ .container{
+  width: 1200px;
+  margin: 0px auto;
+}
+
+.header{
+  height: 100px;
+  background-color: #0c51a6;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > ul{
+  display: flex;
+  width: 600px;
+  justify-content: space-around;
+  background-color: #0a4288;
+  padding: 16px 0px;
+}
+
+.banner > img{
+  width: 100%;
+  height: 100%;
+  /* 
+  인라인 요소는 기본적으로 글자 쓸 공간을 생각해서 (y,g 같은 꼬랑지 구역) 여백을 남긴다.
+  이미지도 인라인 요소기 때문에 100%로 채워도 여백이 남음
+  이럴 때는 요소를 블럭으로 바꿔주면 된다.
+  */
+  display: block;
+} 
+
+.banner{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner > div{
+  position: absolute;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.4);
+  padding: 15px 50px;
+}
+
+.content{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.content > div{
+  width: 100%;
+}
+
+.notice{
+  background-color: #e5f1ff;
+  padding: 10px;
+}
+
+.notice > h2{
+  margin-bottom: 8px;
+}
+
+.notice > table{
+  width: 100%;
+}
+
+td{
+  padding: 4px 0px;
+}
+
+.reserv{
+  position: relative;
+} 
+
+.reserv > div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 요소 크기의 반만큼 가로, 세로 이동 */
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.footer{
+  display: flex;
+  background-color: lightgray;
+  align-items: center;
+  height: 100px;
+}
+
+.footer > h1{
+  width: 20%;
+}
+
+.footer > div{
+  width: 80%;
+  text-align: center;
+}
+
+.footer ul{
+  /* 
+  inline-flex로 바꿔주면 inline 성질을 가지기 때문에 text-align 사용 가능
+  flex(블럭요소)일 때 가운데 정렬하고 싶으면 justify-content 사용
+  */
+  display: inline-flex;
+}
+
+
+
+
+
+
+
+
+
+/* .container{
+  width: 1200px;
+  margin: 0px auto;
+}
+
+.header{
+  height: 100px;
+  background-color: #0c51a6;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > ul{
+  display: flex;
+  width: 600px;
+  justify-content: space-around;
+  background-color: #0a4288;
+  padding: 16px 0px;
+}
+
+.banner > img{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.banner{
+  position: relative;
+  display: flex;
+}
+
+.banner > div{
+  position: absolute;
+  color: white; */
+  /* 
+  소개 div 영역 전체를 이미지 크기와 동일하게 만들었으니 글자 배경만 바꾸고 싶으면 글자에만 스타일 따로 줘야함
+  여기서 넣으면 이미지 영역 전체의 색이 바뀐다.
+   */
+  /* background-color: rgb(0, 0, 255); */
+  /* width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */

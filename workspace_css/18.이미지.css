@@ -1,0 +1,45 @@
+/* 
+  img vs background-image
+  img : 이미지 자체가 정보를 나타낼 때 사용
+  background-image : 그냥 장식용, 디자인용
+*/
+
+div{
+  width: 300px;
+  height: 500px;
+  border: 1px solid black;
+  margin: 30px;
+}
+
+  /* 
+    background-image 태그 쓰면 background~ 쓰고
+    image 태그에 바로 적용하는 거면 object~ 사용 
+  */
+.img-div{
+  /* background-image 속성을 사용하면 기본적으로 이미지를 반복사용해서 영역을 꽉 채우는 성질을 지님 */
+  background-image: url('house.jpg');
+  width: 1000px;
+  height: 700px;
+  background-repeat: no-repeat; /* 배경 반복X */
+  /*
+  contain : 영역을 벗어나지 않을 만큼만 늘어남, 빈 공간 발생할 수 있음 
+  cover : 빈 공간이 발생하지 않을 만큼 늘어남, 이미지가 잘릴 수 있음
+   */
+  background-size: cover; /* contain, cover 많이 쓰임*/
+  /* 수평 수직 */
+  background-position: center center;
+}
+
+
+/* 
+img 태그의 width, height 속성을 부여하면 크기 변경은 되지만, 가로세로 비율이 강제로 변환돼버린다 
+그래서 object-fit:cover; 속성을 이용하여 영역은 채우되 가로세로 비율을 건드리지 않는 게 좋다.
+*/
+img{
+  width: 100%;
+  height: 100%;
+  /* background-size 속성와 동일 */
+  object-fit: cover;
+  /* background-position 속성과 동일 */
+  object-position: left center;
+}

@@ -1,0 +1,220 @@
+/* 구글 폰트 적용 방범 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+    /* 
+    400 : default (기본 글자 두께)
+    700 : bold
+  */
+  font-weight: auto;
+  font-style: normal;
+}
+
+/* ------------------------------------------ */
+
+/* 눈누 폰트 적용 방범 */
+/* @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+*{
+  font-family: 'Pretendard-Regular';
+} */
+/* ------------------------------------------ */
+
+body{
+  width: 650px;
+  background-color: #e0ffff;
+  margin: 30px auto;
+  display: flex;
+}
+
+.font{
+  padding: 10px;
+}
+.room > p{
+padding: 3px 0px;
+}
+.room >p:last-of-type{
+  margin-bottom: 7px;
+}
+
+.container{
+  background-color: white;
+  width: 50%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px 1px #dddddd ;
+  position: relative;
+}
+
+img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 15px 15px 0px 0px;
+}
+
+.house-img{
+  transition: all 0.5s;
+}
+.house-img:hover{
+scale: 1.1;
+}
+
+.heart{
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  color: white;
+}
+
+.face{
+  width: 40px;
+  border-radius: 90px;
+  border: 1px solid #dddddd;
+}
+
+.bed{
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  font-size: 0.9rem;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.agent{
+  margin-top: 7px;
+}
+.tel-all{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.sandy{
+  width: 50%;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+
+.btn{
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+  color: white;
+  background-color: #32cd32;
+}
+
+.btn:hover{
+  cursor: pointer;
+  background-color: rgb(40, 195, 40);
+}
+
+
+
+
+
+
+
+/* 함께하기 */
+
+body{
+  background-color: lightcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container{
+  width: 360px;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.img-div{
+  width: 100%;
+  height: 200px;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+}
+
+.img-div > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position:  center center;
+}
+.img-div:hover{
+  scale: 1.1;
+}
+
+.heart{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+}
+
+.detail-3 img{
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #eeeeee;
+}
+
+.detail-div{
+  padding: 10px;
+}
+
+.detail-1 > p:nth-child(1){
+  font-weight: bold;
+}
+.detail-1 > p:nth-child(2){
+  font-weight: 600;
+  color: orange;
+  font-size: 2rem;
+  margin: 8px 0px;
+}
+.detail-1 > p:nth-child(3){
+  color: gray;
+}
+
+.detail-2{
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px 0px;
+  margin: 12px 0px;
+}
+
+.info{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.info > button{
+  border: none;
+  background-color: #32cd32;
+  color: white;
+  padding: 6px 20px;
+  border-radius: 5px;
+  /* margin 방향 넣고 auto 넣으면 넣은 방향 반대방향으로 쭉 감 
+  넣은 방향으로 auto 최대로 넣기 때문에 */
+  margin-left: auto;
+}

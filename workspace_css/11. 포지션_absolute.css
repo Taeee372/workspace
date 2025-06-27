@@ -1,0 +1,33 @@
+.d1{
+  width: 200px;;
+  height: 200px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 200px;
+  font-size: 3rem;
+  background-color: yellowgreen;
+
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  /* z-index 값이 클수록 화면 앞으로 나온다 */
+  z-index: 2;
+}
+.d2{
+  width: 200px;;
+  height: 200px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 200px;
+  font-size: 3rem;
+  background-color: yellow;
+
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 1;
+}
+h2{
+  position: absolute;
+  z-index: 3;
+}

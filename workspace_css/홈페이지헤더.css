@@ -1,0 +1,37 @@
+div{
+  background-color: black;
+  /* border: 1px solid black; */
+}
+.container1{
+display: flex;
+width: 1000px;
+height: 100px;
+}
+
+span{
+  margin-left: 15px;
+  color: white;
+}
+.container2{
+  display: flex;
+  width: 55%;
+  align-items: center;
+}
+
+/* .container3{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 45%;
+  color: white;
+  margin-right: 10px;
+} */
+
+ul{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 45%;
+  color: white;
+  margin-right: 10px;
+}

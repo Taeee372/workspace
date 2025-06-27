@@ -1,0 +1,39 @@
+.container{
+  width: 750px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.title{
+  background-color: #dc143c;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  padding: 3px 3px;
+}
+table{
+  width: 100%;
+  text-align: center;
+}
+thead > tr{
+  background-color: #1e90ff;
+  color: white;
+  border-top: 3px solid black;
+}
+thead td{
+  padding: 7px;
+}
+tbody td{
+  padding: 20px 15px;
+  border: 1px solid #eeeeee;
+  vertical-align: middle;
+}
+tbody > tr{
+  border: 1px solid #eeeeee;
+}
+
+/* 내용이 들어있는 행에서 가장 마지막 열만 선택 */
+tbody > tr > td:last-child{
+  text-align: left;
+}

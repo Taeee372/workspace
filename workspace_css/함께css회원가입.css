@@ -1,0 +1,108 @@
+body{
+  background-color: lightcyan;
+}
+
+.container{
+  width: 500px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 4px 1px #dddddd;
+}
+
+.info-div > div{
+margin-bottom: 10px;
+}
+.info-div p{
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.id-div{
+  display: flex;
+  gap: 5px;
+}
+
+.id-div > input{
+  width: 70%;
+}
+.id-div > button{
+  width: 30%;
+}
+
+input, select{
+  padding: 7px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.confirm-btn{
+  background-color: #00b6ef;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.wide-input{
+  width: 100%;
+}
+
+.birth-div{
+  display: flex;
+  gap: 20px;
+}
+
+.birth-div > select, .email-div > select{
+  width: 100%;
+  color: gray;
+}
+
+.email-div{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.email-div > input, .email-div > select{
+  width: 32%;
+}
+
+.btn-div{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-div > button{
+  padding: 4px;
+  width: 25%;
+  color: white;
+  border: none;
+  box-shadow: 1px 1px 4px 1px #dddddd;
+  margin-right: 5px;
+}
+
+.blue{
+  background-color: #00b6ef;
+}
+.gold{
+  background-color: #efc900;
+}
+
+
+
+
+
+
+
+/* flex 안 쓴 버전  feat. 노 가 다*/
+
+/* .id{
+  width: 70%;
+  padding: 3px 0px;
+}
+
+.btn{
+  width: 28.6%;
+} */

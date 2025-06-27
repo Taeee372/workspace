@@ -1,0 +1,27 @@
+.input-basic{
+  padding: 4px;
+  border: 1px solid orange;
+  border-radius: 6px;
+}
+
+.small{
+  width: 80px;
+}
+
+.normal{
+  width: 120px;
+}
+
+.btn{
+  padding: 6px 16px;
+  color: white;
+  border: none;
+}
+
+.btn-primary{
+  background-color: cornflowerblue;
+}
+
+.btn-success{
+  background-color: palevioletred;
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 400px;
+      text-align: center;
+    }
+    tr, td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h2>행과 열 병합</h2>
+
+  <table>
+    <tr>
+      <td>1</td>
+      <td colspan="2">2</td>
+      <!-- colspan은 열을 병합해주는 게 아니라 병합한 열까지 크기를 늘려주는 느낌이라
+       병합을 했으면 병합한 열만큼 열을 지워줘야 됨 (2칸을 병합했다->열 하나를 없애야함)
+       (행도 마찬가지)-->
+      <td >3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td rowspan="2">10</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td rowspan="2">empno</td>
+      <td colspan="4">marks</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>b</td>
+      <td>c</td>
+      <td>total</td>
+    </tr>
+    <tr>
+      <td>1001</td>
+      <td>45</td>
+      <td>20</td>
+      <td>30</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>1002</td>
+      <td>15</td>
+      <td>5</td>
+      <td>10</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>1003</td>
+      <td>40</td>
+      <td>15</td>
+      <td>10</td>
+      <td>65</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td rowspan="3">day</td>
+      <td colspan="3">seminar</td>
+    </tr>
+    <tr>
+      <td colspan="2">schedule</td>
+      <td rowspan="2">topic</td>
+    </tr>
+    <tr>
+      <td>begin</td>
+      <td>end</td>
+    </tr>
+    <tr>
+      <td rowspan="2">monday</td>
+      <td rowspan="2">8h</td>
+      <td rowspan="2">5h</td>
+      <td>introduction</td>
+    </tr>
+    <tr>
+      <td>validity</td>
+    </tr>
+    <tr>
+      <td rowspan="3">tuesday</td>
+      <td>8h</td>
+      <td>11h</td>
+      <td>xpath</td>
+    </tr>
+    <tr>
+      <td>11h</td>
+      <td>2h</td>
+      <td rowspan="2">xsl</td>
+    </tr>
+    <tr>
+      <td>2h</td>
+      <td>5h</td>
+    </tr>
+    <tr>
+      <td>wednesday</td>
+      <td>8h</td>
+      <td>12h</td>
+      <td>xsl formatting</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td>
+        <img src="네이버.png" alt=""width=150>
+      </td>
+      <td>
+        <img src="구글.png" alt=""width=150>
+      </td>
+    </tr>
+    <tr>
+      <td>네이버</td>
+      <td>구글</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://www.naver.com" target="_blank" title="네이버 바로가기">홈페이지 방문</a>
+      </td>
+      <td>
+        <a href="https://www.google.co.kr" target="_blank" title="구글 바로가기">홈페이지 방문</a>
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td colspan="2">1</td>
+      <td rowspan="2">2</td>
+    </tr>
+    <tr>
+      <td rowspan="2">3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td colspan="2">5</td>
+    </tr>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+*{
+  box-sizing: border-box;
+}
+.container{
+  border: 1px solid #dddddd;
+  width: 300px;
+  margin: 30px auto;
+  border-radius: 6px;
+  background-color: #eeeeee;
+  padding: 20px;
+}
+
+input{
+  width: 100%;
+  margin: 4px 0px;
+  /* height: 30px; */
+  padding: 6px 10px;
+  border-radius: 15px;
+  border: 1px solid #dddddd;
+}
+h2{
+  text-align: center;
+}
+.btn{
+  background-color: black; 
+  color: white;
+}

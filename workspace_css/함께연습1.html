@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   .container{
+    margin: auto; /* 좌우 여백 동일하게 설정 */
+    width: 800px;
+  }
+  table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    /* collapse = 이중선을 하나로 합쳐줌 / 판초콜릿 모양이 그냥 표 모양이 된다 */
+    width: 100%;
+  }
+  tr, td{
+    border: 1px solid black;
+  }
+  .input-large{
+    width: 160px;
+  }
+  .input-normal{
+    width: 120px;
+  }
+  .input-small{
+    width: 80px;
+  }
+  .btn-div{
+    text-align: center;
+    margin-top: 20px;
+  }
+  .red{
+    color: red;
+  }
+.blue{
+  background-color: lightblue;
+  text-align: center;
+  /* 글자 정렬할 때는 무조건 text-align */
+}
+textarea{
+  resize: none;
+}
+tr > td:first-child{
+  text-align: center;
+  /* tr>td : tr 태그 안에 있는 td를 찾아라 / first-child : 그 중에서 첫 번째 애(td)만 찾아라*/
+}
+.pil{
+  font-size: 13px;
+}
+  </style>
+</head>
+<body>
+
+  <!-- 테이블 영역과 버튼 영역을 감싸는 전체 영역 -->
+  <div class="container">
+  <!-- 테이블 영역 -->
+  <div>
+    <table>
+      <colgroup>
+      <col width="20%">
+      <col width="80%">
+      </colgroup>
+      <tbody>
+        <tr class="blue">
+          <td colspan="2">
+            <span class="red">
+              <span class="pil"><i>(*필수입력)</i></span>
+            </span>회원 기본 정보
+          </td>
+        </tr>
+        <tr>
+          <td ><span class="red">*</span>아이디:</td>
+          <td>
+            <input type="text" placeholder="4~12글자" class="input-normal">
+            <button type="button">아이디 검사</button>
+          </td>
+        </tr>
+        <tr>
+          <td>*비밀번호:</td>
+          <td>
+            <input type="password">
+            4~12자의 영문
+        </td>
+        </tr>
+        <tr>
+          <td>*비밀번호확인:</td>
+          <td>
+            <input type="password">
+            <input type="button" value="비밀번호 확인">
+          </td>
+        </tr>
+        <tr>
+          <td>*메일주소:</td>
+          <td>
+            <input type="text">
+            <input type="button" value="메일 확인">
+            예)id
+          </td>
+        </tr>
+        <tr>
+          <td>*이름:</td>
+          <td>
+            <input type="text">
+          </td>
+        </tr>
+        <tr class="blue">
+          <td colspan="2">개인 신상 정보</td>
+        </tr>
+        <tr>
+          <td>*주민등록번호:</td>
+          <td>
+            <input type="text" class="input-small"> -
+            <input type="text" class="input-small">
+            <input type="button" value="확인">
+            <span>예) 123456-1234567</span>
+          </td>
+        </tr>
+        <tr>
+          <td>생일:</td>
+          <td>
+            <input class="input-small" type="text">년
+            <input class="input-small" type="text">월
+            <input class="input-small" type="text">일
+          </td>
+        </tr>
+        <tr>
+          <td>주소:</td>
+          <td>
+            <div>
+              <input type="text" class="input-small">
+              <input type="button" value="우편번호 찾기">
+            </div>
+            <div>
+              <input type="text" class="input-large">
+              <input type="text" class="input-large">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>관심분야:</td>
+          <td>
+            <input type="checkbox">컴퓨터
+            <input type="checkbox">인터넷
+            <input type="checkbox">여행
+            <input type="checkbox">영화감상
+            <input type="checkbox">음악감상
+          </td>
+        </tr>
+        <tr>
+          <td>자기소개:</td>
+          <td>
+            <textarea rows="5" cols="60"></textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 버튼 영역 -->
+  <div class="btn-div">
+    <input type="button" value="회원가입">
+    <input type="button" value="다시 입력">
+  </div>
+  </div>
+
+</body>
+</html>

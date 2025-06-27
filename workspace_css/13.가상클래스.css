@@ -1,0 +1,81 @@
+/* 
+  가상클래스 : 가상의 선택자, 실제로 존재하지 않는 요소나 상태, 조건에 따라 스타일을 적용할 때 사용
+
+  가상클래스는 디테일하게 말하면 가상요소와 가상클래스로 구분
+  가상요소 : 실제로 존재하지 않는 요소에 스타일 적용
+  가상클래스 : 요소의 상태나 조건에 따라 스타일 적용
+
+*/
+
+.d1, .d2{
+  width: 150px;
+  height: 150px;
+  background-color: lightblue;
+  color: white;
+  margin: 20px;
+  text-align: center;
+  line-height: 150px;
+
+  /* 변환 */
+  /* 트랜지션을 넣을 때는 가상클래스가 들어가있지 않은 원본 태그에 넣는 게 좋음 */
+  transition: all 1s;
+}
+
+/* hover는 거의 모든 태그에 쓸 수 있다 */
+.d1:hover{
+  background-color: lavender;
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+}
+
+input{
+  width: 150px;
+  margin-left: 20px;
+  transition: all 2s;
+}
+
+/* 태그가 클릭(포커스)됐을 때 */
+input:focus{
+  width: 250px;
+}
+
+/* 
+태그의 종류가 같을 때 - ~ child
+태그의 종류가 다양할 때 - ~ of type
+ */
+/* 첫 번째 자식 */
+ul > li:first-child{
+  background-color: cornflowerblue;
+}
+
+/* 마지막 자식 */
+ul > li:last-child{
+  background-color: darkseagreen;
+}
+
+ul > li:nth-child(3){
+  background-color: lightpink;
+}
+
+/* even, 2n : 짝수번째 자식 
+   odd, 2n + 1, 2n - 1 : 홀수번째 자식 */
+ul > li:nth-child(even){
+  color: red;
+}
+
+/* 
+first-child는 태그의 종류보다 순서를 더 우선시한다.
+.d3의 경우 첫 번째 자식이 span일 때만 적용됨
+지금은 p가 첫 번째 자식이어서 span에 걸어도 적용 안 됨
+ */
+.d3 > span:first-child{
+  color: red;
+}
+
+.d3 > span:first-of-type{
+  color: blue;
+}
+.d3 > span:nth-of-type(2){
+  color: yellowgreen;
+}

@@ -1,0 +1,53 @@
+
+*{
+  box-sizing: border-box;
+}
+.container{
+  border: 1px solid black;
+  width: 300px;
+  margin: 30px auto;
+  padding: 0px 20px;
+}
+
+/* container클래스 안의 자손 p 태그 */
+.container p{
+margin: 0px;
+}
+.container > div{
+  margin-bottom: 8px;
+}
+
+/* 
+  [] = 속성선택자 : 속성값이 동일한 태그만 선택
+   input태그 중에서 type속성의 값이 text인 것만 선택
+*/
+input[type="text"], input[type="password"]{
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #dddddd;
+}
+hr{
+  margin-bottom: 20px;
+}
+.intro{
+font-size: 0.7rem;
+}
+.intro > span{
+  text-decoration: underline;
+}
+
+button{
+  color: white;
+  border: none;
+  width: 100%;
+  background-color: skyblue;
+  padding: 6px 0px;
+}
+.join{
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 10px 0px;
+}
+h2{
+  margin: 50px 0px;
+}

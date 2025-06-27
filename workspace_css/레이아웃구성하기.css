@@ -1,0 +1,36 @@
+div{
+  border: 3px solid black;
+}
+
+.container1{
+  width: 600px;
+  height: 450px;
+  margin: 30px auto;
+}
+
+.container1 > div:nth-child(1){
+  border-color: blueviolet;
+  height: 15%;
+}
+.container1 > div:nth-child(2){
+  border-color: blue;
+  height: 70%;
+}
+.container1 > div:nth-child(3){
+  border-color: red;
+  height: 15%;
+}
+
+.container3 > div{
+  display:flex;
+  flex-direction: row;
+  height: 100%;
+}
+.container3 div :nth-child(1){
+  border-color: chartreuse;
+  width: 20%;
+}
+.container3 div:nth-child(2){
+  border-color: darkorange;
+width: 80%;
+}

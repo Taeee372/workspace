@@ -1,0 +1,35 @@
+.container{
+  border: 5px solid red;
+  width: 500px;
+  font-size: 2rem;
+  margin: 20px
+}
+
+.inner1{
+border: 5px solid black;
+padding: 0px 10px;
+width: 500px;
+/* box-sizing은 width 계산의 기준을 설정 */
+/* content-box : width를 컨텐츠 영역의 기준으로 삼겠다 */
+/* border-box : width와 테두리까지 합친 크기를 기준으로 삼겠다 */
+/* box-sizing 속성을 작성하지 않으면 content-box가 기본값이다 */
+/* 모든 태그에 box-sizing : border-box로 설정 후 코드 작성! */
+box-sizing: content-box;
+}
+
+.inner2{
+border: 5px solid black;
+padding: 0px 10px;
+width: 500px;
+box-sizing: border-box;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+/* 선택자에 *를 입력하면 모든 태그를 선택함 */
+
+^(캐럿)
+&(엠퍼센트)
+*(에스테리스크 -> 모든, 전체, ALL)

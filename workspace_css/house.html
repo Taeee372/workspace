@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="house.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <!-- <h2>포지션 속성 활용하기</h2>
+  <p>이미지 위에 아래 위치와 비슷하게 하트를 올려보세요</p>
+  <img src="house.jpg" class="img">
+  <span><i class="bi bi-heart"></i></span> -->
+
+
+<!-- 
+    두 요소를 겹쳐서 화면에 표현하고 싶다면
+    1. 두 요소를 감싸는 부모태그에 position : relative를 부여.
+    2. 겹치고자 하는 태그에 position : absolute를 부여.
+    이렇게 부모요소에 position : relative를 주면 
+    요소의 위치는 부모요소를 기준으로 움직인다. 
+    만약, 부모요소에 position : relative를 주지 않으면
+    화면 좌상단을 기준으로 위치가 움직인다.
+-->
+
+<div class="container">
+  <h2>포지션 속성 활용하기</h2>
+  <p>이미지 위에 아래 위치와 비슷하게 하트를 올려보세요</p>
+  <div class="img-div">
+    <img src="house.jpg">
+    <span class="heart">
+      <i class="bi bi-heart"></i>
+    </span>
+  </div>
+</div>
+
+
+
+</body>
+</html>

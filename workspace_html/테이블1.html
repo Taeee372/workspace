@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 300px;
+      text-align: center;
+    }
+    tr, td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h2>테이블 기본</h2>
+
+  <!-- 
+   tabel 태그로 표를 생성할 수 있다 
+   table 태그 안에는 tr, thead, tbody, tfooter, caption 태그만 올 수 있다
+   tr 태그 안에는 td 태그만 올 수 있다-> tr 태그 바로 아래에 들어오는 게 안되는 거지
+   td 태그에 감싸져있으면 다른 태그도 들어올 수 있음
+   ex) 
+   <tr>
+    <td>
+      <p></p>
+    </td>
+   </tr> 
+   이런식으로 p 태그가 들어가는 건 가능
+   tr 태그는 1개의 행을 의미하며, td 태그는 1개의 열을 의미함 
+  -->
+
+  <table>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td>성적</td>
+      <td>국어점수</td>
+      <td>영어점수</td>
+      <td>수학점수</td>
+    </tr>
+    <tr>
+      <td>1학기</td>
+      <td>80</td>
+      <td>70</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>2학기</td>
+      <td>50</td>
+      <td>100</td>
+      <td>60</td>
+    </tr>
+
+    
+</body>
+</html>

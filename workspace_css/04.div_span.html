@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div-1{
+      background-color: darkkhaki;
+    }
+    .div-2{
+      background-color: yellowgreen;
+    }
+    .div-3{
+      background-color: palegreen;
+    }
+    span{
+      border: 1px solid black;
+      width: 200px; 
+      /* span은 인라인 요소이기 때문에 너비 조절이 안됨 so width를 줘도 변경되는 건 없다 */
+    }
+    .div-4{
+      border: 1px solid black;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+  div 태그와 span 태그는 화면 레이아웃 구상에 사용함.
+  div 태그는 영역을 나눠줌 / div 태그는 화면 너비만큼의 크기를 갖는다.
+  span 태그는 안의 내용만큼의 크기만 갖는다.
+  블록 요소는 크기, 너비를 조절할 수 있지만 그렇다고 공간이 줄어드는 건 아님 
+  = 너비를 줄였다고 해서 밑에 있던 글이 위로 올라오진 않음(어쨌든 공간은 차지하고 있는 중이니까)
+  -->
+  
+<div class="div-1">
+  <h2>div와 span 태그</h2>
+</div>
+
+  <div class="div-2">
+    <h3>자기소개</h3>
+   <p>저는 울산에 사는 홍길동입니다</p>
+</div>
+ 
+<div class="div-3">
+  <h3>학력</h3>
+  <p>저는 그린아카데미 대학을 졸업했습니다</p>
+</div>
+
+<div class="div-4">hi</div>
+<div>hello</div>
+
+<hr>
+
+<span>안녕</span>
+<span>반가워</span>
+
+<p>
+  Lorem ipsum dolor, sit amet <span>consectetur</span> adipisicing elit. Quis inventore saepe veniam aspernatur beatae modi laborum corporis blanditiis velit eum voluptatem officiis unde, quas dolorum eaque recusandae reprehenderit voluptatum doloremque.
+</p>
+
+</body>
+</html>

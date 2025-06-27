@@ -1,0 +1,32 @@
+div{
+  border:  1px solid black;
+  margin: 30px;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-size: 2rem;
+}
+
+.d2{
+  background-color: lightblue;
+  color: white;
+}
+
+/* hover : d2클래스에 마우스 올리면 적용 */
+.d2:hover{
+position: relative;
+top: 20px;
+left: 20px;
+}
+
+.d3{
+  background-color: lavender;
+  color: white;
+}
+
+.d3:hover{
+  position: relative;
+  bottom: 30px;
+  right: 30px;
+}

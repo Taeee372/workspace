@@ -1,0 +1,81 @@
+div{
+  border: 2px solid black;
+}
+
+.container1{
+  width: 700px;
+  height: 400px;
+  margin: 30px auto;
+}
+
+.container1 > div:nth-child(1){
+  height: 10%;
+}
+.container1 > div:nth-child(2){
+height: 80%;
+}
+.container1 > div:nth-child(3){
+height: 10%;
+}
+
+.container2{
+  display: flex;
+}
+.container2 > div:nth-child(1){
+  width: 60%;
+}
+.container2 > div:nth-child(2){
+  width: 40%;
+}
+
+.container3{
+  display: flex;
+}
+.container3 > div:nth-child(1){
+  width: 10%;
+}
+.container3 > div:nth-child(2){
+  width: 80%;
+}
+.container4{
+  width: 10%;
+}
+
+
+
+
+/* 레이아웃2 */
+
+
+
+.container2{
+  width: 800px;
+  height: 600px;
+  margin: 30px auto;
+}
+
+.first{
+  display: flex;
+  height: 10%;
+}
+.first > div:first-child{
+  width: 70%;
+}
+.first > div:last-child{
+  width: 30%;
+}
+
+.second{
+  display: flex;
+  height: 80%;
+}
+.second > div:first-child{
+  width: 20%;
+}
+.second > div:last-child{
+  width: 80%;
+}
+
+.third{
+  height: 10%;
+}

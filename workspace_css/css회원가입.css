@@ -1,0 +1,50 @@
+.sky{
+  height: 100vh;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.white{
+  background-color: white;
+  width: 500px;
+  padding: 50px;
+  border-radius: 5px;
+}
+
+.white > div{
+  
+}
+.white div{
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0px;
+}
+
+input{
+  width: 100%;
+  padding: 7px;
+  border-radius: 4px;
+  margin: 3px 0px;
+  border-color: #dddddd;
+  border: 1px solid #dddddd;
+}
+
+.white div:nth-of-type(2){
+  display: flex;
+  align-items: center;
+}
+
+.white div:nth-of-type(4){
+  display: flex;
+  align-items: center;
+}
+
+.white div:nth-of-type(5){
+  display: flex;
+}
+
+.white div:last-of-type{
+  display: flex;
+}
