@@ -14,6 +14,7 @@ package apple;
 //클래스에는 public, default만 사용 가능!
 
 public class Apple {
+  String newData;
   public String name;
   private int price;
   double avg; //default는 앞에 붙이지 않음 | 아무것도 쓰지 않은 게 이미 default 상태
