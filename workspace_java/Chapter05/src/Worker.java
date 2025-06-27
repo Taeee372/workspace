@@ -1,7 +1,7 @@
 public class Worker {
   private String company;
   private String dept;
-  private Person personInfo;
+  private Person personInfo; //자료형 변수명
 
   public Worker(String company, String dept, Person personInfo) {
     this.company = company;

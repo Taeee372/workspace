@@ -2,7 +2,7 @@
 public class MonitorTest {
   public static void main(String[] args) {
     //모니터 설계도를 보고 모니터 객체를 생성
-    //객체 생선 문법
+    //객체 생성 문법
     //클래스명 객체명 = new 클래스명();
     //new -> 새로운 객체를 생성하겠습니다
 
