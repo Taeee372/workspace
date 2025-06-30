@@ -5,7 +5,8 @@ public class if_case_1_함께 {
     Scanner sc = new Scanner(System.in);
 
     System.out.println("성별 입력 : ");
-    String gender = sc.next();
+    String gender = sc.
+            next();
 
     //키보드로 입력받은 문자열이 "남"이라면..
     if(gender.equals("남")){

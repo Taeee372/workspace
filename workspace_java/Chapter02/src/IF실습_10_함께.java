@@ -51,6 +51,7 @@ public class IF실습_10_함께 {
        */
     }
 
+
     //그렇지 않으면(c가 가장 큰 경우)
     else {
       max = c;

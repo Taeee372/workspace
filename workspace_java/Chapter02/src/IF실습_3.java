@@ -13,6 +13,7 @@ public class IF실습_3 {
 
     if(a > b){
       System.out.println("a가 큽니다.");
+
     }
     else if (b > a) {
       System.out.println("b가 큽니다.");

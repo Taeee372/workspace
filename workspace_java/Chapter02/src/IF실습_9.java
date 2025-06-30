@@ -29,5 +29,6 @@ public class IF실습_9 {
       min = num1;
     }
     System.out.println(max + " > " + min);
+
   }
 }
