@@ -32,6 +32,5 @@ public class List_3 {
     for (Fruit e : fruitList){
       System.out.println(e); //.toString을 생략해서 적은 것 | 원래는 System.out.println(e.toString);
     }
-
   }
 }

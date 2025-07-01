@@ -29,6 +29,8 @@ public class List_1 {
     list.add("python");
     list.add("python");
 
+    //get과 remove를 쓸 때 매개변수는 index(순번)
+    // ex) list.remove("python") X  /  list.remove(2) O
     String a = list.get(0);
     System.out.println(a);
 

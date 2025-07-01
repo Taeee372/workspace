@@ -1,4 +1,4 @@
-package CollectionList_1;
+package CollectionList_1_2;
 
 public class Student {
   private String name;

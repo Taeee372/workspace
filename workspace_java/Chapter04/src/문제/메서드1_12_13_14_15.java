@@ -66,5 +66,4 @@ public class 메서드1_12_13_14_15 {
       System.out.println(a);
     }
   }
-
 }
