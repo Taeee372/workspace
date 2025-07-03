@@ -1,0 +1,14 @@
+-폰트어썸 아이콘 사용-
+아래의 link 태그를 html에 붙여넣기
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+-부트스트랩 아이콘 사용-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+----- 폰트 사용 ------
+google font, 눈누 라고 검색 후 싸이트에 접속
+
+
+
+
+

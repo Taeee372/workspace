@@ -1,0 +1,6 @@
+부트스트랩 아이콘
+<i class="bi bi-search"></i>
+<i class="bi bi-pencil"></i>
+<i class="bi bi-megaphone"></i>
+<i class="bi bi-bell-fill"></i>
+<i class="bi bi-heart-fill"></i>
