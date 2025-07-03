@@ -1,6 +1,6 @@
 public class ChefTest {
   public static void main(String[] args) {
-    Chef c = new Chef();
+    ChefMethodOverriding c = new ChefMethodOverriding();
     c.makeCook();
 
     MasterChef mc = new MasterChef();
