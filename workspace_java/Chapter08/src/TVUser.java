@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TVUser {
   public static void main(String[] args) {
@@ -28,5 +30,34 @@ public class TVUser {
     int[] result3 = my.getArrayOfEven(b);
     System.out.println(Arrays.toString(result3));
 
+
+    StudentUtil stu = new MyStudent();
+    Student s1 = new Student();
+    s1.setName("홍길동");
+    s1.setKorScore(50);
+    s1.setEngScore(80);
+    s1.setMathScore(60);
+
+    Student s2 = new Student();
+    s2.setName("고길동");
+    s2.setKorScore(80);
+    s2.setEngScore(90);
+    s2.setMathScore(100);
+
+    Student s3 = new Student();
+    s3.setName("헝길동");
+    s3.setKorScore(80);
+    s3.setEngScore(90);
+    s3.setMathScore(100);
+
+    Student[] students = {s1, s2};
+
+    System.out.println(stu.getTotalScore(s2));
+
+    System.out.println(stu.getHighScoreStudent(s1, s2).getName());
+
+    System.out.println(stu.getGradeBy(students, s1));
   }
+
+
 }

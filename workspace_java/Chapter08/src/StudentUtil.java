@@ -3,12 +3,12 @@
 public interface StudentUtil {
   //매개변수로 전달되는 학생의 총점을 리턴
   //메서드명 : getTotalScore
-  public int getTotalScore(String stu);
+  public int getTotalScore(Student stu);
 
   //매개변수로 전달된 두 명의 학생 중
   //총점이 높은 학생을 리턴
   //메서드명 : getHighScoreStudent
-  public String getHighScoreStudent(String stu);
+  public Student getHighScoreStudent(Student stu1, Student stu2);
 
   //학생 여러명을 매개변수로 받아, 또 다른 매개변수로 받는 학생의 이름과
   //일치하는 학생의 점수 등급을 문자열로 리턴
@@ -20,6 +20,6 @@ public interface StudentUtil {
   //70 <= 평균 <= 79 -> "C"
   //평균 < 70 -> "D"
   //메서드명 : getGradeBy
-  public String getGradeBy(int[] arr, String name);
+  public String getGradeBy(Student[] students, Student name);
 
 }
