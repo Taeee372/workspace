@@ -36,6 +36,7 @@ VALUES (60, 70, 4);
 ROLLBACK;
 
 # 테이블 삭제 쿼리 : DROP TABLE 테이블명;
+# DROP TABLE 하고나면 돌이킬 수 없으니까!!!!! 주의하시긔
 DROP TABLE student;
 
 
