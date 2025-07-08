@@ -20,6 +20,6 @@ public interface StudentUtil {
   //70 <= 평균 <= 79 -> "C"
   //평균 < 70 -> "D"
   //메서드명 : getGradeBy
-  public String getGradeBy(Student[] students, Student name);
+  public String getGradeByStudentName(Student[] students, String name);
 
 }

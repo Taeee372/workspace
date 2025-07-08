@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+<body>
+  <h2>자바스크립트의 변수 및 출력문</h2>
+
+  <script>
+    //자바스크립트 주석입니다.
+    //출력문
+    console.log(10);
+    console.log('java');
+    console.log('java');
+    console.log(10 + 20);
+    console.log('java' + "python");
+    console.log('java' + 10);
+
+    //자바스크립트는 내부적으로는 자료형이 있지만, 문법적으로는 신경 안 써도 됨
+    //let은 값이 변할 때 사용
+    //const는 값이 변하지 않을 때 사용  constant(상수)의 줄임말
+    let num = 10;
+    let name = 'javascript';
+    let avg = 10.5;
+    avg = 50.5;
+    console.log(avg);
+
+    const num1 = 10;
+    const addr = 'dkjlsf';
+    const avg1 = 5.5;
+    //avg1 = 10.5; avg1은 const로 선언되어 있기 때문에 값 변경 불가
+
+    let score = 80;
+    //score = '안녕하세요'; 자료형 신경쓰지 않아도 되니 정수를 문자로 바꾸는 것도 가능하다
+    console.log('제 점수는 ' + score + '입니다');
+    console.log(`제 점수는 ${score}입니다`);
+    
+    const stuName = '김자바';
+    const korScore = 80;
+    const engScore = 90;
+
+    //제 이름은 김자바이고 국어점수는 80이며, 영어점수는 90입니다. 총점은 170점입니다.
+    console.log(`제 이름은 ${stuName}이고 국어점수는 ${korScore}이며, 영어점수는 ${engScore}입니다. 총점은 ${korScore + engScore}점입니다.`)
+
+    console.log(10/4);
+
+    console.log(5 == 5); // == : 자료형이 달라도 데이터만 같으면 같다고 본다
+    console.log(5 === '5'); // === : 자료형과 데이터 둘 다 같아야 같다고 본다
+
+    for(let i =0; i < 10; i++){
+      
+    }
+
+  </script>
+</body>
+</html>

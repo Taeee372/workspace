@@ -13,23 +13,33 @@ public class MyStudent implements StudentUtil {
   }
 
   @Override
-  public String getGradeBy(Student[] students, Student name) {
+  public String getGradeByStudentName(Student[] students, String name) {
     Student[] subjects = new Student[3];
-    for (int i = 0; i < students.length; i++){
-      if (students[i].equals(name)) {
-        double avg = (double) getTotalScore(name) / subjects.length;
-        if (90 <= avg && avg <= 100) {
-          return "A";
-        }
-        else if (80 <= avg && avg <= 89) {
-          return "B";
-        }
-        else if (70 <= avg && avg <= 79) {
-          return "C";
-        }
-        else return "D";
+    String grade = "학생 없음"; //학생의 등급을 저장할 변수
+    for (Student e : students){
+      if (e.getName().equals(name)) {
+        double avg = (double) getTotalScore(e) / subjects.length;
+        grade = getGradeByAvg(avg);
       }
     }
-    return "학생 없음";
+    return grade;
   }
+
+  //평균으로 등급을 결정하는 메서드
+  public String getGradeByAvg(double avg){
+    String grade = "";
+    if (avg >= 90) {
+      grade = "A";
+    }
+    else if (avg >= 80) {
+      grade = "B";
+    }
+    else if (avg >= 70) {
+      grade = "C";
+    }
+    else grade = "D";
+
+    return grade;
+  }
+
 }

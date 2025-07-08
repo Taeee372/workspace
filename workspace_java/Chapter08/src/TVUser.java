@@ -56,7 +56,7 @@ public class TVUser {
 
     System.out.println(stu.getHighScoreStudent(s1, s2).getName());
 
-    System.out.println(stu.getGradeBy(students, s1));
+    //System.out.println(stu.getGradeByStudentName(students, s1));
   }
 
 
