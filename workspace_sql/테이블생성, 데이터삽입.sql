@@ -37,7 +37,7 @@ ROLLBACK;
 
 # 테이블 삭제 쿼리 : DROP TABLE 테이블명;
 # DROP TABLE 하고나면 돌이킬 수 없으니까!!!!! 주의하시긔
-DROP TABLE student;
+# DROP TABLE student;
 
 
 # 회원 정보 테이블
@@ -78,7 +78,7 @@ CREATE TABLE BOARD(
 	WRITER VARCHAR(10) NOT NULL,
 	CONTENT VARCHAR(100),
 	CREATE_DATE DATETIME DEFAULT SYSDATE(), 
-	# SYSDATE : 시스템의 날짜, 시간대로 설정한다.
+	# SYSDATE() : 시스템의 날짜, 시간대로 설정한다.
 	READ_CNT INT DEFAULT 0 # 디폴트는 글자에도 적용할 수 있다
 );
 
