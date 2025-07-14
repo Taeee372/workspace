@@ -1,0 +1,15 @@
+.test4_container{
+  margin: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.test4_container > div{
+  width: 80px;
+  height: 80px;
+  background-color: crimson;
+  color: white;
+  line-height: 80px;
+  text-align: center;
+  font-size: 1.5rem;
+}
