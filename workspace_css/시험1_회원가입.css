@@ -25,3 +25,27 @@ input{
   border: 1px solid #dddddd;
   padding: 3px;
 }
+
+.info{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.addr{
+  display: flex;
+}
+
+h3{
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.input-long{
+  width: 350px;
+  margin-top: 5px;
+}
+
+.input-short{
+  width: 70px;
+}
