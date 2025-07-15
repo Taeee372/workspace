@@ -11,16 +11,16 @@
 
 table{
   border: 1px solid #e4e2e2;
-  border-top: 3px solid #e4e2e2;
-  width: 100%;
 }
 tr, td{
   border: 1px solid #e4e2e2;
 }
 
 table td{
-  padding: 5px;
+  display: table-cell; 
+  padding: 8px 10px;
 }
+
 input{
   border: 1px solid #dddddd;
   padding: 3px;
@@ -34,6 +34,12 @@ input{
 
 .addr{
   display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.addr > button{
+  box-sizing: border-box;
 }
 
 h3{
