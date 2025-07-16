@@ -11,19 +11,19 @@
 
 table{
   border: 1px solid #e4e2e2;
+  width: 100%;
 }
 tr, td{
   border: 1px solid #e4e2e2;
 }
 
 table td{
-  display: table-cell; 
   padding: 8px 10px;
 }
 
-input{
+input, select{
   border: 1px solid #dddddd;
-  padding: 3px;
+  padding: 5px;
 }
 
 .info{
@@ -32,14 +32,22 @@ input{
   align-items: end;
 }
 
-.addr{
+.addr-div{
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.addr > button{
-  box-sizing: border-box;
+.addr-div > button{
+  background-color: white;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  padding: 3px;
+  width: 90px;
+}
+
+.addr-div > button:hover{
+  cursor: pointer;
 }
 
 h3{
@@ -52,6 +60,27 @@ h3{
   margin-top: 5px;
 }
 
+.input-middle{
+  width: 80px;
+}
+
 .input-short{
-  width: 70px;
+  width: 50px;
+}
+
+.tel-num, .phone-num{
+  display: flex;
+  border: none;
+  gap: 3px;
+}
+
+.tel-num > select, .tel-num > input, 
+.phone-num > select, .phone-num > input{
+  width: 80px;
+}
+
+.red{
+  color: red;
+  vertical-align: middle;
+  font-weight: 700;
 }
