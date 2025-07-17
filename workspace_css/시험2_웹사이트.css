@@ -1,0 +1,19 @@
+.menu-all{
+  display: flex;
+}
+
+.menu-div{
+  display: flex;
+  gap: 10px;
+}
+
+.icon{
+  border: 20px solid orange; 
+  color: orange; 
+  border-radius: 50%; 
+  padding: 20px;
+}
+
+.icons-div{
+  display: flex;
+}
