@@ -1,0 +1,13 @@
+.detail-div{
+  margin: 30px;
+}
+
+.detail-table{
+  width: 400px;
+  border: 1px solid black;
+  
+}
+
+.detail-table tr, .detail-table td{
+  border: 1px solid black;
+}

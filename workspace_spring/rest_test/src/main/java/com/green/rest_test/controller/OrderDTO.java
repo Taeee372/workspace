@@ -11,4 +11,14 @@ public class OrderDTO {
   private int price;
   private int cnt;
   private String orderID;
+
+  public OrderDTO(){}
+
+  public OrderDTO(int itemNum, String itemName, int price, int cnt, String orderID) {
+    this.itemNum = itemNum;
+    this.itemName = itemName;
+    this.price = price;
+    this.cnt = cnt;
+    this.orderID = orderID;
+  }
 }
