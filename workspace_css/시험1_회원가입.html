@@ -13,7 +13,7 @@
     <div> <!-- 회원가입 -->
       <h3>회원 가입</h3>
       <table>
-        <thead>
+        <tbody>
           <tr>
             <td>회원구분<span class="red">*</span></td>
             <td>
@@ -21,7 +21,7 @@
                <input type="radio">외국인회원(foreigner)
             </td>
           </tr>
-        </thead>
+        </tbody>
       </table>
     </div>
     <div> <!-- 기본정보 -->
@@ -35,17 +35,11 @@
       <table>
         <tbody>
           <tr>
-            <td>
-              <span>아이디</span>
-              <span class="red">*</span>
-            </td>
+            <td>아이디<span class="red">*</span></td>
             <td><input type="text"> (영문소문자/숫자, 4~16자)</td>
           </tr>
           <tr>
-            <td>
-              <span>비밀번호</span>
-              <span class="red">*</span>
-            </td>
+            <td>비밀번호<span class="red">*</span></td>
             <td><input type="password"> (영문 대소문자/숫자/특수문자 총 2가지 이상 조합, 8~16자)</td>
           </tr>
           <tr>
@@ -61,8 +55,9 @@
             <td>
               <div class="addr-div">
                 <input type="text" class="input-middle">
-                <button type="button">우편번호
-                  <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; vertical-align: middle; margin-left: 3px;"></i>
+                <button type="button">
+                  <span>우편번호</span>
+                  <i class="fa-solid fa-chevron-right"></i>
                 </button>
               </div>
               <p><input type="text" class="input-long"> 기본주소</p>
@@ -74,6 +69,7 @@
             <td class="tel-num">
               <select>
                 <option>02</option>
+                <option>052</option>
               </select> -
               <input type="text"> -
               <input type="text">
@@ -84,6 +80,8 @@
             <td class="phone-num">
               <select>
                 <option>010</option>
+                <option>011</option>
+                <option>016</option>
               </select> -
               <input type="text"> -
               <input type="text">
@@ -101,7 +99,7 @@
             <td><input type="text"></td>
           </tr>
           <tr>
-            <td>이메일 수신여부</td>
+            <td>이메일 수신여부<span class="red">*</span></td>
             <td>
               <input type="checkbox">동의함
               <p>쇼핑몰에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</p>
@@ -112,7 +110,7 @@
             <td>
               <input type="radio">동의함
               <input type="radio" checked>동의안함
-              <p>- 평생회원으로 가입하시면 스타일맨 회원 탈퇴시까지는 휴면회원으로 전환되지 않으며,고객님의 개인정보가 탈퇴시까지 안전하게 보관됩니다.</p>
+              <p>- 평생회원으로 가입하시면 스타일맨 회원 탈퇴시까지는 휴면회원으로 전환되지 않으며, 고객님의 개인정보가 탈퇴시까지 안전하게 보관됩니다.</p>
               <p>- 지금 평생회원으로 가입하시면 쿠폰혜택을 드립니다. (쿠폰혜택을 받으신 경우, 3개월간 평생회원을 유지하셔야 합니다.)</p>
             </td>
           </tr>
@@ -130,7 +128,7 @@
               <input type="text" class="input-short"> 월
               <input type="text" class="input-short"> 일
               <input type="radio" checked>양력
-              <input type="radio">음력(14세 미만 회원가입을 제한하고 있습니다.)
+              <input type="radio">음력 (14세 미만 회원가입을 제한하고 있습니다.)
             </td>
           </tr>
           <tr>
