@@ -1,7 +1,7 @@
 import React from 'react'
 import './BookList.css'
 
-const BookList = () => {
+const BookList = ({bookList, setSelectBook, setIsShow}) => {
   return (
     <>
       <div>
@@ -15,6 +15,24 @@ const BookList = () => {
               <td>도서가격</td>
             </tr>
           </thead>
+          <tbody>
+            {
+              bookList.map((e, i) => {
+                return (
+                  <tr key={i} onClick={() => {
+                    setSelectBook(e);
+                    setIsShow(true);
+                  }}>
+                    <td>{bookList.length - i}</td>
+                    <td>{e.bookNum}</td>
+                    <td>{e.title}</td>
+                    <td>{e.writer}</td>
+                    <td>{e.price}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
         </table>
       </div>
     </>
