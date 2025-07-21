@@ -1,4 +1,4 @@
-package com.green.rest_test.controller;
+package com.green.rest_test;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,4 +21,22 @@ public class OrderDTO {
     this.cnt = cnt;
     this.orderID = orderID;
   }
+
+
+  @Override
+  public String toString() {
+    return "OrderDTO{" +
+            "itemNum=" + itemNum +
+            ", itemName='" + itemName + '\'' +
+            ", price=" + price +
+            ", cnt=" + cnt +
+            ", orderID='" + orderID + '\'' +
+            '}';
+  }
+
+
+
+
+
+
 }
