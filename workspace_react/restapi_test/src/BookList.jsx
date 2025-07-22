@@ -4,8 +4,16 @@ import './BookList.css'
 const BookList = ({bookList, setSelectBook, setIsShow}) => {
   return (
     <>
-      <div>
+      <div className='container'>
+        <h3>도서 목록</h3>
         <table>
+          <colgroup>
+            <col width='10%'/>
+            <col width='16%'/>
+            <col width='*%'/>
+            <col width='18%'/>
+            <col width='18%'/>
+          </colgroup>
           <thead>
             <tr>
               <td>No</td>
@@ -27,7 +35,7 @@ const BookList = ({bookList, setSelectBook, setIsShow}) => {
                     <td>{e.bookNum}</td>
                     <td>{e.title}</td>
                     <td>{e.writer}</td>
-                    <td>{e.price}</td>
+                    <td>{e.price}원</td>
                   </tr>
                 )
               })

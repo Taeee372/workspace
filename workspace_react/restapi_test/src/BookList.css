@@ -1,10 +1,32 @@
-table{
-  border: 1px solid black;
-  border-collapse: collapse;
-  width: 500px;
+.container{
+  width: 650px;
+  text-align: center;
+  margin: 30px;
 }
 
-tr, td{
-  border: 1px solid black;
+.container > table{
+  border: 1px solid #cacacaf3;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgb(237, 240, 247);
+}
+
+.container thead{
+  background-color: rgb(170, 190, 228);
+  font-weight: 600;
+}
+
+.container > tr, td{
+  border: 1px solid #cacacaf3;
   padding:  5px 10px;
+}
+
+.container tbody > :nth-of-type(even){
+  background-color: rgb(221, 226, 241);
+}
+
+.container tbody > tr:hover{
+  cursor: pointer;
+  background-color: rgb(192, 198, 216);
 }

@@ -1,0 +1,16 @@
+table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 30px;
+  width: 400px;
+}
+
+tr, td{
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+
+tr > :first-child{
+  text-align: center;
+  width: 35%;
+}

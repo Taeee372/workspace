@@ -1,10 +1,26 @@
-table{
-  border: 1px solid black;
+.container2{
+  width: 650px;
+  text-align: center;
+  margin: 30px;
+}
+.container2 > table{
+  border: 1px solid #cacacaf3;
   border-collapse: collapse;
-  width: 500px;
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgb(237, 240, 247);
 }
 
-tr, td{
-  border: 1px solid black;
+.container2  tr, td{
+  border: 1px solid #cacacaf3;
   padding:  5px 10px;
+}
+
+.container2 tbody td:nth-of-type(odd){
+  background-color: rgb(221, 226, 241);
+  font-weight: 600;
+}
+
+.intro > td{
+  padding: 15px;
 }
