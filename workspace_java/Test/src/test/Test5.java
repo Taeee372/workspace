@@ -44,8 +44,8 @@ public class Test5 {
 
     System.out.println("strike : " + strikecnt);
 
-    while (true){
-
-    }
+//    while (true){
+//
+//    }
   }
 }
