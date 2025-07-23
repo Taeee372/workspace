@@ -27,25 +27,22 @@ public class Test5 {
     System.out.print("1 >> ");
     int[] arr = {sc.nextInt(), sc.nextInt(), sc.nextInt()};
 
-    int strikecnt = 0;
-    int ballcnt = 0;
+    int strikeCnt = 0;
+    int ballCnt = 0;
 
     for (int i = 0; i < ball.length; i++){
       for(int j = 0; j < ball.length; j++){
         if (ball[i] == arr[j] && i == j) {
-          strikecnt++;
+          strikeCnt++;
         }
         else if (ball[i] == arr[j] && i != j) {
-          ballcnt++;
+          ballCnt++;
         }
       }
     }
-    System.out.println("ball : " + ballcnt);
+    System.out.println("ball : " + ballCnt);
 
-    System.out.println("strike : " + strikecnt);
+    System.out.println("strike : " + strikeCnt);
 
-//    while (true){
-//
-//    }
   }
 }
