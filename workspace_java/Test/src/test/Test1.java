@@ -1,3 +1,5 @@
+package test;
+
 import java.util.Scanner;
 
 public class Test1 {
@@ -15,8 +17,8 @@ public class Test1 {
 
     if (a > b && a > c) {
       max = a;
-      mid = Math.max(b, c); // mid = b > c ? b : c;
-      min = Math.min(b, c); // min = b > c ? c : b;
+      mid = Math.max(b, c);
+      min = Math.min(b, c);
     }
     else if (b > a && b > c) {
       max = b;
@@ -28,6 +30,7 @@ public class Test1 {
       mid = Math.max(a, b);
       min = Math.min(a, b);
     }
+
     System.out.println("max = " + max + ", mid = " + mid + ", min = " + min);
   }
 }

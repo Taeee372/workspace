@@ -1,3 +1,5 @@
+package test;
+
 import java.util.Scanner;
 
 public class Test3 {
@@ -22,18 +24,6 @@ public class Test3 {
       cnt++;
     }
 
-    switch (cnt){
-      case 0 :
-        System.out.println("박수 0번");
-        break;
-      case 1 :
-        System.out.println("박수 1번");
-        break;
-      case 2 :
-        System.out.println("박수 2번");
-        break;
-      case 3 :
-        System.out.println("박수 3번");
-    }
+    System.out.println("박수 " + cnt + "번");
   }
 }

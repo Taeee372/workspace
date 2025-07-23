@@ -7,7 +7,6 @@ const BookInfo = () => {
 const [bookList, setBookList] = useState([]);
 
 const [selectBook, setSelectBook] = useState({});
-console.log(selectBook);
 
 const [isShow, setIsShow] = useState(false);
 
@@ -35,10 +34,7 @@ const [isShow, setIsShow] = useState(false);
         :
         null
       }
-
-      
     </>
-   
   )
 }
 

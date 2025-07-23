@@ -9,11 +9,11 @@
   border-collapse: collapse;
   width: 100%;
   margin-top: 10px;
-  background-color: rgb(237, 240, 247);
+  background-color: rgb(244, 245, 248);
 }
 
 .container thead{
-  background-color: rgb(170, 190, 228);
+  background-color: rgb(170, 189, 224);
   font-weight: 600;
 }
 
@@ -23,10 +23,10 @@
 }
 
 .container tbody > :nth-of-type(even){
-  background-color: rgb(221, 226, 241);
+  background-color: rgb(227, 232, 245);
 }
 
 .container tbody > tr:hover{
   cursor: pointer;
-  background-color: rgb(192, 198, 216);
+  background-color: rgb(204, 211, 231);
 }

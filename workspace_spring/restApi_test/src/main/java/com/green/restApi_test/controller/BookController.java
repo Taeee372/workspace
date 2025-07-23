@@ -34,6 +34,7 @@ public class BookController {
     System.out.println("도서 정보 등록");
     return "도서 정보 등록";
   }
+
   @DeleteMapping("/books/{bookNum}")
   public String deleteBookInfo(@PathVariable("bookNum") int bookNum){
     System.out.println("도서 정보 삭제");
