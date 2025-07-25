@@ -5,7 +5,7 @@ const Form2 = () => {
 
   const [order, setOrder] = useState({
     'chicken' : '후라이드 치킨',
-    'cnt' : '',
+    'cnt' : '1',
     'addr' : '',
     'addrDetail' : '',
     'request' : ''
@@ -18,7 +18,7 @@ const Form2 = () => {
     })
   };
 
-  const regOrder = (e) => {
+  const regOrder = () => {
      axios.post('/api/orders', order)
         .then()
         .catch(error => console.log(error));

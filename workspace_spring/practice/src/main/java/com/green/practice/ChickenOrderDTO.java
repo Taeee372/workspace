@@ -2,9 +2,11 @@ package com.green.practice;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class ChickenOrderDTO {
   private String chicken;
   private int cnt;
@@ -12,6 +14,7 @@ public class ChickenOrderDTO {
   private String addrDetail;
   private String request;
 
+  //DTO(Data Transfer Object) - 데이터를 전송할 때 사용하는 객체
   public ChickenOrderDTO(){}
 
   public ChickenOrderDTO(String chicken, int cnt, String addr, String addrDetail, String request) {
@@ -22,14 +25,4 @@ public class ChickenOrderDTO {
     this.request = request;
   }
 
-  @Override
-  public String toString() {
-    return "치킨 주문 : " +
-            "chicken='" + chicken + '\'' +
-            ", cnt=" + cnt +
-            ", addr='" + addr + '\'' +
-            ", addrDetail='" + addrDetail + '\'' +
-            ", request='" + request + '\'' +
-            ' ';
-  }
 }
