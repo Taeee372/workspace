@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.basic_board2.mapper.BoardMapper">
+	<!--게시글 등록 쿼리-->
+    <insert id="insertBoard">
+        INSERT INTO BASIC_BOARD (
+             TITLE
+            , WRITER
+            , CONTENT
+            , READ_CNT
+        ) VALUES (
+            #{title} <!--컬럼명에 매칭되게 자바문법에 맞춰서(소문자) 작성  #{변수명}-->
+            , #{writer}
+            , #{content}
+            , #{readCnt} <!--변수를 사용할 때는 홀따옴표를 사용하지 않는다 / 문자, 숫자 둘 다 #{}로 같은 형태-->
+        )
+    </insert>
+
+    <!--하나의 게시글에 제목과 내용을 변경하는 쿼리-->
+    <update id="updateBoard">
+        UPDATE BASIC_BOARD
+        SET
+            TITLE =  #{title},
+            CONTENT = #{content}
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+
+    <!--input 태그에 입력한 글번호를 가진 게시글을 삭제하는 기능-->
+    <delete id="deleteBoard">
+        DELETE FROM BASIC_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
