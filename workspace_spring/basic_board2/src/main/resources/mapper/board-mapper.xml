@@ -63,6 +63,16 @@
         FROM BASIC_BOARD
         WHERE BOARD_NUM = #{boardNum}
     </select>
+
+    <select id="getBoardTitle" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , CONTENT
+            , CREATE_DATE
+            , READ_CNT
+        FROM BASIC_BOARD
+        WHERE TITLE LIKE CONCAT ('%', #{word}, '%')
+    </select>
 </mapper>
 
 

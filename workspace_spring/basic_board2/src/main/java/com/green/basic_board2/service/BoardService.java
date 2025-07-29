@@ -44,4 +44,8 @@ public class BoardService {
   public BoardDTO selectOneBoard(int boardNum){
     return boardMapper.selectOneBoard(boardNum);
   }
+
+  public List<BoardDTO> getBoardTitle(String word){
+    return boardMapper.getBoardTitle(word);
+  }
 }

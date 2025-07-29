@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react'
 
 const BoardDetail = () => {
 
-  const [getBoard, setGetBoard] = useState({});
+  const [getBoard, setGetBoard] = useState(null);
 
   const [boardNum, setBoardNum] = useState('');
-
-  const [isShow, setIsShow] = useState(false);
 
 
  
@@ -16,8 +14,8 @@ const BoardDetail = () => {
 
     axios.get(`/api/boards/${boardNum}`)
     .then(res => {
-      setGetBoard(res.data)
-      setIsShow(!false)
+     setGetBoard(res.data)
+  
     })
     .catch(error => console.log(error));
 
@@ -25,7 +23,6 @@ const BoardDetail = () => {
 
   
   console.log(getBoard);
-  console.log(getBoard.boardNum);
   console.log(boardNum);
    
   return (
@@ -33,7 +30,7 @@ const BoardDetail = () => {
       <h3>게시글 상세 정보 조회 페이지</h3>
       조회할 게시글 번호를 입력하세요 <input type="text" value={boardNum} onChange={(e) => {setBoardNum(e.target.value)}} />
       <button type='button' onClick={e => {getOneBoard()}}>조회</button>
-      { isShow
+      { getBoard
         ?
         <table>
         <tbody>

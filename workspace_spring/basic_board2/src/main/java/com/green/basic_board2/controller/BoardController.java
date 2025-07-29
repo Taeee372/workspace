@@ -53,4 +53,9 @@ public class BoardController {
   public BoardDTO selectOneBoard(@PathVariable("boardNum") int boardNum){
     return boardService.selectOneBoard(boardNum);
   }
+
+  @GetMapping("/{word}")
+  public List<BoardDTO> getBoardTitle(@PathVariable("word") String word){
+    return boardService.getBoardTitle(word);
+  }
 }
