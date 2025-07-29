@@ -38,6 +38,13 @@ VALUES ('gogo', '4321', '고길동', 30, '1987-07-08');
 COMMIT;
 
 
+SELECT MEM_NAME
+FROM basic_member
+WHERE MEM_ID = 'java'
+
+
+
+
 
 
 

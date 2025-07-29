@@ -4,6 +4,14 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.basic_board2.mapper.BoardMapper">
+    <resultMap id="board" type="com.green.basic_board2.dto.BoardDTO">
+        <id     column="BOARD_NUM" property="boardNum"/>
+        <result column="TITLE" property="title"/>
+        <result column="WRITER" property="writer"/>
+        <result column="CONTENT" property="content"/>
+        <result column="READ_CNT" property="readCnt"/>
+        <result column="CREATE_DATE" property="createDate"/>
+    </resultMap>
 	<!--게시글 등록 쿼리-->
     <insert id="insertBoard">
         INSERT INTO BASIC_BOARD (
@@ -33,6 +41,28 @@
         DELETE FROM BASIC_BOARD
         WHERE BOARD_NUM = #{boardNum}
     </delete>
+
+    <!--게시글 목록 조회-->
+    <select id="selectBoard" resultMap="board">
+        SELECT BOARD_NUM <!--눈에 안 보인다고 해도 PK값은 무조건 조회하는 게 좋다-->
+            , TITLE
+            , WRITER
+            , CREATE_DATE
+            , READ_CNT
+        FROM BASIC_BOARD
+        ORDER BY CREATE_DATE DESC
+    </select>
+
+    <select id="selectOneBoard" resultMap="board">
+        SELECT BOARD_NUM
+            , READ_CNT
+            , WRITER
+            , CREATE_DATE
+            , TITLE
+            , CONTENT
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
 </mapper>
 
 

@@ -3,6 +3,8 @@ package com.green.basic_board2.mapper;
 import com.green.basic_board2.dto.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 //쿼리의 빈 값은 메서드의 매개변수로 전달함
 //빈 값이 여러개라도 매개변수로 하나의 데이터만 전달
 
@@ -22,5 +24,8 @@ public interface BoardMapper {
   //현재 쿼리의 빈 값은 BOARD_NUM 하나밖에 없으니 int boardNum만 써도 충분
   public int deleteBoard(int boardNum);
 
+  public List<BoardDTO> selectBoard();
+
+  public BoardDTO selectOneBoard(int boardNum);
 
 }

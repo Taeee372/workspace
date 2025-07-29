@@ -10,11 +10,10 @@ const MemberRegForm = () => {
   const [insertMemData, setInsertMemData] = useState({
     'memId' : '',
     'memPw' : '',
+    'correctPw' : '', //디비에 없어도 필요하면 같이 만들면 댐
     'memName' : '',
     'memAge' : ''
   });
-
-  const [correctPw, setCorrectPw] = useState('');
 
   console.log(insertMemData);
 
@@ -25,23 +24,30 @@ const MemberRegForm = () => {
     });
   }
 
+  // const regMember = () => {
+  //   if(insertMemData.memPw === insertMemData.correctPw)
+  //     axios.post...
+  //   }
+  //   else{alert('비번확인')}  얘도 가능은 하지만,,,
+
+
   const insertData = () => {
-    insertMemData.memPw === correctPw 
-    ? 
+    if(insertMemData.memPw !== insertMemData.correctPw){
+      alert('비밀번호를 확인하세요')
+      return; //함수 안에서 데이터 없는 리턴문을 만나면 함수는 그 즉시 종료된다.
+    }
     axios.post('/api/members', insertMemData)
     .then(res => alert('환영합니다!'))
     .catch(error => console.log(error))
-    :
-    alert('비밀번호를 확인하세요')
-  
   }
+
 
   return (
     <div>
       <h3>회원등록</h3>
       아이디 <input type="text" name='memId' value={insertMemData.memId} onChange={e => handleMemData(e)}/> <br />
       비번 <input type="password" name='memPw' value={insertMemData.memPw} onChange={e => handleMemData(e)}/> <br />
-      비번확인 <input type="password" value={correctPw} onChange={e => setCorrectPw(e.target.value)}/> <br />
+      비번확인 <input type="password" name='correctPw' value={insertMemData.correctPw} onChange={e => handleMemData(e)}/> <br />
       이름 <input type="text" name='memName' value={insertMemData.memName} onChange={e => handleMemData(e)}/> <br />
       나이 <input type="text" name='memAge' value={insertMemData.memAge} onChange={e => handleMemData(e)}/> <br />
       <button type='button' onClick={e => insertData()}>회원가입</button>

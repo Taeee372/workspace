@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.apache.tomcat.util.net.openssl.OpenSSLUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
   private BoardMapper boardMapper;
@@ -33,5 +35,13 @@ public class BoardService {
   public int deleteBoard(int boardNum){
    int result = boardMapper.deleteBoard(boardNum);
    return result;
+  }
+
+  public List<BoardDTO> selectBoard(){
+    return boardMapper.selectBoard();
+  }
+
+  public BoardDTO selectOneBoard(int boardNum){
+    return boardMapper.selectOneBoard(boardNum);
   }
 }
