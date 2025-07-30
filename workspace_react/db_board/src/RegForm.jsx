@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,6 +11,8 @@ const RegForm = () => {
     'writer' : '',
     'content' : ''
   })
+
+  const nav = useNavigate();
 
   const handleInsertBoard = (e) => {
     setInsertBoard({
@@ -28,7 +31,7 @@ const RegForm = () => {
       return ;
     }
     axios.post('/api/boards', insertBoard)
-    .then(res => alert('등록 완료'))
+    .then(res => nav('/'))
     .catch(error => console.log(error));
   }
 

@@ -10,4 +10,10 @@ public interface BoardMapper {
   public List<BoardDTO> getBoardAll();
 
   public int regBoard(BoardDTO boardDTO);
+
+  public BoardDTO getBoard(int boardNum);
+
+  public int updateBoard(BoardDTO boardDTO);
+
+  public int deleteBoard(int boardNum);
 }

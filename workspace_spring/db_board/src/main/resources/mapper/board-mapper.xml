@@ -46,7 +46,23 @@
             , TITLE
             , CONTENT
         FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
     </select>
+
+    <!--UpdateForm-->
+    <update id="updateBoard">
+        UPDATE BOARD
+        SET
+            TITLE = #{title}
+            , CONTENT = #{content}
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+
+    <!--DeleteBoard-->
+    <delete id="deleteBoard">
+        DELETE FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
 </mapper>
 
 

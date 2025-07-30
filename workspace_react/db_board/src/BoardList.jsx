@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { use, useEffect, useState } from 'react'
 import './BoardList.css'
+import { useNavigate } from 'react-router-dom';
 
 const BoardList = () => {
 
   const [boardList, setBoardList] = useState([]);
 
   const [select, setSelect] = useState('title');
+
+  const nav = useNavigate(); 
 
 
   useEffect(() => {
@@ -17,6 +20,8 @@ const BoardList = () => {
     })
     .catch(error => console.log(error));
   }, []);
+
+  
 
   return (
     <div>
@@ -43,7 +48,7 @@ const BoardList = () => {
               return (
                 <tr key={i}>
                   <td>{boardList.length - i}</td>
-                  <td>{board.title}</td>
+                  <td onClick={e => nav(`/boardDetail/${board.boardNum}`)}>{board.title}</td>
                   <td>{board.writer}</td>
                   <td>{board.createDate}</td>
                   <td>{board.readCnt}</td>
@@ -53,7 +58,7 @@ const BoardList = () => {
           }
         </tbody>
       </table>
-      <button type='button'>글쓰기</button>
+      <button type='button' onClick={e => nav('regBoard')}>글쓰기</button>
     </div>
   )
 }
