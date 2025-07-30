@@ -40,8 +40,17 @@ COMMIT;
 
 SELECT MEM_NAME
 FROM basic_member
-WHERE MEM_ID = 'java'
+WHERE MEM_ID = 'java';
 
+
+# 게시글 목록 페이지2 문제 자바에 작성할 쿼리
+SELECT BOARD_NUM
+      , TITLE
+      , WRITER
+      , CREATE_DATE
+      , READ_CNT
+FROM BASIC_BOARD
+WHERE TITLE LIKE '%리%';
 
 
 

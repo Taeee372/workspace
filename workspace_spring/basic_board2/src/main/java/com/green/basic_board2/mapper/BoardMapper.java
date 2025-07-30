@@ -28,6 +28,6 @@ public interface BoardMapper {
 
   public BoardDTO selectOneBoard(int boardNum);
 
-  public List<BoardDTO> getBoardTitle(String word);
+  public List<BoardDTO> searchTitle(String title);
 
 }

@@ -9,6 +9,7 @@ import MemberRegForm from './MemberRegForm'
 import MemberList from './MemberList'
 import BoardList from './BoardList'
 import BoardDetail from './BoardDetail'
+import SearchBoardList from './SearchBoardList'
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
       {/* <MemberRegForm /> */}
       {/* <MemberList /> */}
       {/* <BoardList /> */}
-      <BoardDetail />
+      {/* <BoardDetail /> */}
+      <SearchBoardList />
     </>
   )
 }

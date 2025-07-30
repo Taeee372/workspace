@@ -64,14 +64,15 @@
         WHERE BOARD_NUM = #{boardNum}
     </select>
 
-    <select id="getBoardTitle" resultMap="board">
+    <select id="searchTitle" resultMap="board">
         SELECT BOARD_NUM
             , TITLE
-            , CONTENT
+            , WRITER
             , CREATE_DATE
             , READ_CNT
         FROM BASIC_BOARD
-        WHERE TITLE LIKE CONCAT ('%', #{word}, '%')
+        WHERE TITLE LIKE CONCAT ('%', #{title}, '%')
+        <!--변수에 'java'를 넣었다고 치면 => ('%', 'java', '%') => '%java%'-->
     </select>
 </mapper>
 

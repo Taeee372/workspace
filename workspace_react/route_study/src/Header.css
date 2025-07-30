@@ -1,0 +1,28 @@
+.header-container{
+  width: 100%;
+  height: 150px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.profile{
+  text-align: right;
+}
+
+.profile > span{
+  margin-right: 16px;
+}
+
+.title{
+  text-align: center;
+  font-size: 4rem;
+}
+
+/* Link태그에 디자인 주고 싶으면 a태그에 적용시키면 된다 */
+/* 사실상 Link태그와 a태그는 같기 때문에 */
+.profile a{
+  color: white;
+  text-decoration: none;
+}

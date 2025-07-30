@@ -51,11 +51,18 @@ public class BoardController {
 
   @GetMapping("/{boardNum}")
   public BoardDTO selectOneBoard(@PathVariable("boardNum") int boardNum){
-    return boardService.selectOneBoard(boardNum);
+    BoardDTO result = boardService.selectOneBoard(boardNum);
+    System.out.println(result);
+    return result; //리턴값을 리액트에게 전달해줌
+    //자료형이 클래스인 경우 : 없는 데이터를 조회하면 null을 리액트로 던져줌 / 리액트는 빈문자 ''로 받는다
   }
 
-  @GetMapping("/{word}")
-  public List<BoardDTO> getBoardTitle(@PathVariable("word") String word){
-    return boardService.getBoardTitle(word);
+  //제목 검색
+  @GetMapping("/search/{title}") //위에 있는 코드랑 url이 겹쳐서 주소 변경 | boards/search/{title}
+  public List<BoardDTO> searchTitle(@PathVariable("title") String title){
+    List<BoardDTO> result = boardService.searchTitle(title);
+    System.out.println(result);
+    return result;
+    //자료형이 리스트인 경우 : 빈배열을 던져줌, null이 아니다 / 리액트는 빈배열 []로 받는다
   }
 }
