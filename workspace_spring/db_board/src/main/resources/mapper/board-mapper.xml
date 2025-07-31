@@ -5,12 +5,12 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.db_board.mapper.BoardMapper">
     <resultMap id="board" type="com.green.db_board.dto.BoardDTO">
-        <id     column="BOARD_NUM" property="boardNum"/>
-        <result column="TITLE" property="title"/>
-        <result column="WRITER" property="writer"/>
-        <result column="CONTENT" property="content"/>
-        <result column="READ_CNT" property="readCnt"/>
-        <result column="CREATE_DATE" property="createDate"/>
+        <id     column="BOARD_NUM"      property="boardNum"/>
+        <result column="TITLE"          property="title"/>
+        <result column="WRITER"         property="writer"/>
+        <result column="CONTENT"        property="content"/>
+        <result column="READ_CNT"       property="readCnt"/>
+        <result column="CREATE_DATE"    property="createDate"/>
     </resultMap>
 
     <!--BoardList-->

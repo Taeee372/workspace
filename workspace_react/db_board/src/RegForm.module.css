@@ -1,0 +1,32 @@
+.title_div{
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.btn_div{
+  text-align: center;
+  margin-top: 16px;
+}
+
+.reg_table{
+  width: 100%;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.reg_table tr, .reg_table td{
+  border: 1px solid black;
+}
+
+.reg_table td{
+  padding: 6px 2px;
+}
+
+.reg_table input{
+  width: 100%;
+}
+
+.reg_table textarea{
+  width: 100%;
+  resize: none;
+}

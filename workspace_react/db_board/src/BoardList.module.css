@@ -1,0 +1,46 @@
+.container1{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.title_div{
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.search_div{
+  display: flex;
+  justify-content: end;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.list_table{
+  width: 100%;
+  text-align: center;
+}
+
+.list_table > thead > tr{
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgray;
+}
+
+.list_table > tbody > tr{
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgray;
+}
+
+.list_table > tbody > tr > :nth-of-type(2):hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.list_table td{
+  padding: 8px;
+}
+
+.btn_div{
+  text-align: center;
+  margin-top: 16px;
+}

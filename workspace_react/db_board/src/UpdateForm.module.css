@@ -1,0 +1,12 @@
+.container3 table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 500px;
+  margin: 10px 0px;
+}
+
+
+.container3 tr, .container3 td{
+  border: 1px solid black;
+  padding: 5px;
+}

@@ -11,14 +11,14 @@ import { Route, Routes } from 'react-router-dom'
 function App() {
 
   return (
-    <>
+    <div className='container'>
       <Routes>
         <Route path='/' element={<BoardList />}/>
         <Route path='/regBoard' element={<RegForm />}/>
         <Route path='/boardDetail/:boardNum' element={<BoardDetail />}/>
-        <Route path='/updateBoard' element={<UpdateForm />}/>
+        <Route path='/updateBoard/:boardNum' element={<UpdateForm />}/>
       </Routes>
-    </>
+    </div>
   )
 }
 
