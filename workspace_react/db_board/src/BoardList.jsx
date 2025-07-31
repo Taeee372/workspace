@@ -9,6 +9,10 @@ const BoardList = () => {
 
   const [select, setSelect] = useState('title');
 
+  const [title, setTitle] = useState('');
+  
+  const [writer, setWriter] = useState('');
+
   const nav = useNavigate(); 
 
   useEffect(() => {
@@ -20,6 +24,26 @@ const BoardList = () => {
     .catch(error => console.log(error));
   }, []);
 
+  const goTitle = () => {
+      axios.get(`/api/boards/title/${title}`)
+      .then(res =>{
+        console.log(res.data)
+        setTitle(res.data)
+      })
+      .catch(error => console.log(error))
+    }
+  const goWriter = () => {
+    axios.get(`/api/boards/writer/${writer}`)
+    .then(res =>{
+      console.log(res.data)
+      setWriter(res.data)
+    })
+    .catch(error => console.log(error))
+  
+    }
+      
+  
+
   return (
     <div className={styles.container1}>
       <div className={styles.title_div}>
@@ -30,8 +54,11 @@ const BoardList = () => {
           <option value="title">제목</option>
           <option value="writer">작성자</option>
         </select>
-        <input type="text" />
-        <button type='button'>검색</button>
+        <input type="text" onChange={e => {
+          setTitle(e.target.value)
+          setWriter(e.target.value)
+          }}/>
+        <button type='button' onClick={e => {goTitle(); goWriter();}}>검색</button>
       </div>
       {/* 
         css를 module로 바꿔쓰면 클래스명 만들 때 하이픈 못 씀 
@@ -70,7 +97,6 @@ const BoardList = () => {
                     <td>{boardList.length - i}</td>
                     <td onClick={e => {
                           nav(`/boardDetail/${board.boardNum}`);
-                          
                         }}>{board.title}</td>
                     <td>{board.writer}</td>
                     <td>{board.createDate}</td>
@@ -79,8 +105,6 @@ const BoardList = () => {
                 )
               })
             }
-
-              
           </tbody>
         </table>
       </div>

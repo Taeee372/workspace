@@ -23,16 +23,16 @@ const RegForm = () => {
   }
 
   const regBoard = () => {
-    if(insertBoard.title === ''){
-      alert('제목을 입력해주세요')
+    if(insertBoard.title === '' || insertBoard.writer === ''){
+      alert('제목과 작성자는 필수입력입니다.')
       return ;
     }
-    if(insertBoard.writer === ''){
-      alert('작성자를 입력해주세요')
-      return ;
-    }
+
     axios.post('/api/boards', insertBoard)
-    .then(res => nav('/'))
+    .then(res => {
+      alert('게시글이 등록되었습니다.\n게시글 목록 페이지로 이동합니다.'); {/* \n : 엔터취급 */}
+      nav('/'); {/* nav(-1) 얘도 가능 */}
+    })
     .catch(error => console.log(error));
   }
 

@@ -12,13 +12,13 @@ CREATE TABLE board (
 SELECT * FROM board;
 
 INSERT INTO board(TITLE, WRITER, CONTENT, READ_CNT) 
-VALUES('안녕하세요', '임꺽정', '내용5', 7);
+VALUES('hello', '임꺽정', '내용5', 7);
 INSERT INTO board(TITLE, WRITER, CONTENT, READ_CNT) 
 VALUES('제목입니다', '홍길동', '내용4', 2);
 INSERT INTO board(TITLE, WRITER, CONTENT, READ_CNT) 
-VALUES('세 번째 글', '김자바', '내용3', 1);
+VALUES('title', 'java', '내용3', 1);
 INSERT INTO board(TITLE, WRITER, CONTENT, READ_CNT) 
-VALUES('두 번째 글', '이자바', '내용2', 2);
+VALUES('두 번째 글', 'kimjava', '내용2', 2);
 INSERT INTO board(TITLE, WRITER, CONTENT, READ_CNT) 
 VALUES('첫 번째 글', '김자바', '내용1', 7);
 COMMIT;

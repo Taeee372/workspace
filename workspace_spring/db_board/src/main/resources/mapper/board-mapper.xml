@@ -63,6 +63,30 @@
         DELETE FROM BOARD
         WHERE BOARD_NUM = #{boardNum}
     </delete>
+
+    <!--제목 기준 게시글 검색-->
+    <select id="searchTitle" resultMap="board">
+        SELECT BOARD_NUM
+            , CREATE_DATE
+            , WRITER
+            , READ_CNT
+            , TITLE
+            , CONTENT
+        FROM BOARD
+        WHERE TITLE LIKE CONCAT('%', #{title}, '%')
+    </select>
+
+    <!--작성자 기준 게시글 검색-->
+    <select id="searchWriter" resultMap="board">
+        SELECT BOARD_NUM
+        , CREATE_DATE
+        , WRITER
+        , READ_CNT
+        , TITLE
+        , CONTENT
+        FROM BOARD
+        WHERE WRITER LIKE CONCAT('%', #{writer}, '%')
+    </select>
 </mapper>
 
 

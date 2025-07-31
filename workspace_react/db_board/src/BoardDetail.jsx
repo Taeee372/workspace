@@ -5,14 +5,18 @@ import styles from './BoardDetail.module.css'
 
 const BoardDetail = () => {
 
+  //조회한 상세정보를 저장할 state 변수
   const [detailBoard, setDetailBoard] = useState({});
 
   const nav = useNavigate();
 
+  //목록 화면에서 클릭한 게시글의 글 번호
+  //uesParams는 데이터를 객체 타입으로 리턴해줌
   const {boardNum} = useParams();
   // console.log(boardNum);
   // console.log(detailBoard.boardNum)
 
+  //컴포넌트가 마운트되면 상세정보를 가져온다
   useEffect(() => {
     axios.get(`/api/boards/${boardNum}`)
     .then(res => {
@@ -23,37 +27,51 @@ const BoardDetail = () => {
   }, [])
 
   const deleteBoard = () => {
-    axios.delete(`/api/boards/${boardNum}`)
-    .then(res => nav('/'))
-    .catch(error => console.log(error));
+    const result = confirm('정말 삭제할까요?')
+    //console.log(result);
+    //confirm에서 확인 클릭 시 리턴 true, 취소 클릭 시 리턴 false
+
+    //확인을 클릭했을 때만 삭제 진행
+    if(result){
+      axios.delete(`/api/boards/${boardNum}`)
+      .then(res => nav('/'))
+      .catch(error => console.log(error));
+    }
+    
   }
 
   return (
-    <div className={styles.container2}>
+    <div>
+     <div className={styles.title_div}> 
       <h3>게시글 상세 정보 페이지</h3>
-      <table>
-        <tbody>
-          <tr>
-            <td>작성일</td>
-            <td>{detailBoard.createDate}</td>
-            <td>작성자</td>
-            <td>{detailBoard.writer}</td>
-            <td>조회수</td>
-            <td>{detailBoard.readCnt}</td>
-          </tr>
-          <tr>
-            <td>제목</td>
-            <td colSpan={5}>{detailBoard.title}</td>
-          </tr>
-          <tr>
-            <td>내용</td>
-            <td colSpan={5}>{detailBoard.content}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button type='button' onClick={e => nav('/')}>목록가기</button>
-      <button type='button' onClick={e => nav(`/updateBoard/${detailBoard.boardNum}`)}>수정</button>
-      <button type='button' onClick={e => deleteBoard()}>삭제</button>
+    </div>
+       <div className={styles.table_div}>
+         <table className={styles.detail_table}>
+          <tbody>
+            <tr>
+              <td>작성일</td>
+              <td>{detailBoard.createDate}</td>
+              <td>작성자</td>
+              <td>{detailBoard.writer}</td>
+              <td>조회수</td>
+              <td>{detailBoard.readCnt}</td>
+            </tr>
+            <tr>
+              <td>제목</td>
+              <td colSpan={5}>{detailBoard.title}</td>
+            </tr>
+            <tr>
+              <td>내용</td>
+              <td colSpan={5}>{detailBoard.content}</td>
+            </tr>
+          </tbody>
+        </table>
+       </div>
+      <div className={styles.btn_div}>
+        <button type='button' onClick={e => nav('/')}>목록가기</button>
+        <button type='button' onClick={e => nav(`/updateBoard/${detailBoard.boardNum}`)}>수정</button>
+        <button type='button' onClick={e => deleteBoard()}>삭제</button>
+      </div>
     </div>
   )
 }

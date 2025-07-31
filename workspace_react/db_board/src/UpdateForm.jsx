@@ -6,63 +6,90 @@ import styles from './UpdateForm.module.css'
 
 const UpdateForm = () => {
 
+  //boardNum번의 기존 데이터 가져오기 위한 state
   const [detailData, setDetailData] = useState({});
 
+  //제목과 내용 변경을 위한 state
   const [updateData, setUpdateData] = useState({
     'title' : '',
     'content' : ''
   });
-
-  
-  const handleData = (e) => {
-    setUpdateData({
-      ...updateData,
-      [e.target.name] : e.target.value
-    })
-  }
-  console.log(updateData)
-  
 
   const nav = useNavigate();
 
   const {boardNum} = useParams();
   // console.log(detailData.title);
 
-
+  //시작 화면에 기존 데이터 넣기
   useEffect(() => {
     axios.get(`/api/boards/${boardNum}`)
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data.title)
+      // console.log(res.data.content)
       setDetailData(res.data)
+      setUpdateData({
+        //title과 content에 기존 데이터 넣기
+        ...updateData,
+        title : res.data.title,
+        content : res.data.content
+         
+      })
     })
     .catch(error => console.log(error));
   }, [])
+    console.log(updateData)
+
+  //수정할 내용을 입력할 때마다 저장
+  const handleData = (e) => {
+    setUpdateData({
+      ...updateData,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  //수정된 데이터 전달
+  const putData = () => {
+    axios.put(`/api/boards/${boardNum}`, updateData)
+    .then(res => {
+      alert('수정 완료')
+      nav(`/boardDetail/${boardNum}`)
+    })
+    .catch(error => console.log(error));
+  }
   
+  // console.log(boardNum);
+
   return (
     <div className={styles.container}>
-      <h3>게시글 수정 페이지</h3>
-      <table>
-        <tbody>
-          <tr>
-            <td>작성일</td>
-            <td>{detailData.createDate}</td>
-            <td>작성자</td>
-            <td>{detailData.writer}</td>
-          </tr>
-          <tr>
-            <td>제목</td>
-            <td colSpan={3}>
-              <input type="text" name='title' value={updateData.title} onChange={e => handleData(e)}/>
-              </td>
-          </tr>
-          <tr>
-            <td>내용</td>
-            <td colSpan={3}><textarea cols={50} rows={5}></textarea></td>
-          </tr>
-        </tbody>
-      </table>
-      <button type='buttton' onClick={e => nav(-1)}>뒤로가기</button>
-      <button type='buttton' onClick={e => nav(`/boardDetail/${boardNum}`)}>수정</button>
+      <div className={styles.title_div}>
+        <h3>게시글 수정 페이지</h3>
+      </div>
+      <div className={styles.table_div}>
+        <table className={styles.detail_table}>
+          <tbody>
+            <tr>
+              <td>작성일</td>
+              <td>{detailData.createDate}</td>
+              <td>작성자</td>
+              <td>{detailData.writer}</td>
+            </tr>
+            <tr>
+              <td>제목</td>
+              <td colSpan={3}>
+                <input type="text" name='title' value={updateData.title} onChange={e => handleData(e)}/>
+                </td>
+            </tr>
+            <tr>
+              <td>내용</td>
+              <td colSpan={3}><textarea cols={50} rows={5} name='content' value={updateData.content} onChange={e => handleData(e)}></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className={styles.btn_div}>
+        <button type='buttton' onClick={e => nav(-1)}>뒤로가기</button>
+        <button type='buttton' onClick={e => putData()}>수정</button>
+      </div>
     </div>
   )
 }
