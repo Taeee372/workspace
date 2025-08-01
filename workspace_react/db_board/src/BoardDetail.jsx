@@ -14,18 +14,31 @@ const BoardDetail = () => {
   //uesParams는 데이터를 객체 타입으로 리턴해줌
   const {boardNum} = useParams();
   // console.log(boardNum);
-  // console.log(detailBoard.boardNum)
+  // console.log(det
+  // ailBoard.boardNum)
 
-  //컴포넌트가 마운트되면 상세정보를 가져온다
-  useEffect(() => {
-    axios.get(`/api/boards/${boardNum}`)
+
+  //axios는 실행순서는 있지만 나중 코드가 먼저 실행한 코드가 끝날 때까지 기다리지 않기 때문에 뭐가 먼저 끝날지 모름 => 비동기 함수
+  //순서를 강제시키고 싶으면 선행코드의 then 안에 후행코드 넣기 
+  // =>이 코드를 먼저 실행시키고 (성공하면 그 다음에) 나중 코드 실행 => 순서를 정해줄 수 있다
+
+  //컴포넌트가 마운트되면 조회수를 1 증가시킨다
+  useEffect(() =>{
+    axios.put(`/api/boards/read-cnt/${boardNum}`)
+    .then(res => {getboardDetail()})
+    .catch(error => console.log(error));
+  }, [])
+   
+  //상세정보 조회 함수
+  const getboardDetail = () => {
+     axios.get(`/api/boards/${boardNum}`)
     .then(res => {
       console.log(res.data)
       setDetailBoard(res.data)
     })
     .catch(error => console.log(error));
-  }, [])
-
+  }
+ 
   const deleteBoard = () => {
     const result = confirm('정말 삭제할까요?')
     //console.log(result);

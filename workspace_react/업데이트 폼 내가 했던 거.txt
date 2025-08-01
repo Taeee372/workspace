@@ -21,24 +21,18 @@ const UpdateForm = () => {
   const {boardNum} = useParams();
   // console.log(detailData.title);
 
-  // detailData가 값이 바뀔 때만 실행 + 마운트 시에는 실행 x
-  // 의존성 배열에 detailData를 넣으면 detailData값이 바뀌어서 리렌더링 될 때도 실행
-  useEffect(() => {
-    if(detailData.title !== undefined){ //마운트 시점이 아니라면
-      setUpdateData({
-        'title' : detailData.title,
-        'content' : detailData.content
-      })
-    }
-  }, [detailData])
-  
-  //마운트되면 기존 데이터 넣기
+  //시작 화면에 기존 데이터 넣기
   useEffect(() => {
     axios.get(`/api/boards/${boardNum}`)
     .then(res => {
       // console.log(res.data.title)
       // console.log(res.data.content)
       setDetailData(res.data)
+      setUpdateData({
+        ...updateData,
+        title : res.data.title,
+        content : res.data.content
+      })
     })
     .catch(error => console.log(error));
   }, [])
@@ -100,4 +94,3 @@ const UpdateForm = () => {
 }
 
 export default UpdateForm
-

@@ -22,6 +22,9 @@ public interface BoardMapper {
   //게시글 삭제
   public int deleteBoard(int boardNum);
 
+  //조회수 증가
+  public void updateReadCnt(int boardNum);
+
   //제목 기준 게시글 검색
   public List<BoardDTO> searchTitle(String title);
 

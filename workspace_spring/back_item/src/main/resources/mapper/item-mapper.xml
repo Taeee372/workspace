@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.back_item.mapper.ItemMapper">
+    <resultMap id="item" type="com.green.back_item.dto.ItemDTO">
+        <id     column="ITEM_NUM"       property="itemNum"/>
+        <result column="ITEM_CATEGORY"  property="itemCategory"/>
+        <result column="ITEM_NAME"      property="itemName"/>
+        <result column="ITEM_PRICE"     property="itemPrice"/>
+        <result column="ITEM_INTRO"     property="itemIntro"/>
+        <result column="ITEM_STATUS"    property="itemStatus"/>
+        <result column="REG_DATE"       property="regDate"/>
+
+    </resultMap>
+    <!--ItemList 모든 상품 조회-->
+    <select id="getItemList" resultMap="item">
+        SELECT ITEM_NUM
+            , ITEM_CATEGORY
+            , ITEM_NAME
+            , ITEM_PRICE
+            , ITEM_STATUS
+            , REG_DATE
+        FROM ITEM
+        ORDER BY ITEM_NUM DESC
+    </select>
+
+    <!--ItemDetail 상품 상세정보 조회-->
+    <select id="getItem" resultMap="item">
+        SELECT ITEM_NUM
+            , ITEM_CATEGORY
+            , ITEM_NAME
+            , ITEM_PRICE
+            , ITEM_STATUS
+            , REG_DATE
+            , ITEM_INTRO
+        FROM ITEM
+        WHERE ITEM_NUM = #{itemNum}
+    </select>
+
+    <!--상품 삭제-->
+    <delete id="deleteItem">
+        DELETE FROM ITEM
+        WHERE ITEM_NUM = #{itemNum}
+    </delete>
+
+    <!--RegForm 상품 등록-->
+    <insert id="regItem">
+        INSERT INTO ITEM (
+            ITEM_CATEGORY
+            , ITEM_NAME
+            , ITEM_PRICE
+            , ITEM_STATUS
+            , ITEM_INTRO
+        ) VALUES (
+            #{itemCategory}
+            , #{itemName}
+            , #{itemStatus}
+            , #{itemPrice}
+            , #{itemIntro}
+        )
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

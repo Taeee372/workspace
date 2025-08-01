@@ -39,6 +39,11 @@ public class BoardService {
     return boardMapper.deleteBoard(boardNum);
   }
 
+  //조회수 증가
+  public void updateReadCnt(int boardNum){
+    boardMapper.updateReadCnt(boardNum);
+  }
+
   //제목 기준 게시글 검색
   public List<BoardDTO> searchTitle(String title){
     return boardMapper.searchTitle(title);

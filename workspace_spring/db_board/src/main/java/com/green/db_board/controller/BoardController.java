@@ -47,6 +47,12 @@ public class BoardController {
     return boardService.deleteBoard(boardNum);
   }
 
+  //조회수 증가
+  @PutMapping("/read-cnt/{boardNum}") //restful api를 만들 때는 합성어 쓸 때 하이픈을 쓴다
+  public void updateReadCnt(@PathVariable("boardNum") int boardNum){
+    boardService.updateReadCnt(boardNum);
+  }
+
   //제목 기준 게시글 검색
   @GetMapping("/title/{title}")
   public List<BoardDTO> searchTitle(@PathVariable("title") String title){

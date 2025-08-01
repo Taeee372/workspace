@@ -1,0 +1,12 @@
+.table{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.btn_div{
+  text-align: center;
+}
+
+.btn_div > button{
+  margin: 0px 5px;
+}
