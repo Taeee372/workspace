@@ -1,10 +1,55 @@
+.container{
+  margin: 20px;
+}
+
 .table{
-  border: 1px solid black;
+  border: 1px solid #dddddd;
   text-align: center;
   width: 100%;
 }
 
+.container thead{
+  background-color: rgb(170, 207, 170);
+}
+
+.container tbody > :nth-of-type(even){
+  background-color: rgb(231, 245, 231);
+}
+
+.container tbody > tr:hover{
+  background-color: rgb(180, 197, 180);
+  cursor: pointer;
+}
+
+.container tbody > tr > :nth-of-type(3):hover{
+  text-decoration: underline;
+}
+
 .table tr, table td{
-  border: 1px solid black;
+  border: 1px solid #dddddd;
   padding: 5px;
+}
+
+.btn_div{
+  text-align: center;
+}
+
+.btn_div > button{
+  padding: 3px 20px;
+}
+
+.total_price{
+  text-align: right;
+  margin: 20px auto;
+}
+
+.total_price > :first-of-type
+{
+  background-color:rgb(170, 207, 170);
+  padding: 5px 10px;
+}
+
+.total_price > :last-of-type{
+ padding: 4px 15px;
+  border-bottom: 1px solid rgb(177, 207, 177);
 }

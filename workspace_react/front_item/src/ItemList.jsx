@@ -18,6 +18,13 @@ const ItemList = () => {
     .catch(error => console.log(error));
   }, [])
 
+  let totalPrice = 0;
+
+  for(const e of itemList)
+    totalPrice = totalPrice + e.itemPrice;
+  
+  // console.log(totalPrice)
+
   return (
    <>
     <div className={styles.container}>
@@ -49,8 +56,11 @@ const ItemList = () => {
           }
         </tbody>
       </table>
-      <p>총 등록 가격</p>
-      <button type='button' onClick={e => nav('/reg')}>상품 등록</button>
+      <div className={styles.total_price}>
+        <span>총 등록 가격</span>
+        <span>{totalPrice}</span>
+      </div>
+      <div className={styles.btn_div}><button type='button' onClick={e => nav('/reg')}>상품 등록</button></div>
     </div>
    </>
   )

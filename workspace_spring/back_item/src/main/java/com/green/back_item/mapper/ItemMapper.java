@@ -18,4 +18,7 @@ public interface ItemMapper {
 
   //상품 등록
   public int regItem(ItemDTO itemDTO);
+
+  //상품 수정
+  public int updateItem(ItemDTO itemDTO);
 }

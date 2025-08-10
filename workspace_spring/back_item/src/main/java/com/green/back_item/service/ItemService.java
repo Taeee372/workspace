@@ -33,4 +33,9 @@ public class ItemService {
   public int regItem(ItemDTO itemDTO){
     return itemMapper.regItem(itemDTO);
   }
+
+  //상품 수정
+  public int updateItem(ItemDTO itemDTO){
+    return itemMapper.updateItem(itemDTO);
+  }
 }

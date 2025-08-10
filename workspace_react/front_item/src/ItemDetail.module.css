@@ -1,6 +1,15 @@
+.container2{
+  margin: 20px;
+}
+
 .table{
   width: 100%;
   margin-bottom: 15px;
+  text-align: center;
+}
+
+.table tr > :nth-of-type(odd){
+  background-color: rgb(231, 245, 231);
 }
 
 .btn_div{

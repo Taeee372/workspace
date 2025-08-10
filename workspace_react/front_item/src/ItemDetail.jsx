@@ -31,8 +31,14 @@ const ItemDetail = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container2}>
       <table className={styles.table}>
+        <colgroup>
+          <col width='20%'/> 
+          <col width='25%'/> 
+          <col width='20%'/> 
+          <col width='*'/> 
+        </colgroup>
         <tbody>
           <tr>
             <td>상품번호</td>
@@ -60,7 +66,7 @@ const ItemDetail = () => {
       </table>
      <div className={styles.btn_div}>
         <button type='button' onClick={e => nav('/')}>목록가기</button>
-        <button type='button' onClick={e => nav('/update')}>수정</button>
+        <button type='button' onClick={e => nav(`/update/${itemNum}`)}>수정</button>
         <button type='button' onClick={e => deleteItem()}>삭제</button>
      </div>
     </div>

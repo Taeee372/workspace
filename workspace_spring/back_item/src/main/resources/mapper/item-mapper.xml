@@ -56,11 +56,23 @@
         ) VALUES (
             #{itemCategory}
             , #{itemName}
-            , #{itemStatus}
             , #{itemPrice}
+            , #{itemStatus}
             , #{itemIntro}
         )
     </insert>
+
+    <!--UpdateForm 상품 수정-->
+    <update id="updateItem">
+        UPDATE ITEM
+        SET
+            ITEM_CATEGORY = #{itemCategory}
+            , ITEM_NAME = #{itemName}
+            , ITEM_PRICE = #{itemPrice}
+            , ITEM_STATUS = #{itemStatus}
+            , ITEM_INTRO = #{itemIntro}
+        WHERE ITEM_NUM = #{itemNum}
+    </update>
 </mapper>
 
 

@@ -38,4 +38,11 @@ public class ItemController {
   public int regItem(@RequestBody ItemDTO itemDTO){
     return itemService.regItem(itemDTO);
   }
+
+  //상품 수정
+  @PutMapping("/{itemNum}")
+  public int updateItem(@PathVariable("itemNum") int itemNum, @RequestBody ItemDTO itemDTO){
+    itemDTO.setItemNum(itemNum);
+    return itemService.updateItem(itemDTO);
+  }
 }

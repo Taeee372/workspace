@@ -16,7 +16,7 @@ function App() {
         <Route path='/' element={ <ItemList /> }/>
         <Route path='/detail/:itemNum' element={ <ItemDetail /> }/>
         <Route path='/reg' element={ <RegForm /> }/>
-        <Route path='/update' element={ <UpdateForm /> }/>
+        <Route path='/update/:itemNum' element={ <UpdateForm /> }/>
       </Routes>
     </>
   )
