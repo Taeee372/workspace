@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './ItemList.module.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 const ItemList = () => {
 
@@ -12,17 +13,17 @@ const ItemList = () => {
   useEffect(() => {
     axios.get('/api/items')
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       setItemList(res.data);
     })
     .catch(error => console.log(error));
   }, [])
 
+  //상품의 총 가격
   let totalPrice = 0;
-
-  for(const e of itemList)
+  for(const e of itemList){
     totalPrice = totalPrice + e.itemPrice;
-  
+  }
   // console.log(totalPrice)
 
   return (
@@ -47,9 +48,10 @@ const ItemList = () => {
                   <td>{itemList.length - i}</td>
                   <td>{items.itemCategory}</td>
                   <td>{items.itemName}</td>
-                  <td>{items.itemPrice}</td>
+                  <td>{'￦' + items.itemPrice.toLocaleString()}</td> 
+                  {/* toLocaleString() : 천 단위 나타내줌 > 1,000  */}
                   <td>{items.itemStatus}</td>
-                  <td>{items.regDate}</td>
+                  <td>{dayjs(items.regDate).format('YYYY-MM-DD HH:mm:ss')}</td> 
                 </tr>
               )
             })
@@ -58,7 +60,7 @@ const ItemList = () => {
       </table>
       <div className={styles.total_price}>
         <span>총 등록 가격</span>
-        <span>{totalPrice}</span>
+        <span>{'￦' + totalPrice.toLocaleString()}</span>
       </div>
       <div className={styles.btn_div}><button type='button' onClick={e => nav('/reg')}>상품 등록</button></div>
     </div>

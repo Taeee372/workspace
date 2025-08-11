@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './ItemDetail.module.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 const ItemDetail = () => {
 
@@ -11,7 +12,7 @@ const ItemDetail = () => {
 
   const {itemNum} = useParams();
 
-  console.log(itemNum);useEffect(() => {
+  useEffect(() => {
     axios.get(`/api/items/${itemNum}`)
     .then(res => {
       console.log(res.data)
@@ -56,7 +57,7 @@ const ItemDetail = () => {
             <td>상태</td>
             <td>{itemDetail.itemStatus}</td>
             <td>등록일</td>
-            <td>{itemDetail.regDate}</td>
+            <td>{dayjs(itemDetail.regDate).format('YYYY-MM-DD HH:hh:mm')}</td>
           </tr>
           <tr>
             <td>상품 소개</td>

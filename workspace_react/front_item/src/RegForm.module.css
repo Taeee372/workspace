@@ -1,23 +1,28 @@
 .container3{
   margin: 20px;
-}
-
-.container3 > select{
-  width: 200px;
-}
-
-.item_name_div > input{
-  width: 200px;
-}
-
-.item_price_div > input{
-  width: 200px;
-}
-
-.container3 > textarea{
-  width: 200px;
+  width: 250px;
 }
 
 .container3 > p{
  margin-top: 10px;
+}
+
+.container3 select,
+.container3 input[type="text"],
+.container3 textarea{
+  width: 100%;
+}
+
+.container3 textarea{
+  resize: none;
+  height: 80px;
+}
+
+.btn_div{
+  text-align: right;
+}
+
+.not_valid{
+  color: red;
+  font-size: 0.7rem;
 }

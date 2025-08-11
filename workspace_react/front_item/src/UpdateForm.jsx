@@ -52,37 +52,43 @@ const UpdateForm = () => {
     .catch(error => console.log(error));
   }
 
-  console.log(updateInfo);
+  // console.log(updateInfo);
 
   return (
     <div className={styles.container4}>
-      <p>상품 카테고리</p>
-      <select name='itemCategory' value={updateInfo.itemCategory} onChange={e => handleUpdateInfo(e)}>
-        <option value="선택">선택</option>
-        <option value="상의">상의</option>
-        <option value="하의">하의</option>
-        <option value="악세사리">악세사리</option>
-      </select> <br />
+      <div>
+        <p>상품 카테고리</p>
+        <select name='itemCategory' value={updateInfo.itemCategory} onChange={e => handleUpdateInfo(e)}>
+          <option value="선택">선택</option>
+          <option value="상의">상의</option>
+          <option value="하의">하의</option>
+          <option value="악세사리">악세사리</option>
+        </select>
+      </div>
 
-      <div className={styles.item_name_div}>
+      <div>
         <p>상품명</p> 
-        <input type="text" name='itemName' value={updateInfo.itemName} onChange={e => handleUpdateInfo(e)}/> <br />
+        <input type="text" name='itemName' value={updateInfo.itemName} onChange={e => handleUpdateInfo(e)}/>
       </div>
 
-      <div className={styles.item_price_div}>
+      <div>
         <p>상품가격</p> 
-        <input type="text" name='itemPrice' value={updateInfo.itemPrice} onChange={e => handleUpdateInfo(e)}/> <br />
+        <input type="text" name='itemPrice' value={updateInfo.itemPrice} onChange={e => handleUpdateInfo(e)}/> 
       </div>
 
-      <p>상품 상태</p> 
-      <input type="radio" name='itemStatus' value={'상품준비중'} onChange={e => handleUpdateInfo(e)} checked={updateInfo.itemStatus === '상품준비중'}/> 준비 중
-
-      <input type="radio" name='itemStatus' value={'판매중'} onChange={e => handleUpdateInfo(e)} checked={updateInfo.itemStatus === '판매중'}/> 판매 중
-
-      <input type="radio" name='itemStatus' value={'매진'} onChange={e => handleUpdateInfo(e)} checked={updateInfo.itemStatus === '매진'}/> 매진 <br />
+      <div>
+        <p>상품 상태</p> 
+        <input type="radio" name='itemStatus' value={'상품준비중'} onChange={e => handleUpdateInfo(e)} checked={updateInfo.itemStatus === '상품준비중'}/> 준비 중
+  
+        <input type="radio" name='itemStatus' value={'판매중'} onChange={e => handleUpdateInfo(e)} checked={updateInfo.itemStatus === '판매중'}/> 판매 중
+  
+        <input type="radio" name='itemStatus' value={'매진'} onChange={e => handleUpdateInfo(e)} checked={updateInfo.itemStatus === '매진'}/> 매진 
+      </div>
       
-      <p>상품 소개</p>
-      <textarea name='itemIntro' value={updateInfo.itemIntro} onChange={e => handleUpdateInfo(e)}></textarea> <br />
+      <div>
+        <p>상품 소개</p>
+        <textarea name='itemIntro' value={updateInfo.itemIntro} onChange={e => handleUpdateInfo(e)}></textarea>
+      </div> 
 
       <div className={styles.btn_div}>
         <button type='button' onClick={e => nav(-1)}>취소</button>

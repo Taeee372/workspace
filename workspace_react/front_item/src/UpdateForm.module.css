@@ -1,27 +1,27 @@
 .container4{
   margin: 20px;
-}
-
-.container4 > select{
-  width: 200px;
-}
-
-.item_name_div > input{
-  width: 200px;
-}
-
-.item_price_div > input{
-  width: 200px;
-}
-
-.container4 > textarea{
-  width: 200px;
+  width: 250px;
 }
 
 .container4 > p{
  margin-top: 10px;
 }
 
+.container4 select,
+.container4 input[type="text"],
+.container4 textarea{
+  width: 100%;
+}
+
+.container4 textarea{
+  resize: none;
+  height: 80px;
+}
+
+.btn_div{
+  text-align: right;
+}
+
 .btn_div > button{
-  margin-right: 5px;
+  margin-left: 5px;
 }
