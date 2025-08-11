@@ -1,0 +1,8 @@
+.container img{
+width: 20px;
+margin-left: 30px;
+}
+
+.container img:hover{
+  cursor: pointer;
+}

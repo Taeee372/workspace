@@ -51,7 +51,8 @@ INSERT INTO ITEM (ITEM_CATEGORY, ITEM_NAME, ITEM_PRICE,ITEM_INTRO, ITEM_STATUS)
 VALUES ('신발', '신발1', 20000, '신발1입니다', '상품준비중');
 COMMIT;
 
-
+SELECT SUM(ITEM_PRICE) FROM item; 
+# SUM() : 괄호 안에 있는 컬럼의 합을 구해줌
 
 
 
