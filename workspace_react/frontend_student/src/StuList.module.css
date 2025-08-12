@@ -1,0 +1,9 @@
+.table_div{
+  border: 1px solid black;
+  width: 400px;
+  text-align: center;
+}
+
+.table_div tr, .table_div td{
+  border: 1px solid black;
+}

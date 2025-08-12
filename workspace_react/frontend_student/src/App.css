@@ -51,11 +51,5 @@ table {
 	
 }
 
-.table-div img{
-	width: 20px;
-	margin-left: 30px;
-}
 
-.table-div img:hover{
-	cursor: pointer;
-}
+
