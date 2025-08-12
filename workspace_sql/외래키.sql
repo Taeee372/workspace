@@ -1,0 +1,49 @@
+
+# 외래키(Foreign Key)
+# 테이블 간의 관계 표현에 사용 
+# 다른 테이블의 기본키(PRIMARY KEY)를 참조함!
+
+# 게시판 테이블
+CREATE TABLE QNA_BOARD (
+	BOARD_NUM INT PRIMARY KEY
+	, TITLE VARCHAR(20)
+	, CONTENT VARCHAR(20)
+	, WRITER VARCHAR(20)
+);
+
+# 댓글 테이블
+CREATE TABLE REPLY (
+	REPLY_NUM INT PRIMARY KEY
+	, REPLY_CONTENT VARCHAR(20)
+	, REPLY_WRITER VARCHAR(20)
+	, BOARD_NUM INT REFERENCES QNA_BOARD (BOARD_NUM) ON DELETE CASCADE
+);
+# ON DELETE CASCADE : 부모 데이터 날리면 자식 데이터도 같이 날려줌
+# ex) 글번호 1번인 게시글을 날리면 거기에 달린 댓글도 같이 날려줌
+
+DROP TABLE QNA_BOARD;
+DROP TABLE REPLY;
+# 외래키 붙어있어서 날릴 때도 자식 테이블 먼저 날려야 됨
+
+
+INSERT INTO QNA_BOARD VALUES (1, 'AA', 'AA 내용', '김');
+INSERT INTO QNA_BOARD VALUES (2, 'BB', 'BB 내용', '이');
+INSERT INTO QNA_BOARD VALUES (3, 'CC', 'CC 내용', '박');
+
+INSERT INTO REPLY VALUES (1, '11', '김', 1);
+INSERT INTO REPLY VALUES (2, '22', '이', 1);
+INSERT INTO REPLY VALUES (3, '33', '김', 2);
+
+INSERT INTO REPLY VALUES (4, '44', '윤', 5);
+
+DELETE FROM QNA_BOARD
+WHERE BOARD_NUM = 1;
+
+SELECT * FROM REPLY;
+
+
+
+
+
+
+
