@@ -19,19 +19,24 @@ public class StuController {
 
   //학급 목록 조회
   @GetMapping("/class")
-  public List<ClassDTO> selectClassList(){
-    return stuService.selectClassList();
+  public List<ClassDTO> getClassList(){
+    return stuService.getClassList();
   }
 
   //학생 목록 조회
   @GetMapping("/students")
-  public List<StuDTO> selectStuList(){
-    return stuService.selectStuList();
+  public List<StuDTO> getStuList(){
+    ClassDTO classDTO = new ClassDTO(); //문법 맞추기 위해서 만든 빈 객체
+    return stuService.getStuList(classDTO);
   }
 
-  //반에 따른 학생 정보 조회
+  //학과별 학생 목록 조회
   @GetMapping("/students/{classNum}")
-  public List<StuDTO> selectStuListClass(@PathVariable("classNum") int classNum){
-    return stuService.selectStuListClass(classNum);
+  public List<StuDTO> getStuListByClassNum(@PathVariable("classNum") int classNum){
+    ClassDTO classDTO = new ClassDTO();
+    classDTO.setClassNum(classNum);
+    return stuService.getStuList(classDTO);
   }
+
+
 }

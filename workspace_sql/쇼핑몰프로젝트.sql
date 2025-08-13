@@ -1,0 +1,27 @@
+
+# 도서 쇼핑몰 프로젝트 테이블
+
+# 1. 회원 테이블
+# 2. 도서 카테고리 테이블
+# 3. 도서 정보 테이블 
+# 4. 구매 테이블
+# 5. 장바구니 테이블
+
+
+# 회원 테이블
+CREATE TABLE SHOP_MEMBER (
+	MEM_ID VARCHAR(20) PRIMARY KEY
+	, MEM_NAME VARCHAR(20) NOT NULL
+	, MEM_TEL VARCHAR(20)     # 010-1111-2222
+	, MEM_ADDR VARCHAR(50)
+	, ADDR_DETAIL VARCHAR(50)
+	, MEM_EMAIL VARCHAR(50) UNIQUE
+	, MEM_PW VARCHAR(20) NOT NULL
+	, MEM_ROLE VARCHAR(10) NOT NULL DEFAULT 'USER'  # 관리자 : ADMIN, 일반 고객 : USER
+	, JOIN_DATE DATETIME DEFAULT SYSDATE()
+);
+
+
+
+
+

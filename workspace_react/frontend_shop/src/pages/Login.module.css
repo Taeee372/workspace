@@ -1,0 +1,16 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+  width: 250px;
+  margin: auto;
+}
+
+.container input, .container button{
+  width: 100%;
+}
+
+
+
+

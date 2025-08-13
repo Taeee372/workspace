@@ -16,17 +16,13 @@ public class StuService {
   }
 
   //학급 목록 조회
-  public List<ClassDTO> selectClassList(){
-    return stuMapper.selectClassList();
+  public List<ClassDTO> getClassList(){
+    return stuMapper.getClassList();
   }
 
   //학생 정보 조회
-  public List<StuDTO> selectStuList(){
-    return stuMapper.selectStuList();
+  public List<StuDTO> getStuList(ClassDTO classDTO){
+    return stuMapper.getStuList(classDTO);
   }
 
-  //반에 따른 학생 정보 조회
-  public List<StuDTO> selectStuListClass(int classNum){
-    return stuMapper.selectStuListClass(classNum);
-  }
 }

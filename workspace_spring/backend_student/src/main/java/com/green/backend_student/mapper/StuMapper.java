@@ -9,11 +9,9 @@ import java.util.List;
 @Mapper
 public interface StuMapper {
   //학급 목록 조회
-  public List<ClassDTO> selectClassList();
+  public List<ClassDTO> getClassList();
 
   //학생 목록 조회
-  public List<StuDTO> selectStuList();
+  public List<StuDTO> getStuList(ClassDTO classDTO);
 
-  //반에 따른 학생 정보 조회
-  public List<StuDTO> selectStuListClass(int classNum);
 }
