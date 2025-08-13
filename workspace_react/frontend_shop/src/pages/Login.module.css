@@ -1,14 +1,51 @@
 .container{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border: 1px solid black;
-  width: 250px;
-  margin: auto;
+width: 450px;
+height: 350px;
+margin: 50px auto;
+background-color: rgb(220, 233, 220);
+display: flex;
 }
 
 .container input, .container button{
   width: 100%;
+  padding: 13px;
+  border: 1px solid #cccccc;
+  box-shadow: 1px 1px 1px #cccccc;
+}
+
+.container input{
+  padding-left: 33px;
+}
+
+.login_all{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  margin: auto;
+  background-color: rgb(220, 233, 220);
+}
+
+.btn_div > button{
+  margin-top: 15px;
+  background-color: rgb(141, 170, 141);
+  color: white;
+  text-shadow: 1px 1px 1px rgb(61, 61, 61);
+}
+
+.btn_div > :hover{
+  cursor: pointer;
+}
+
+.id_div, .password_div{
+  position: relative;
+}
+
+.id_div > i, .password_div > i{
+  position: absolute;
+  top: 30%;
+  left: 4%;
+  color: gray;
 }
 
 
