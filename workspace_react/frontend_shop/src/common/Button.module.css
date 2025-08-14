@@ -1,0 +1,36 @@
+.btn{
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+}
+
+.seagreen{
+  background-color: rgb(143, 180, 143);
+}
+
+.seagreen:hover{
+  cursor: pointer;
+  background-color: rgb(133, 163, 133);
+}
+
+.gray{
+  background-color: #69727a;
+}
+
+.gray:hover{
+  cursor: pointer;
+  background-color: #7a838b;
+}
+
+.green{
+  background-color: #188452;
+}
+
+.green:hover{
+  cursor: pointer;
+  background-color: #077341;
+}
+

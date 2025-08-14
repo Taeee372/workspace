@@ -35,3 +35,7 @@
   letter-spacing: 10px;
 }
 
+.login_div > span:hover{
+  cursor: pointer;
+}
+
