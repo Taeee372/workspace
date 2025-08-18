@@ -6,6 +6,8 @@
 <mapper namespace="com.green.backend_shop.member.mapper.MemberMapper">
 
 	<resultMap id="member" type="com.green.backend_shop.member.dto.MemberDTO">
+        <!--resultMap에 들어가는 property에 자료형이 배열인 애는 못 들어감-->
+        <!--so 배열로 된 연락처를 받을 연락처 배열 변수는 따로 만들어줘야 한다-->
         <id     column="MEM_ID"         property="memId" />
         <result column="MEM_NAME"       property="memName" />
         <result column="MEM_TEL"        property="memTel" />
@@ -18,7 +20,7 @@
     </resultMap>
 
     <!--회원가입-->
-    <insert id="insertMember">
+    <insert id="join">
         INSERT INTO SHOP_MEMBER (
             MEM_ID
             , MEM_PW
@@ -31,12 +33,19 @@
             #{memId}
             , #{memPw}
             , #{memName}
-            , #{memTel}
+            , CONCAT(#{memTelArr[0]}, '-', #{memTelArr[1]}, '-', #{memTelArr[2]})
             , #{memEmail}
             , #{memAddr}
             , #{addrDetail}
         )
     </insert>
+
+    <!--아이디 중복확인-->
+    <select id="checkMemId" resultType="String">
+        SELECT MEM_ID
+        FROM SHOP_MEMBER
+        WHERE MEM_ID = #{memId}
+    </select>
 </mapper>
 
 

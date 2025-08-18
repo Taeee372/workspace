@@ -34,3 +34,8 @@
   background-color: #077341;
 }
 
+.disabled{
+  opacity: 0.5;
+  cursor: default !important;
+}
+

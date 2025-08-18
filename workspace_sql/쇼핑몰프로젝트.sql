@@ -21,6 +21,11 @@ CREATE TABLE SHOP_MEMBER (
 	, JOIN_DATE DATETIME DEFAULT SYSDATE()
 );
 
+SELECT * FROM shop_member;
+
+SELECT MEM_ID
+FROM shop_member
+WHERE MEM_ID = 'java';
 
 
 

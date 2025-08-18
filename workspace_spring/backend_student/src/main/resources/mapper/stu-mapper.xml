@@ -32,6 +32,7 @@
         SELECT STU_NUM
             , STU_NAME
             , STU_AGE
+
             , CLASS_NAME
         FROM STUDENT_INFO S INNER JOIN CLASS_INFO C
         ON S.CLASS_NUM = C.CLASS_NUM

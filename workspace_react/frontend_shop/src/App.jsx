@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -10,6 +10,19 @@ import RegBook from './pages/RegBook'
 import CategoryManage from './pages/CategoryManage'
 
 function App() {
+
+  //state변경함수, axios => 비동기 함수
+  /*
+    const [num, setNum] = useState(5);
+
+    useEffect(() => {
+      setNum(num + 5);
+      setNum(num + 5);
+    }, []);
+
+    console.log(`num = ${num}`); 
+  */
+
   return (
     <>
       <Routes>
