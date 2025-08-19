@@ -1,5 +1,5 @@
 .container > div{
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .container p{
@@ -28,7 +28,7 @@
 .addr_div{
   display: flex;
   gap: 8px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .error{

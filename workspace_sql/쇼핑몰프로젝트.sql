@@ -8,7 +8,7 @@
 # 5. 장바구니 테이블
 
 
-# 회원 테이블
+# 1. 회원 테이블
 CREATE TABLE SHOP_MEMBER (
 	MEM_ID VARCHAR(20) PRIMARY KEY
 	, MEM_NAME VARCHAR(20) NOT NULL
@@ -26,6 +26,48 @@ SELECT * FROM shop_member;
 SELECT MEM_ID
 FROM shop_member
 WHERE MEM_ID = 'java';
+
+
+# 2. 도서 카테고리 테이블
+CREATE TABLE BOOK_CATEGORY (
+	CATE_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, CATE_NAME VARCHAR(20) NOT NULL UNIQUE
+);
+
+INSERT INTO BOOK_CATEGORY VALUES (1, '소설');
+INSERT INTO BOOK_CATEGORY VALUES (2, '인터넷/IT');
+INSERT INTO BOOK_CATEGORY VALUES (3, '자기계발');
+COMMIT;
+
+SELECT * FROM BOOK_CATEGORY;
+
+
+# 3. 도서 정보 테이블 
+CREATE TABLE book (
+	BOOK_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, TITLE VARCHAR(20) NOT NULL
+	, PUBLISHER VARCHAR(20) NOT NULL
+	, PRICE INT NOT NULL
+	, REG_DATE DATETIME DEFAULT SYSDATE()  # 쇼핑몰에 상품 등록한 날짜
+	, BOOK_INTRO VARCHAR(50)
+	, CATE_NUM INT REFERENCES BOOK_CATEGORY(CATE_NUM)
+); 
+
+SELECT * FROM book;
+
+ INSERT INTO BOOK (
+            CATE_NUM
+            , TITLE
+            , PUBLISHER
+            , PRICE
+            , BOOK_INTRO
+        ) VALUES (
+            1
+            , 'title'
+            , 'publisher'
+            , 1
+            , 'bookIntro');
+
 
 
 

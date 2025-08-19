@@ -1,0 +1,59 @@
+//아이디 유효성 검사(정규식 사용)
+                    //4~8글자, 영문과 숫자만 가능
+                    const memIdRegex = /^[a-zA-Z0-9]{4,8}$/;
+
+
+                    //유효성 검사 
+                    let errorStr = ''; //검사 결과 에러 메세지를 저장할 변수
+
+                    // if(memInfo.memId === ''){ 
+                    // => state 변경 함수가 비동기 함수라서 memId에 아직 값이 들어가있지 않음 so memId로는 판별 불가
+
+                    // if(e.target.value === '') trusy falsy에 의해 아래와 같은 말
+                    if(!e.target.value){ //빈 문자열이면...
+                      errorStr = '아이디는 필수입력입니다.';
+                    }
+                    else if(e.target.value.length < 4 || e.target.value.length > 8){
+                      errorStr = '아이디는 4~8글자여야 합니다.';
+                    }
+                    else if(!memIdRegex.test(e.target.value)){ 
+                    //정규식에 부합하면 true인데, false일 때 에러메세지 띄워야하니까 ! 붙여서 false 빼오기
+                      errorStr = '아이디는 영문, 숫자만 가능합니다.';
+                    }
+                    else{
+                      errorStr = '';
+                    }
+                    setErrorMsg({...errorMsg, 'memId' : errorStr});
+                  }}
+            />
+            <Button size='30%' title='중복 확인' onClick={e => checkId()}/>
+          </div>
+          <p className={styles.error}>{errorMsg.memId}</p>
+        </div>
+        <div>
+          <p>비밀번호</p>
+          {/* 1. 필수입력  2. 6~12글자  3. 영문+숫자 조합만 가능(정규식) */}
+          <Input size='100%' type='password' name='memPw' value={memInfo.memPw} 
+                 onChange={e => {
+                  handleMemInfo(e)
+
+                  //const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/; 
+                  //어차피 에러 메세지로 길이 제한 뒀으니까 길이 제한 없는 정규식 사용해도 상관없슴
+
+                  //비번 유효성 검사
+                  const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
+                  let errorStr = ''; //검사 결과 에러 메세지를 저장할 변수
+                  if(!e.target.value){
+                    errorStr = '비밀번호는 필수입력입니다.';
+                  }
+                  else if(e.target.value.length < 6 || e.target.value.length > 12){
+                    errorStr = '비밀번호는 6~12글자여야 합니다.';
+                  }
+                  else if(!pwRegex.test(e.target.value)){
+                    errorStr = '비밀번호는 영문과 숫자를 모두 포함해야 합니다.';
+                  }
+                  else{
+                    errorStr = '';
+                  }
+                  setErrorMsg({...errorMsg, 'memPw' : errorStr});
+                }}

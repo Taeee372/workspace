@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './AdminLayout.module.css'
 import { Outlet } from 'react-router-dom'
+import AdminSideMenu from './AdminSideMenu'
 
 const AdminLayout = () => {
   return (
@@ -8,7 +9,7 @@ const AdminLayout = () => {
       <div className={styles.header_div}>헤더</div>
       <div className={styles.main}>
         <div className={styles.side}>
-          사이드 메뉴
+          <AdminSideMenu />
         </div>
         <div className={styles.content}>
           <Outlet />
