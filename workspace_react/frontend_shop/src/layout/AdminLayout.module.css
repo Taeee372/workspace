@@ -19,5 +19,6 @@
 
 .content{
   width: 80%;
-  border: 3px solid yellowgreen;
+  padding: 20px;
+  padding-bottom: 0px;
 }

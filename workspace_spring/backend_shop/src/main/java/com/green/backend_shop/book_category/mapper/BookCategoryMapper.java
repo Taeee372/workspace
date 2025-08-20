@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface BookCategoryMapper {
   //도서 카테고리 조회
-  public List<BookCategoryDTO> getBookCateName();
+  public List<BookCategoryDTO> getCateList();
 }

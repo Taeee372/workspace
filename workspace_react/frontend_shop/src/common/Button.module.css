@@ -16,22 +16,22 @@
   background-color: rgb(133, 163, 133);
 }
 
-.gray{
-  background-color: #69727a;
+.blue{
+  background-color: #7cacd6;
 }
 
-.gray:hover{
+.blue:hover{
   cursor: pointer;
-  background-color: #7a838b;
+  background-color: #739dc2;
 }
 
 .green{
-  background-color: #188452;
+  background-color: #a7c482;
 }
 
 .green:hover{
   cursor: pointer;
-  background-color: #077341;
+  background-color: #96b371;
 }
 
 .disabled{

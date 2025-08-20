@@ -2,15 +2,13 @@ package com.green.backend_shop.member.service;
 
 import com.green.backend_shop.member.dto.MemberDTO;
 import com.green.backend_shop.member.mapper.MemberMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
-  private MemberMapper memberMapper;
-
-  public MemberService(MemberMapper memberMapper){
-    this.memberMapper = memberMapper;
-  }
+  private final MemberMapper memberMapper;
 
   //회원가입
   public void join(MemberDTO memberDTO){

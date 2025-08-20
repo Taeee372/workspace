@@ -2,16 +2,14 @@ package com.green.backend_shop.member.controller;
 
 import com.green.backend_shop.member.dto.MemberDTO;
 import com.green.backend_shop.member.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/members")
+@RequiredArgsConstructor
 public class MemberController {
-  private MemberService memberService;
-
-  public MemberController(MemberService memberService){
-    this.memberService = memberService;
-  }
+  private final MemberService memberService;
 
   //회원가입
   @PostMapping("")

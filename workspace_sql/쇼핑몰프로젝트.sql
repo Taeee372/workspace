@@ -55,18 +55,9 @@ CREATE TABLE book (
 
 SELECT * FROM book;
 
- INSERT INTO BOOK (
-            CATE_NUM
-            , TITLE
-            , PUBLISHER
-            , PRICE
-            , BOOK_INTRO
-        ) VALUES (
-            1
-            , 'title'
-            , 'publisher'
-            , 1
-            , 'bookIntro');
+COMMIT;
+
+
 
 
 
