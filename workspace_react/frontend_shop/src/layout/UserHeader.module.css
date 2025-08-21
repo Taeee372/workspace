@@ -11,7 +11,7 @@
 }
 
 .banner_div{
-  height: 130px;
+  height: 100px;
   position: relative;
 }
 
@@ -28,14 +28,14 @@
 
 .banner_div > p{
   position: absolute;
-  left: 100px;
-  top: 34px;
+  left: 50px;
+  top: 25px;
   color: white;
   font-size: 2rem;
+  font-weight: bold;
   letter-spacing: 10px;
 }
 
 .login_div > span:hover{
   cursor: pointer;
 }
-

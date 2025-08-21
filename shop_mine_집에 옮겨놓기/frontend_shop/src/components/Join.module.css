@@ -1,0 +1,38 @@
+.container > div{
+  margin-bottom: 15px;
+}
+
+.container p{
+  margin-bottom: 3px;
+}
+
+.container > button{
+  margin-top: 10px;
+}
+
+.id_div{
+  display: flex;
+  gap: 8px;
+}
+
+.tel_input{
+  display: flex;
+  gap: 8px;
+}
+
+.email_div{
+  display: flex;
+  gap: 8px;
+}
+
+.addr_div{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.error{
+  color: red;
+  font-size: 0.8rem;
+  margin-top: -1px;
+}

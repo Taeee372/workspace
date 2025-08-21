@@ -1,24 +1,31 @@
 .container{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
+  gap: 14px;
 }
 
 .container > div{
-  height: 330px;
+  height: 250px;
 }
 
 .img_div{
-  height: 280px;
-  border: 1px solid red;
+  width: 100%;
+  height: 80%;
 }
 
-.book{
-  margin: 0px auto;
-  text-align: center;
-  border: 1px solid black;
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
 }
 
-.book > p:first{
-  cursor: pointer;
+.info > p{
+  font-size: 0.9rem;
+}
+
+.img_div > img{
+  width: 100%;
+  height: 100%;
 }

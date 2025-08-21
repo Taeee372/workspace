@@ -1,0 +1,43 @@
+.container{
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+}
+
+.menuCategory{
+  margin-bottom: 15px;
+}
+
+.menuCategory > p{
+  font-size: 0.9rem;
+  color: #777777;
+  padding: 15px;
+}
+
+.menuCategory > p > span{
+  color: #333333;
+  margin-right: 4px;
+}
+
+.sideMenu{
+
+}
+
+.sideMenu > li{
+  /* 12시부터 시계방향 */
+  padding: 10px 0px 10px 16px;
+  border-left: 3px solid rgba(0, 0, 0, 0);
+}
+
+.active{
+  background-color: #e9f0da;
+  border-left: 3px solid #92b851 !important;
+  color: #789741;
+}
+
+.sideMenu > li:hover{
+  background-color: #e6f0d5;
+  border-left: 3px solid #9ec757;
+  color: #789741;
+  cursor: pointer;
+}

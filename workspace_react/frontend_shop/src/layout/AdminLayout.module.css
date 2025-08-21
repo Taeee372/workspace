@@ -1,16 +1,16 @@
 .container{
-  width: 1280px;
+  width: 900px;
   margin: 0 auto;
 }
 
 .header_div{
-  height: 15vh;
-  border: 3px solid red;
+  height: 10vh;
+  border: 1px solid red;
 }
 
 .main{
   display: flex;
-  height: 85vh;
+  height: 90vh;
 }
 
 .side{

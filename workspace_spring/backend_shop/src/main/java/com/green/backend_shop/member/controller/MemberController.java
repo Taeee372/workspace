@@ -2,26 +2,46 @@ package com.green.backend_shop.member.controller;
 
 import com.green.backend_shop.member.dto.MemberDTO;
 import com.green.backend_shop.member.service.MemberService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/members")
 @RequiredArgsConstructor
+@RequestMapping("/members")
 public class MemberController {
   private final MemberService memberService;
 
-  //회원가입
+  //회원가입 api
   @PostMapping("")
-  public void join(@RequestBody MemberDTO memberDTO){
+  public void insertMember(@RequestBody MemberDTO memberDTO){
     System.out.println(memberDTO);
     memberService.join(memberDTO);
   }
 
-  //id 사용 가능 여부 판단
+  //id 사용 가능 여부 판단 api
   @GetMapping("/checkId/{memId}")
   public boolean checkId(@PathVariable("memId") String memId){
-    //사용 가능 : return true , 사용 불가능 : return false
+    //사용가능 : return true
     return memberService.isUsableId(memId);
   }
+
+  //select 쿼리문을 썼어도 PostMapping을 쓸 수 있다. 정석은 아니지만..
+
+  //로그인 api
+  //get 방식은 주로 리액트에서 하나의 데이터가 넘어온다. -> 문제없슴
+  //get 방식 사용 중 종종 리액트에서 넘어오는 데이터가 여러 개 있는 경우가 있다.
+  @GetMapping("/login")
+  public MemberDTO login(MemberDTO memberDTO){
+//    System.out.println(memberDTO);
+    return memberService.login(memberDTO); // 없는 데이터를 조회하면 null을 리턴한다
+  }
+
+
 }
+
+
+
+
+
+

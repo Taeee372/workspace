@@ -2,21 +2,19 @@ package com.green.backend_shop.book.service;
 
 import com.green.backend_shop.book.dto.BookDTO;
 import com.green.backend_shop.book.mapper.BookMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
-  private BookMapper bookMapper;
-
-  public BookService(BookMapper bookMapper){
-    this.bookMapper = bookMapper;
-  }
+  private final BookMapper bookMapper;
 
   //도서 등록
-  public void regBook(BookDTO bookDTO){
-    bookMapper.regBook(bookDTO);
+  public void insertBook(BookDTO bookDTO){
+    bookMapper.insertBook(bookDTO);
   }
 
   //도서 목록 조회
@@ -24,8 +22,10 @@ public class BookService {
     return bookMapper.getBookList();
   }
 
-  //상세 도서 정보 조회
-  public BookDTO getBook(int bookNum){
-    return bookMapper.getBook(bookNum);
+  //도서 상세 조회
+  public BookDTO getBookDetail(int bookNum){
+    return bookMapper.getBookDetail(bookNum);
   }
+
+
 }

@@ -5,46 +5,54 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.backend_shop.member.mapper.MemberMapper">
 
-	<resultMap id="member" type="com.green.backend_shop.member.dto.MemberDTO">
-        <!--resultMap에 들어가는 property에 자료형이 배열인 애는 못 들어감-->
-        <!--so 배열로 된 연락처를 받을 연락처 배열 변수는 따로 만들어줘야 한다-->
-        <id     column="MEM_ID"         property="memId" />
-        <result column="MEM_NAME"       property="memName" />
-        <result column="MEM_TEL"        property="memTel" />
-        <result column="MEM_ADDR"       property="memAddr" />
-        <result column="ADDR_DETAIL"    property="addrDetail" />
-        <result column="MEM_EMAIL"      property="memEmail" />
-        <result column="MEM_PW"         property="memPw" />
-        <result column="MEM_ROLE"       property="memRole" />
-        <result column="JOIN_DATE"      property="joinDate" />
+    <resultMap id="member" type="com.green.backend_shop.member.dto.MemberDTO">
+        <id     column="MEM_ID"         property="memId"/>
+        <result column="MEM_NAME"       property="memName"/>
+        <result column="MEM_TEL"        property="memTel"/>
+        <result column="MEM_ADDR"       property="memAddr"/>
+        <result column="ADDR_DETAIL"    property="addrDetail"/>
+        <result column="MEM_EMAIL"      property="memEmail"/>
+        <result column="MEM_PW"         property="memPw"/>
+        <result column="MEM_ROLE"       property="memRole"/>
+        <result column="JOIN_DATE"      property="joinDate"/>
     </resultMap>
 
     <!--회원가입-->
     <insert id="join">
         INSERT INTO SHOP_MEMBER (
             MEM_ID
-            , MEM_PW
             , MEM_NAME
             , MEM_TEL
-            , MEM_EMAIL
             , MEM_ADDR
             , ADDR_DETAIL
+            , MEM_EMAIL
+            , MEM_PW
         ) VALUES (
             #{memId}
-            , #{memPw}
             , #{memName}
             , CONCAT(#{memTelArr[0]}, '-', #{memTelArr[1]}, '-', #{memTelArr[2]})
-            , #{memEmail}
             , #{memAddr}
             , #{addrDetail}
+            , #{memEmail}
+            , #{memPw}
         )
     </insert>
 
-    <!--아이디 중복확인-->
+    <!--아이디 중복 확인-->
     <select id="checkMemId" resultType="String">
         SELECT MEM_ID
         FROM SHOP_MEMBER
         WHERE MEM_ID = #{memId}
+    </select>
+
+    <!--아이디 비번 확인--> <!--조회할 컬럼은 중요하지 않음, 조회가 됐냐 안됐냐가 제일 중요! 그리고 비번은 조회하면 안됨..-->
+    <select id="login" resultMap="member">
+        SELECT MEM_ID
+            , MEM_NAME
+            , MEM_ROLE
+        FROM SHOP_MEMBER
+        WHERE MEM_ID = #{memId}
+        AND MEM_PW = #{memPw}
     </select>
 </mapper>
 

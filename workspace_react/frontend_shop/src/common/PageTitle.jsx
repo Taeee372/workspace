@@ -3,11 +3,11 @@ import React from 'react'
 const PageTitle = ({title='페이지 제목'}) => {
   return (
     <p style={{
-        'fontSize': '1.3rem',
+        'fontSize': '1.2rem',
         'fontWeight': 'bold',
         'fontStyle': 'italic',
         'borderBottom': '1.5px solid #dddddd',
-        'width': '45%',
+        'width': '200px',
         'paddingBottom': '2px',
         'marginBottom': '16px'
     }}>
@@ -15,5 +15,7 @@ const PageTitle = ({title='페이지 제목'}) => {
     </p>
   )
 }
+
+
 
 export default PageTitle

@@ -18,9 +18,15 @@ public class MemberService {
   //아이디 사용가능 여부 확인
   //사용가능 : return true
   public boolean isUsableId(String memId){
-    //조회된 데이터가 없으면 null -> 사용 가능한 id
+    // 조회된 데이터가 없으면 null -> 사용 가능한 id
     String selectedId = memberMapper.checkMemId(memId);
-    return selectedId == null; //selectedId가 null이라면 true 리턴
+    return selectedId == null;
   }
+
+  // 아이디 비번 확인
+  public MemberDTO login(MemberDTO memberDTO){
+    return memberMapper.login(memberDTO);
+  }
+
 
 }

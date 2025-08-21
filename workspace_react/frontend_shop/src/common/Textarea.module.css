@@ -3,11 +3,11 @@
   padding: 3px 4px;
   border-radius: 4px;
   border: none;
-  /* outline이 border랑 겹쳐짐 */
+   /* outline이 border랑 겹쳐짐 */
   outline-offset: -1px;
   resize: none;
 }
 
 .textarea:focus{
-  outline: 1.8px solid #777777;
+  outline: 1.5px solid #777777;
 }

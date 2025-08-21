@@ -1,39 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import styles from './BookList.module.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BookList = () => {
-
   const nav = useNavigate();
-  const {bookNum} = useParams();
 
-  //책 정보 가져와서 저장
-  const [bookInfo, setBookInfo] = useState([])
+  //도서 목록을 저장할 state 변수
+  const [bookList, setBookList] = useState([]);
 
-  //책 정보 불러오기
+  //마운트되면 도서목록을 조회해서 bookList 변수에 저장
   useEffect(() => {
     axios.get('/api/books')
-    .then(res => setBookInfo(res.data))
+    .then(res => setBookList(res.data))
     .catch(e => console.log(e));
-  }, [])
-  console.log(bookInfo)
+  }, []);
 
   return (
     <div className={styles.container}>
-      {
-        bookInfo.map((book, i) => {
-          return (
-           <div className={styles.book} key={i}>
-              <div className={styles.img_div}>
-                <img src="./무작정 따라가기 홍콩 마카오.jpg" />
-              </div>
-              <p onClick={e => {nav(`/book-detial/${bookNum}`)}}>{book.title}</p>
+    {
+      bookList.map((book, i) => {
+        return (
+          <div key={i}>
+            <div 
+              className={styles.img_div} 
+              onClick={e => nav(`/book-detail/${book.bookNum}`)}
+            >
+              <img src="/엑셀실무_메인.pg.jpg" />
+            </div>
+            <div className={styles.info}>
+              <p>{book.title}</p>
               <p>{'￦' + book.price.toLocaleString()}</p>
-           </div>
-          )
-        })
-      }
+            </div>
+          </div>
+        )
+      })
+    }
     </div>
   )
 }

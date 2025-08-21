@@ -12,7 +12,7 @@ const AdminLayout = () => {
           <AdminSideMenu />
         </div>
         <div className={styles.content}>
-          <Outlet />
+          <Outlet />  
         </div>
       </div>
     </div>
