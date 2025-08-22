@@ -2,8 +2,19 @@ import React, {useState} from 'react'
 import styles from './UserHeader.module.css'
 import Login from '../components/Login'
 import Join from '../components/Join';
+import { useNavigate } from 'react-router-dom';
 
 const UserHeader = () => {
+  const nav = useNavigate();
+
+  //sessionStorage에 저장한 loginInfo를 가져온다.
+  //데이터가 없다면 null이 뜬다
+  const loginInfo = sessionStorage.getItem('loginInfo');
+
+  //loginInfo는 JSON이기 때문에 객체로 변경해서 사용해야 한다.
+  const loginData = JSON.parse(loginInfo);
+
+
   //로그인 모달창 숨김/보이기 여부
   const [isOpenLogin, setIsOpenLogin] = useState(false);
 
@@ -13,8 +24,24 @@ const UserHeader = () => {
   return (
     <div className={styles.container}>
       <div className={styles.login_div}>
-        <span onClick={() => setIsOpenLogin(true)}>LOGIN</span>
-        <span onClick={() => setIsOpenJoin(true)}>JOIN</span>
+        {
+          loginInfo === null 
+          ?  
+          <>
+            <span onClick={() => setIsOpenLogin(true)}>LOGIN</span>
+            <span onClick={() => setIsOpenJoin(true)}>JOIN</span>
+          </>
+          : 
+          <>
+            <span>{loginData.memId}님 반갑습니다</span>
+            <span>마이페이지</span>
+            <span onClick={e => {
+              sessionStorage.removeItem('loginInfo');
+              nav('/');
+            }}>LOGOUT</span>
+          </>
+        }
+        
       </div>
       <div className={styles.banner_div}>
         <img 

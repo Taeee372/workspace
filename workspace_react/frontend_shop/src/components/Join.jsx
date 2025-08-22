@@ -63,7 +63,7 @@ const Join = ({isOpenJoin, onClose}) => {
   }
 
   //joinData 확인용
-  console.log(joinData);
+  // console.log(joinData);
 
   //연락처 변경 시 실행 함수
   const handlememTelArr = (e, index) => {

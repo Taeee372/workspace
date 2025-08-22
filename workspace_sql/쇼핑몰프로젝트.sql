@@ -75,7 +75,35 @@ CREATE TABLE SHOP_CART (
 		, CART_DATE DATETIME DEFAULT SYSDATE()
 ); 
 
-SELECT * FROM SHOP_CART;
+SELECT * FROM shop_cart;
+
+INSERT INTO shop_cart (BOOK_NUM
+	, CART_CNT
+	, MEM_ID
+	, TOTAL_PRICE
+	) 
+VALUES (
+	27
+	, 2
+	, 
+	'user'
+	, (SELECT PRICE
+		FROM BOOK
+		WHERE BOOK_NUM = 27) * 3
+	);
+
+# 장바구니에 저장된 상품명, 가격, 수량, 총가격, 등록일 조회
+SELECT CART_NUM
+	, CART_CNT
+	, TOTAL_PRICE
+	, CART_DATE
+	, TITLE
+	, PRICE
+	, C.BOOK_NUM
+FROM shop_cart C INNER JOIN book B
+ON C.BOOK_NUM = B.BOOK_NUM
+WHERE MEM_ID = 'user'
+ORDER BY CART_DATE DESC;
 
 
 

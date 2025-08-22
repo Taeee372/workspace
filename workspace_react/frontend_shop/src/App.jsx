@@ -6,6 +6,7 @@ import AdminLayout from './layout/AdminLayout'
 import RegBook from './pages/RegBook'
 import CategoryManage from './pages/CategoryManage'
 import BoardDetail from './pages/BoardDetail'
+import CartList from './pages/CartList'
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
 
           {/* 도서 상세 페이지 url : /book-detail */}
           <Route path='book-detail/:bookNum' element={ <BoardDetail /> }/>
+          {/* 장바구니 페이지 */}
+          <Route path='cart-list/:memId' element={ <CartList /> } />
 
         </Route>
 
