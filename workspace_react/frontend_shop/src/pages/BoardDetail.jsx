@@ -48,12 +48,9 @@ const BoardDetail = () => {
     })
       .then(res => {
         const result = confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동하시겠습니까?');
-        const loginInfo = sessionStorage.getItem('loginInfo');
-        const memIdresult = JSON.parse(loginInfo);
-        console.log(memIdresult)
         if(result){
           //장바구니 페이지로 이동
-          nav(`/cart-list/${memIdresult.memId}`)
+          nav(`/cart-list`)
         }
       })
       .catch(e => console.log(e));

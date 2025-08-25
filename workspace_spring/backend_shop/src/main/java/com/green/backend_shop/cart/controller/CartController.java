@@ -27,9 +27,9 @@ public class CartController {
   }
 
   //장바구니 상품 삭제
-  @DeleteMapping("/{cartNum}")
-  public void deleteBook(@PathVariable("cartNum") int cartNum){
-    cartService.deleteBook(cartNum);
-  }
+//  @DeleteMapping("/{cartNum}")
+//  public void deleteBook(@PathVariable("cartNum") int cartNum){
+//    cartService.deleteBook(cartNum);
+//  }
 
 }

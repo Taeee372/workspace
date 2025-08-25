@@ -62,8 +62,17 @@ CREATE TABLE book (
 
 SELECT * FROM book;
 
-COMMIT;
 
+# 도서 이미지 정보 테이블
+CREATE TABLE BOOK_IMG (
+	IMG_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, ORIGIN_IMG_NAME VARCHAR(100)   	# 원본 파일명 
+	, ATTACHED_IMG_NAME VARCHAR(100) 	# 첨부된 파일명 => 중복 파일명을 피하기 위한 짜가리 이름
+	, BOOK_NUM INT REFERENCES book (BOOK_NUM) ON DELETE CASCADE # 이미지의 원본 도서 번호
+	, IS_MAIN VARCHAR(3) # 메인이미지 : 'Y', 서브이미지 : 'N'
+); 
+
+SELECT * FROM BOOK_IMG;
 
 # 4. 장바구니 테이블
 CREATE TABLE SHOP_CART (
@@ -76,6 +85,7 @@ CREATE TABLE SHOP_CART (
 ); 
 
 SELECT * FROM shop_cart;
+
 
 INSERT INTO shop_cart (BOOK_NUM
 	, CART_CNT
@@ -106,6 +116,24 @@ WHERE MEM_ID = 'user'
 ORDER BY CART_DATE DESC;
 
 
+# 내 장바구니에 상품이 담겨있는지
+SELECT MEM_ID # 조회하는 컬럼은 뭐든 상관없음 
+   				 # 나온다> 3번 상품 담겨있음/ 안 나온다> 3번 상품이 담겨있지 않음
+FROM shop_cart
+WHERE BOOK_NUM = 26
+AND MEM_ID = 'hong';
 
+UPDATE shop_cart
+SET
+	CART_CNT = CART_CNT + 3
+	, TOTAL_PRICE = (SELECT PRICE
+							FROM BOOK
+							WHERE BOOK_NUM = 26) * (CART_CNT + 3) 
+							# 도서의 단가 * 업데이트 된 최종 수량
+WHERE MEM_ID = 'hong'
+AND BOOK_NUM = 26;
 
+# 장바구니에 존재 여부 : 책번호, 회원아이디
+#INSERT : 책번호, 회원아이디, 수량
+#UPDATE : 책번호, 회원아이디, 수량
 

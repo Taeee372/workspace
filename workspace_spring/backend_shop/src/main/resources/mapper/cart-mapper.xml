@@ -48,11 +48,32 @@
         ORDER BY CART_DATE DESC
     </select>
 
+    <!--장바구니에 등록하려는 상품이 현재 등록되어 있는지 확인-->
+   <select id="getCartNum" resultType="String">
+       SELECT MEM_ID
+       FROM SHOP_CART
+       WHERE BOOK_NUM = #{bookNum}
+       AND MEM_ID = #{memId}
+   </select>
+
+    <!--장바구니 수량 변경-->
+    <update id="updateCartCnt">
+        UPDATE shop_cart
+        SET
+            CART_CNT = CART_CNT + #{cartCnt}
+            , TOTAL_PRICE = (SELECT PRICE
+                             FROM BOOK
+                             WHERE BOOK_NUM = #{bookNum}) * CART_CNT
+        WHERE MEM_ID = #{memId}
+        AND BOOK_NUM = #{bookNum}
+    </update>
+
+
     <!--장바구니 상품 삭제-->
-    <delete id="deleteBook">
-        DELETE FROM SHOP_CART
-        WHERE CART_NUM = #{cartNum}
-    </delete>
+<!--    <delete id="deleteBook">-->
+<!--        DELETE FROM SHOP_CART-->
+<!--        WHERE CART_NUM = #{cartNum}-->
+<!--    </delete>-->
 </mapper>
 
 

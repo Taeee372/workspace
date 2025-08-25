@@ -9,7 +9,8 @@ import Textarea from '../common/Textarea'
 
 
 const RegBook = () => {
-
+  //선택한 메인 이미지를 저장할 state 변수
+  const [mainImg, setMainImg] = useState(null); //이미지명이 아니라 이미지를 저장하는 것이기 때문에 초기값은 빈문자가 아닌 null / 이미지는 문자열이 아니다.
 
   //유효성 검사 결과 에러 메시지를 저장하고 있는 state 변수
   const [errorMsg, setErrorMsg] = useState({
@@ -71,18 +72,40 @@ const RegBook = () => {
 
   //도서 등록 함수
   const regBook = () => {
-    axios.post('/api/books', bookData)
-    .then(res => {
-      alert('등록 성공');
-      setBookData({
-        'cateNum':'',
-        'title' : '',
-        'publisher' : '',
-        'price' : '',
-        'bookIntro' : ''
-      });
-    })
+    //선택한 첨부파일 spring으로 가져가기
+    //파일 데이터를 자바로 전송하기 위해서는 post() 함수의 세 번째 매개변수를 활용해야 한다. 
+
+    //전달되는 데이터에 파일 데이터도 포함되어 있습니다. 라는 정의
+    const fileConfig = {'Content-Type' : 'multipart/form-data'};
+
+    //파일 데이터가 포함된 내용을 자바로 전달할 때는 formData 객체를 사용해야 한다.
+    // 1. formData 객체 생성
+    const formData = new FormData();
+
+    //선택한 파일을 formData에 추가
+    formData.append('mainImg', mainImg) //append : 추가하겠습니다 / append(key, value)
+    // =>formData에 key = mainImg, value = mainImg 인 데이터를 추가하겠습니다. => 'mainImg' : mainImg 
+
+    //formData.append('name', 'kim')
+    //formData.append('age', 20)
+
+    axios.post('/api/books', formData, fileConfig)
+    .then()
     .catch(e => console.log(e));
+
+
+    // axios.post('/api/books', bookData)
+    // .then(res => {
+    //   alert('등록 성공');
+    //   setBookData({
+    //     'cateNum':'',
+    //     'title' : '',
+    //     'publisher' : '',
+    //     'price' : '',
+    //     'bookIntro' : ''
+    //   });
+    // })
+    // .catch(e => console.log(e));  => 나중에 다시 살릴겨
   }
 
   console.log(bookData);
@@ -155,7 +178,7 @@ const RegBook = () => {
           <p>{errorMsg.publisher}</p>
         </div>
         <div>
-          <p>가 격</p>
+          <p>가격</p>
           <Input 
             size="100%"
             name='price'
@@ -176,6 +199,26 @@ const RegBook = () => {
             }}
           />
           <p>{errorMsg.price}</p>
+        </div>
+        <div>
+          <p>메인 이미지</p>
+          <input 
+            type="file" 
+            onChange={e => {
+              //e.target.files : 이벤트가 발생한 태그에서 선택한 파일들의 정보
+              console.log(e.target.files)
+
+              //우리가 선택한 파일 정보
+              console.log(e.target.files['0']) //e.target.flies에서 키값이 '0'인 것의 정보를 출력하겠습니다 [0]으로 적어도 노상관
+
+              //선택한 파일을 mainImg 변수에 저장
+              setMainImg(e.target.files['0']);
+            }}/> 
+        </div>
+        <div>
+          <p>서브 이미지 (다수 선택 가능)</p>
+          {/* type="file"은 첨부파일 1개만 선택 가능. 다수 파일 선택하려면 multiple={true} 속성 부여 */}
+          {/* <input type="file" multiple={true} /> */}
         </div>
         <div>
           <p>도서 설명</p>
