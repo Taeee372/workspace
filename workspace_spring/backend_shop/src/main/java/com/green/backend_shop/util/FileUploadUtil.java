@@ -1,15 +1,19 @@
 package com.green.backend_shop.util;
 
+import com.green.backend_shop.book.dto.BookImgDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 //파일 업로드 기능을 제공하는 클래스
 public class FileUploadUtil {
 
   //단일 파일 업로드 기능
-  public static void fileUpload(MultipartFile img){  //static이 붙어있으면 객체 생성을 하지 않고 클래스명.메서드명으로 바로 호출할 수 있다
+  //매개변수로 업로드 할 파일이 1개 전달됨
+  public static BookImgDTO fileUpload(MultipartFile img){  //static이 붙어있으면 객체 생성을 하지 않고 클래스명.메서드명으로 바로 호출할 수 있다
     // 1) 파일 업로드 경로 지정
     String uploadPath = "D:\\01-STUDY\\dev\\workspace\\workspace_spring\\backend_shop\\src\\main\\resources\\upload\\";
 
@@ -42,11 +46,31 @@ public class FileUploadUtil {
     }catch (Exception e){
       System.out.println(e);
     }
+
+    //BOOK_IMG INSERT에 필요한 데이터를 리턴한다.
+    BookImgDTO bookImgDTO = new BookImgDTO();
+    //원본명 세팅
+    bookImgDTO.setOriginImgName(img.getOriginalFilename());
+    //첨부명 세팅
+    bookImgDTO.setAttachedImgName(attachedFileName);
+    //IS_MAIN 세팅
+    bookImgDTO.setIsMain("Y");
+    return bookImgDTO;
+
   }
 
   //파일 다중 업로드 기능
-  public static void multipleFileUpload(){
+  //매개변수로 업로드 할 파일이 여러 개(배열 형태로) 전달 됨
+  public static List<BookImgDTO> multipleFileUpload(MultipartFile[] imgs){
+    //리턴되는 모든 데이터를 저장할 List
+    List<BookImgDTO> imgList = new ArrayList<>();
 
+    for(MultipartFile img : imgs){
+     BookImgDTO imgDTO = fileUpload(img); // 단일 파일 업로드 * 여러번 => 파일 다중 업로드
+     imgDTO.setIsMain("N");
+     imgList.add(imgDTO);
+    }
+    return imgList;
   }
 
 }

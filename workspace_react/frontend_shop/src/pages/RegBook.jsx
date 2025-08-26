@@ -12,6 +12,9 @@ const RegBook = () => {
   //선택한 메인 이미지를 저장할 state 변수
   const [mainImg, setMainImg] = useState(null); //이미지명이 아니라 이미지를 저장하는 것이기 때문에 초기값은 빈문자가 아닌 null / 이미지는 문자열이 아니다.
 
+  //선택한 서브 이미지들을 저장할 state 변수
+  const [subImgs, setSubImgs] = useState(null);
+
   //유효성 검사 결과 에러 메시지를 저장하고 있는 state 변수
   const [errorMsg, setErrorMsg] = useState({
     'cateNum' : '',
@@ -80,32 +83,43 @@ const RegBook = () => {
 
     //파일 데이터가 포함된 내용을 자바로 전달할 때는 formData 객체를 사용해야 한다.
     // 1. formData 객체 생성
+    //formData 객체에는 이미지뿐 아니라, 자바로 가져가는 모든 데이터를 저장한다.
     const formData = new FormData();
 
-    //선택한 파일을 formData에 추가
+    //선택한 메인이미지를 formData에 추가
     formData.append('mainImg', mainImg) //append : 추가하겠습니다 / append(key, value)
     // =>formData에 key = mainImg, value = mainImg 인 데이터를 추가하겠습니다. => 'mainImg' : mainImg 
+
+    //선택한 모든 서브 이미지들을 formData에 추가
+    //이미지를 하나씩 꺼내서 보내주면 알아서 배열로 만들어서 보내줌
+    //배열로 보내면 안 가기 때문에 꺼내서 보내줘야댐
+    for(const e of subImgs){  //subImgs = [File1, File2, File3...]
+      formData.append('subImgs', e);
+    }
+
+    //input 태그에 입력한 내용도 formData에 저장
+    //input 태그에 입력한 모든 정보는 bookData 객체 안에 있음
+    formData.append('title',      bookData.title);
+    formData.append('cateNum',    bookData.cateNum);
+    formData.append('publisher',  bookData.publisher);
+    formData.append('price',      bookData.price);
+    formData.append('bookIntro',  bookData.bookIntro);
 
     //formData.append('name', 'kim')
     //formData.append('age', 20)
 
     axios.post('/api/books', formData, fileConfig)
-    .then()
+    .then(res => {
+      alert('등록 성공');
+      setBookData({
+        'cateNum':'',
+        'title' : '',
+        'publisher' : '',
+        'price' : '',
+        'bookIntro' : ''
+      });
+    })
     .catch(e => console.log(e));
-
-
-    // axios.post('/api/books', bookData)
-    // .then(res => {
-    //   alert('등록 성공');
-    //   setBookData({
-    //     'cateNum':'',
-    //     'title' : '',
-    //     'publisher' : '',
-    //     'price' : '',
-    //     'bookIntro' : ''
-    //   });
-    // })
-    // .catch(e => console.log(e));  => 나중에 다시 살릴겨
   }
 
   console.log(bookData);
@@ -218,7 +232,25 @@ const RegBook = () => {
         <div>
           <p>서브 이미지 (다수 선택 가능)</p>
           {/* type="file"은 첨부파일 1개만 선택 가능. 다수 파일 선택하려면 multiple={true} 속성 부여 */}
-          {/* <input type="file" multiple={true} /> */}
+          <input 
+            type="file" 
+            multiple={true}
+            onChange={e => {
+              //FileList {0: File, 1: File, length: 2}
+              console.log(e.target.files);
+
+              //선택한 파일의 모든 정보 출력
+              const fileArr = []; //선택한 파일들을 저장하기 위한 배열
+              for(let i = 0 ; i < e.target.files.length ; i++){
+                console.log(e.target.files[i])
+                // fileArr[i] = e.target.files[i]; 
+                fileArr.push(e.target.files[i]);
+              }
+
+              //subImgs = [File1, File2, File...]
+              setSubImgs(fileArr);
+            }} 
+          />
         </div>
         <div>
           <p>도서 설명</p>

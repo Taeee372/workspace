@@ -137,3 +137,31 @@ AND BOOK_NUM = 26;
 #INSERT : 책번호, 회원아이디, 수량
 #UPDATE : 책번호, 회원아이디, 수량
 
+
+#BOOK_IMG 테이블에 데이터 추가
+INSERT INTO book_img (ORIGIN_IMG_NAME, ATTACHED_IMG_NAME, BOOK_NUM, IS_MAIN) 
+VALUES 
+('abc.jpg', 'aaa-bbb.jpg', 26, 'Y'),
+('abc.jpg', 'aaa-bbb.jpg', 26, 'Y'),
+('abc.jpg', 'aaa-bbb.jpg', 26, 'Y'); # 데이터 한 번에 여러 개 넣는 방법
+
+SELECT * FROM book_img;
+
+SELECT * FROM book;
+
+# 다음에 들어갈 BOOK_NUM을 조회 (최대 BOOK_NUM + 1)
+SELECT MAX(BOOK_NUM) + 1 FROM book;
+SELECT IFNULL(MAX(BOOK_NUM), 0) + 1 FROM book; 
+# ->MAX(BOOK_NUM)의 값이 NULL일 경우 0으로 치환해서 계산
+
+#DELETE FROM book_img;
+#DELETE FROM book;
+#DELETE FROM SHOP_CART;
+#COMMIT;
+
+
+
+
+
+
+
