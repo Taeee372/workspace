@@ -16,6 +16,8 @@ const BoardDetail = () => {
   //상품 수량을 저장할 state 변수
   const [cnt, setCnt] = useState(1);
 
+  console.log(bookDetail)
+
 
   //마운트되면 도서 상세 조회 및 조회된 데이터를 bookDetail 변수에 저장
   useEffect(() => {
@@ -62,7 +64,10 @@ const BoardDetail = () => {
       <div className={styles.container}>
         <div className={styles.main}>
           <div>
-            <img src="/엑셀실무_메인.pg.jpg" />
+            {
+              
+            }
+            <img src={"/엑셀실무_메인.pg.jpg"} />
           </div>
           <div>
             <p>{bookDetail.title}</p>

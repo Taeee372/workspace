@@ -3,6 +3,7 @@ package com.green.backend_shop.book.dto;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class BookDTO {
@@ -13,4 +14,5 @@ public class BookDTO {
   private LocalDateTime regDate;
   private String bookIntro;
   private int cateNum;
+  private List<BookImgDTO> imgList;
 }

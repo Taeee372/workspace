@@ -15,7 +15,7 @@ public class FileUploadUtil {
   //매개변수로 업로드 할 파일이 1개 전달됨
   public static BookImgDTO fileUpload(MultipartFile img){  //static이 붙어있으면 객체 생성을 하지 않고 클래스명.메서드명으로 바로 호출할 수 있다
     // 1) 파일 업로드 경로 지정
-    String uploadPath = "D:\\01-STUDY\\dev\\workspace\\workspace_spring\\backend_shop\\src\\main\\resources\\upload\\";
+    String uploadPath = "D:\\01-STUDY\\dev\\workspace\\workspace_spring\\backend_shop\\src\\main\\resources\\static\\upload\\";
 
     // 2) 파일명 중복방지를 위해 업로드용 파일명을 세팅
     // ex) 원본 파일명 : java.jpg -> kahldhdfs.jpg

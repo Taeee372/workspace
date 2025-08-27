@@ -4,6 +4,14 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.backend_shop.book.mapper.BookMapper">
+    <resultMap id="bookImg" type="com.green.backend_shop.book.dto.BookImgDTO">
+        <id     column="IMG_NUM"            property="imgNum"/>
+        <result column="ORIGIN_IMG_NAME"    property="originImgName"/>
+        <result column="ATTACHED_IMG_NAME"  property="attachedImgName"/>
+        <result column="BOOK_NUM"           property="bookNum"/>
+        <result column="IS_MAIN"            property="isMain"/>
+    </resultMap>
+    
     <resultMap id="book" type="com.green.backend_shop.book.dto.BookDTO">
         <id     column="BOOK_NUM"   property="bookNum" />
         <result column="TITLE"      property="title" />
@@ -12,6 +20,7 @@
         <result column="REG_DATE"   property="regDate" />
         <result column="BOOK_INTRO" property="bookIntro" />
         <result column="CATE_NUM"   property="cateNum" />
+        <collection property="imgList" resultMap="bookImg" />
     </resultMap>
 
     <!--BOOK 테이블에 데이터 삽입 시 저장되는 BOOK_NUM을 조회하는 쿼리-->
@@ -59,22 +68,29 @@
 
     <!--도서 목록 조회-->
     <select id="getBookList" resultMap="book">
-        SELECT BOOK_NUM
+        SELECT B.BOOK_NUM
             , TITLE
             , PRICE
-        FROM BOOK
+            , ATTACHED_IMG_NAME
+            , IS_MAIN
+        FROM BOOK B INNER JOIN BOOK_IMG I
+        ON B.BOOK_NUM = I.BOOK_NUM
+        WHERE IS_MAIN = 'Y'
         ORDER BY REG_DATE DESC
     </select>
 
     <!--도서 상세 조회-->
     <select id="getBookDetail" resultMap="book">
-        SELECT BOOK_NUM
+        SELECT B.BOOK_NUM
             , TITLE
             , PUBLISHER
             , PRICE
             , BOOK_INTRO
-        FROM BOOK
-        WHERE BOOK_NUM = #{bookNum}
+            , ATTACHED_IMG_NAME
+            , IS_MAIN
+        FROM BOOK B INNER JOIN BOOK_IMG I
+        ON B.BOOK_NUM = I.BOOK_NUM
+        WHERE B.BOOK_NUM = #{bookNum}
     </select>
 
 

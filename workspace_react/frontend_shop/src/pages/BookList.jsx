@@ -16,6 +16,8 @@ const BookList = () => {
     .catch(e => console.log(e));
   }, []);
 
+  console.log(bookList)
+
   return (
     <div className={styles.container}>
     {
@@ -26,7 +28,8 @@ const BookList = () => {
               className={styles.img_div} 
               onClick={e => nav(`/book-detail/${book.bookNum}`)}
             >
-              <img src="/엑셀실무_메인.pg.jpg" />
+              {/* <img src="http://localhost:8080/upload/abc.jpg" / */}
+              <img src={`http://localhost:8080/upload/${book.imgList[0].attachedImgName}`} />
             </div>
             <div className={styles.info}>
               <p>{book.title}</p>
