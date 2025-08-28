@@ -10,13 +10,20 @@ const CartList = () => {
 
   const nav = useNavigate();
 
- 
-
   //장바구니 목록 저장할 state 변수
   const [cartList, setCartList] = useState([]);
 
-  //바뀐 상품 수량 저장할 변수
-  const [newCnt, setNewCnt] = useState('');
+  //선택한 체크박스 값을 저장할 state 변수
+  //모든 체크박스가 선택된 채로 화면이 나오려면 조회한 모든 cartNum이 초기값으로 세팅되어야 함
+  const [checkData, setCheckData] = useState([]); 
+
+  console.log(checkData);
+
+  //전체 구매가격
+  let totalPrice = 0;
+  for(const e of cartList){
+    totalPrice = totalPrice + e.totalPrice
+  }
 
   //장바구니 목록 가져오기
   useEffect(() => {
@@ -35,36 +42,52 @@ const CartList = () => {
     axios.get(`/api/carts/${memId}`)
     .then(res => {
       setCartList(res.data)
-      console.log(res.data)
+      // console.log(res.data)
+    
+      //체크박스 초기값 세팅
+      const arr = [];
+      for(const e of res.data){
+        arr.push(e.cartNum);
+      }
+      
+      setCheckData(arr);
     })
     .catch(e => console.log(e));
   }, [])
 
-  // //장바구니 상품 삭제
-  // const deleteBook = () => {
-  //   // const cartNum = JSON.parse(loginInfo).cartNum
-  //   axios.delete(`api/carts`)
-  //   .then(res => alert('삭제'))
-  //   .catch(e => console.log(e));
-  // }
+  //체크박스 값 변경 시 실행 함수
+  const handleCheckbox = (e) => {
+    //체크가 됐다면...
+    //cartNum을 숫자로 변환해서 저장  parseInt(문자열)
+    if(e.target.checked){
+      setCheckData([...checkData, parseInt(e.target.value)]);
+    }
+
+    //체크가 해제 됐다면...
+    else{
+      const result = checkData.filter((cartNum) => {return cartNum != e.target.value})
+      setCheckData(result);
+    }
+  }
+
 
   return (
     <div className={styles.container}>
       <div className={styles.cart_list_table}>
         <table>
           <colgroup>
-            <col width='3%'/>
-            <col width='3%'/>
+            <col width='4%'/>
+            <col width='4%'/>
             <col width='*'/>
             <col width='10%'/>
-            <col width='22%'/>
+            <col width='17%'/>
             <col width='10%'/>
-            <col width='20%'/>
-            <col width='7%'/>
+            <col width='15%'/>
+            <col width='10%'/>
           </colgroup>
           <thead>
             <tr>
-              <td><input type="checkbox" name="" /></td>
+              <td><input type="checkbox" /></td>
               <td>No</td>
               <td>상품정보</td>
               <td>가격</td>
@@ -85,24 +108,33 @@ const CartList = () => {
               cartList.map((cart, i) => {
                 return (
                   <tr key={i}>
-                    <td><input type="checkbox" name="" /></td>
+                    <td>
+                      <input 
+                        type="checkbox"
+                        checked={checkData.includes(cart.cartNum)}
+                        value={cart.cartNum}
+                        onChange={e => handleCheckbox(e)}
+                      />
+                    </td>
                     <td>{cartList.length - i}</td>
                     <td>
                      <div className={styles.item_info}>
-                        <div><img src="/엑셀실무_메인.pg.jpg" width={'50px'}/></div>
+                        <div>
+                          <img src={`http://localhost:8080/upload/${cart.bookDTO.imgList[0].attachedImgName}`} width={'50px'}/>
+                        </div>
                         <div>{cart.bookDTO.title}</div>
                      </div>
                     </td>
                     <td>{cart.bookDTO.price.toLocaleString()}</td>
                     <td>
                       <div className={styles.cnt_div}>
-                        <Input size='50%' type="number" value={cart.cartCnt} onChange={e => {}}/>
-                        <Button title='수량 변경' color='green' size='50%'/>
+                        <Input size='40%' type="number" value={cart.cartCnt} onChange={e => {setNewCnt(e.target.value)}}/>
+                        <Button title='변경' color='green' size='40%'/>
                       </div>
                     </td>
                     <td>{cart.totalPrice.toLocaleString()}</td>
                     <td>{dayjs(cart.cartDate).format('YYYY-MM-DD HH:mm')}</td>
-                    <td><Button title='삭제' color='gray' onClick={e => {}}/></td>
+                    <td><Button size='100%' title='삭제' color='gray' onClick={e => {}}/></td>
                   </tr>
                 )
               })
@@ -111,7 +143,7 @@ const CartList = () => {
         </table>
       </div>
       <div className={styles.buy_div}>
-        <p>구매가격 (얼마)</p>
+        <p>구매가격 {totalPrice}</p>
         <Button title='선택 구매'/>
       </div>
     </div>

@@ -1,6 +1,7 @@
 package com.green.backend_shop.cart.dto;
 
 import com.green.backend_shop.book.dto.BookDTO;
+import com.green.backend_shop.book.dto.BookImgDTO;
 import lombok.Data;
 
 import java.time.LocalDateTime;

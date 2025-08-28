@@ -41,10 +41,15 @@
             , TITLE
             , PRICE
             , C.BOOK_NUM
+            , IS_MAIN
+            , ATTACHED_IMG_NAME
         FROM shop_cart C INNER JOIN book B
         <!--내가 조회하려는 테이블을 기준으로 관계가 어떻게 되는지 봐야함(1:1, 1:n)-->
         ON C.BOOK_NUM = B.BOOK_NUM
+        INNER JOIN BOOK_IMG I
+        ON C.BOOK_NUM = I.BOOK_NUM
         WHERE MEM_ID = #{memId}
+        AND IS_MAIN = 'Y'
         ORDER BY CART_DATE DESC
     </select>
 

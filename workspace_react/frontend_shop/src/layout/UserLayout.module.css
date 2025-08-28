@@ -1,8 +1,9 @@
 .container{
-  width: 900px;
+  width: 1000px;
   margin: 0 auto;
 }
 
 .header_div{
   height: 160px;
+  /* height: 27vh; */
 }

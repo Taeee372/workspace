@@ -52,7 +52,7 @@ const BoardDetail = () => {
         const result = confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동하시겠습니까?');
         if(result){
           //장바구니 페이지로 이동
-          nav(`/cart-list`)
+          nav(`/user/cart-list`)
         }
       })
       .catch(e => console.log(e));
@@ -65,9 +65,14 @@ const BoardDetail = () => {
         <div className={styles.main}>
           <div>
             {
-              
+              bookDetail.imgList && bookDetail.imgList.map((img, i) =>{
+                if(img.isMain === 'Y'){
+                  return(
+                  <img key={i} src={`http://localhost:8080/upload/${img.attachedImgName}`} />
+                  )
+                }
+              })
             }
-            <img src={"/엑셀실무_메인.pg.jpg"} />
           </div>
           <div>
             <p>{bookDetail.title}</p>
@@ -91,7 +96,15 @@ const BoardDetail = () => {
         </div>
       </div>
       <div className={styles.img_div}>
-        <img src="/엑셀실무_상세1.jpg" />
+        {
+          bookDetail.imgList && bookDetail.imgList.map((img, i) =>{
+            if(img.isMain === 'N'){
+              return(
+              <img key={i} src={`http://localhost:8080/upload/${img.attachedImgName}`} />
+              )
+            }
+          })
+        }
       </div>
     </div>
   )

@@ -34,7 +34,7 @@ const UserHeader = () => {
           : 
           <>
             <span>{loginData.memId}님 반갑습니다</span>
-            <span>마이페이지</span>
+            <span onClick={e => nav('/user/cart-list')}>마이페이지</span>
             <span onClick={e => {
               sessionStorage.removeItem('loginInfo');
               nav('/');
@@ -43,7 +43,7 @@ const UserHeader = () => {
         }
         
       </div>
-      <div className={styles.banner_div}>
+      <div className={styles.banner_div} onClick={e => nav('/')}>
         <img 
           className={styles.banner_img}
           src="/book_banner.PNG" 
