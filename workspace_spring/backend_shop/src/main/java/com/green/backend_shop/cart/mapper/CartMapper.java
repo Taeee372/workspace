@@ -20,5 +20,5 @@ public interface CartMapper {
   public void updateCartCnt(CartDTO cartDTO);
 
   //장바구니 상품 삭제
-//  public void deleteBook(int cartNum);
+  public void deleteBook(int cartNum);
 }

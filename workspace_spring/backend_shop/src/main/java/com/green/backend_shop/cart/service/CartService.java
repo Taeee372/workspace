@@ -40,7 +40,7 @@ public class CartService {
   }
 
   //장바구니 상품 삭제
-//  public void deleteBook(int cartNum){
-//    cartMapper.deleteBook(cartNum);
-//  }
+  public void deleteBook(int cartNum){
+    cartMapper.deleteBook(cartNum);
+  }
 }

@@ -146,7 +146,7 @@ VALUES
 ('abc.jpg', 'aaa-bbb.jpg', 26, 'Y'); # 데이터 한 번에 여러 개 넣는 방법
 
 SELECT * FROM book_img;
-
+SELECT * FROM shop_cart;
 SELECT * FROM book;
 
 # 다음에 들어갈 BOOK_NUM을 조회 (최대 BOOK_NUM + 1)
@@ -180,8 +180,7 @@ WHERE MEM_ID = 'user'
 AND IS_MAIN = 'Y'
 ORDER BY CART_DATE DESC;
 
-
-
+SELECT * FROM shop_cart;
 
 
 

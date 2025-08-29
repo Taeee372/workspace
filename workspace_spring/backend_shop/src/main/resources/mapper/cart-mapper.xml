@@ -75,10 +75,10 @@
 
 
     <!--장바구니 상품 삭제-->
-<!--    <delete id="deleteBook">-->
-<!--        DELETE FROM SHOP_CART-->
-<!--        WHERE CART_NUM = #{cartNum}-->
-<!--    </delete>-->
+    <delete id="deleteBook">
+        DELETE FROM SHOP_CART
+        WHERE CART_NUM = #{cartNum}
+    </delete>
 </mapper>
 
 
