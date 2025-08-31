@@ -28,8 +28,13 @@ public class CartController {
 
   //장바구니 상품 삭제
   @DeleteMapping("/{cartNum}")
-  public void deleteBook(@PathVariable("cartNum") int cartNum){
-    cartService.deleteBook(cartNum);
+  public void deleteCart(@PathVariable("cartNum") int cartNum){
+    cartService.deleteCart(cartNum);
   }
 
+  //장바구니 수량 변경 api (장바구니 페이지에서)
+  @PutMapping("")
+  public void updateCart(@RequestBody CartDTO cartDTO){
+    cartService.updateCart(cartDTO);
+  };
 }

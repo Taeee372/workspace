@@ -7,6 +7,8 @@ import dayjs from 'dayjs'
 import Input from '../common/Input'
 
 const CartList = () => {
+  //장바구니 목록 데이터를 조회하는 useEffect를 재실행하기 위한 변수
+  const [reload, setReload] = useState(0);
 
   const nav = useNavigate();
 
@@ -68,13 +70,18 @@ const CartList = () => {
       //useRef & current를 씀으로써 arr이 배열이 아닌 객체가 됐으니, 넣는 것도 배열을 갖고 있는 arr 안의 current를 넣으면 된다
 
       //총 구매 가격 세팅
+      //장바구니 목록을 조회할 때마다 총 가격은 0으로 초기화 후 계산
+      //price는 useRef로 정의돼있기 때문에 직접 초기화해주지 않으면 값이 계속 누적된 상태
+      //1000 + 2000 = 3000 , 1000 상품 삭제 => 3000값 그대로 남아있는 상태에서 리로드 => 3000 + 2000 = 5000
+      //초기화시키지 않으면 이런 사태가 벌어져버린다...
+      price.current = 0;
       for(const e of res.data){
         price.current = price.current + e.totalPrice //price = {current : 총 가격}
       }
       setFinalPrice(price.current);
     })
     .catch(e => console.log(e));
-  }, [])
+  }, [reload])
 
   //체크박스 값 변경 시 실행 함수
   const handleCheckbox = (e) => {
@@ -115,18 +122,33 @@ const CartList = () => {
     }
   }
 
-  //책 삭제
-  const deleteBook = (cartNum) => {
-    axios.delete(`/api/carts/${cartNum}`)
-    .then(res => {
-      console.log(cartNum)
-    })
-    .catch(e => console.log(e))
+
+  //장바구니 삭제
+  const deleteCart = (cartNum) => {
+    confirm('선택한 상품을 장바구니에서 비우시겠습니까?');
+
+    if(result){
+       axios.delete(`/api/carts/${cartNum}`)
+      .then(res => {
+        alert('상품을 장바구니에서 삭제했습니다.');
+        //reload 값이 바뀌면서 useEffect 안의 장바구니 목록 조회가 재실행
+        setReload(reload + 1)
+      })
+      .catch(e => console.log(e))
+    }
   }
 
-  // axios.delete()
-  // .then()
-  // .catch()
+
+  //수량 변경 함수
+  const updateCart = (e, cartNum, bookNum) => {
+    axios.put('/api/carts', {
+      'cartCnt' : e.target.value,
+      'bookNum' : bookNum,
+      'cartNum' : cartNum
+    })
+    .then(res => setReload(reload + 1))
+    .catch(e => console.log(e));
+  }
 
   return (
     <div className={styles.container}>
@@ -206,14 +228,49 @@ const CartList = () => {
                     <td>{cart.bookDTO.price.toLocaleString()}</td>
                     <td>
                       <div className={styles.cnt_div}>
-                        <Input size='40%' type="number" value={cart.cartCnt} onChange={e => {}}/>
-                        <Button title='변경' color='green' size='40%'/>
+                        {/* 
+                          인풋 태그의 value와 onChange는 한 쌍이다.
+                          정상 작동을 위해서는 value에 사용하는 데이터와 onChange에서 컨트롤하는 데이터는 동일해야 한다!
+                          만약 value와 onChange에서 사용하는 데이터가 다르면 input태그에 입력한 내용이 화면에 반영되지 않는다.
+
+                          결론1. value와 onChange에 사용하는 데이터는 동일하게 사용하자
+
+                          하지만 value와 onChange의 코드를 작성하면 두 곳에서 사용하는 데이터가 다른 경우도 존재한다.
+                          ( ex) cart-setCart 쌍이 아닌, cart-updateCnt 쌍이 되어버리는 경우)
+
+                          이럴 경우에는, 
+                          결론2. value 대신 defaultValue를 사용한다.
+                           defultValue : onChange와 한 쌍이 아니어도 됨
+                           그치만 남용하면 데이터 관리가 어려워지니, 가능하다면 결론1을 사용하도록 하자..
+                        */} 
+                        <Input 
+                          size='100%' 
+                          type="number" 
+                          // value={cart.cartCnt} 
+                          defaultValue={cart.cartCnt}
+                          onChange={e => {
+                            updateCart(e, cart.cartNum, cart.bookNum);
+                          }}
+
+                          /* 미완성 코드
+
+                          // onKeyDown이 onChange보다 먼저 실행됨
+                          onKeyDown={e => {
+                            //키보드를 눌렀을 때 입력한 값이 숫자가 아니면 더 이상 이벤트를 진행하지 않겠다.
+
+                            //기본 이벤트를 막겠다.
+                            e.preventDefault();
+                          }}
+
+                              미완성  코드    */ 
+
+                        />
                       </div>
                     </td>
                     <td>{cart.totalPrice.toLocaleString()}</td>
                     <td>{dayjs(cart.cartDate).format('YYYY-MM-DD HH:mm')}</td>
                     <td>
-                      <Button size='100%' title='삭제' color='gray' onClick={e => deleteBook(cart.cartNum)}/>
+                      <Button size='100%' title='삭제' color='gray' onClick={e => deleteCart(cart.cartNum)}/>
                     </td>
                   </tr>
                 )

@@ -61,7 +61,7 @@
        AND MEM_ID = #{memId}
    </select>
 
-    <!--장바구니 수량 변경-->
+    <!--장바구니 수량 변경(같은 상품 장바구니에 중복 저장 시 실행)(상품 상세페이지에서 실행)-->
     <update id="updateCartCnt">
         UPDATE shop_cart
         SET
@@ -75,10 +75,22 @@
 
 
     <!--장바구니 상품 삭제-->
-    <delete id="deleteBook">
+    <delete id="deleteCart">
         DELETE FROM SHOP_CART
         WHERE CART_NUM = #{cartNum}
     </delete>
+
+    <!--장바구니 수량 변경(장바구니 목록페이지에서 수량 변경)-->
+    <update id="updateCart">
+        UPDATE SHOP_CART
+        SET
+            CART_CNT = #{cartCnt}
+            , TOTAL_PRICE = (SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = #{bookNum}) * #{cartCnt}
+        WHERE CART_NUM = #{cartNum}
+    </update>
+
 </mapper>
 
 

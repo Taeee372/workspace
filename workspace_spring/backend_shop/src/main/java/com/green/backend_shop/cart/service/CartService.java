@@ -40,7 +40,12 @@ public class CartService {
   }
 
   //장바구니 상품 삭제
-  public void deleteBook(int cartNum){
-    cartMapper.deleteBook(cartNum);
+  public void deleteCart(int cartNum){
+    cartMapper.deleteCart(cartNum);
   }
+
+  //장바구니 수량 변경(장바구니 페이지에서)
+  public void updateCart(CartDTO cartDTO){
+    cartMapper.updateCart(cartDTO);
+  };
 }
