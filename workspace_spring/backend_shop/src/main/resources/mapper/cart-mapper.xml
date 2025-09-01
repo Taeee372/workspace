@@ -91,6 +91,17 @@
         WHERE CART_NUM = #{cartNum}
     </update>
 
+    <!--장바구니에서 구매하면 장바구니 목록에서 상품 삭제-->
+    <delete id="deleteCartAll">
+        DELETE FROM SHOP_CART
+        WHERE CART_NUM IN
+        <!--open : 반복 되기 전에 딱 한 번만 작성해야 하는 쿼리 단어-->
+        <!--close : 반복 후 딱 한 번만 작성해야 하는 쿼리 단어-->
+        <foreach collection="cartNumList" item="cartNum" separator="," open="(" close=")">
+            #{cartNum}
+        </foreach>
+    </delete>
+
 </mapper>
 
 

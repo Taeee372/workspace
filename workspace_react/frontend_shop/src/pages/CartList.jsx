@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './CartList.module.css'
 import Button from '../common/Button'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import Input from '../common/Input'
@@ -18,6 +18,8 @@ const CartList = () => {
   //선택한 체크박스 값을 저장할 state 변수
   //모든 체크박스가 선택된 채로 화면이 나오려면 조회한 모든 cartNum이 초기값으로 세팅되어야 함
   const [checkData, setCheckData] = useState([]); 
+
+  console.log(checkData)
 
   //전체 체크박스의 체크여부를 저장할 state 변수
   const [isChecked, setIsChecked] = useState(true);
@@ -125,7 +127,7 @@ const CartList = () => {
 
   //장바구니 삭제
   const deleteCart = (cartNum) => {
-    confirm('선택한 상품을 장바구니에서 비우시겠습니까?');
+    const result = confirm('선택한 상품을 장바구니에서 비우시겠습니까?');
 
     if(result){
        axios.delete(`/api/carts/${cartNum}`)
@@ -138,7 +140,6 @@ const CartList = () => {
     }
   }
 
-
   //수량 변경 함수
   const updateCart = (e, cartNum, bookNum) => {
     axios.put('/api/carts', {
@@ -147,6 +148,24 @@ const CartList = () => {
       'cartNum' : cartNum
     })
     .then(res => setReload(reload + 1))
+    .catch(e => console.log(e));
+  }
+
+  //선택 구매
+  const buyAll = () => {
+    //로그인 정보 가져오기
+    const loginInfo = sessionStorage.getItem('loginInfo');
+    const memId = JSON.parse(loginInfo).memId;
+
+    axios.post('/api/buys/all', {
+      'memId' : memId,
+      'cartNumList' : checkData
+    })
+    .then(res => {
+      alert('선택한 도서를 구매했습니다.');   
+      //reload 값이 변경되면 장바구니 목록 조회 기능이 있는 useEffect가 재실행된다.
+      setReload(reload + 1);
+    })
     .catch(e => console.log(e));
   }
 
@@ -246,6 +265,7 @@ const CartList = () => {
                         <Input 
                           size='100%' 
                           type="number" 
+                          min='0'
                           // value={cart.cartCnt} 
                           defaultValue={cart.cartCnt}
                           onChange={e => {
@@ -281,7 +301,7 @@ const CartList = () => {
       </div>
       <div className={styles.buy_div}>
         <p>구매가격 : {finalPrice.toLocaleString() + '원'}</p>
-        <Button title='선택 구매'/>
+        <Button title='선택 구매' onClick={e => buyAll()}/>
       </div>
     </div>
   )

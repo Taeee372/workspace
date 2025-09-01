@@ -19,6 +19,8 @@ const BoardDetail = () => {
   console.log(bookDetail)
 
 
+
+
   //마운트되면 도서 상세 조회 및 조회된 데이터를 bookDetail 변수에 저장
   useEffect(() => {
     axios.get(`/api/books/${bookNum}`)
@@ -57,6 +59,26 @@ const BoardDetail = () => {
       })
       .catch(e => console.log(e));
   }
+
+  //구매하기 버튼 클릭 시 실행 함수
+  const buyBook = () => {
+    //로그인 안 했으면
+    if(sessionStorage.getItem('loginInfo') === null){
+      alert('로그인 필수!')
+      return ;
+    }
+
+    //로그인 한 회원의 아이디
+    const loginInfo = sessionStorage.getItem('loginInfo');
+    // console.log(loginInfo);
+    const result = JSON.parse(loginInfo);
+    console.log(result);
+
+    axios.post('/api/buys', {'bookNum' : bookNum, 'memId' : result.memId, 'buyCnt' : cnt})
+    .then(res => alert('구매 완료'))
+    .catch(e => console.log(e));
+  }
+
  
 
   return (
@@ -87,7 +109,7 @@ const BoardDetail = () => {
               <Button title='장바구니' color='green' size='50%'
                       onClick={e => insertCart()}
               />
-              <Button title='구매하기' size='50%'/>
+              <Button title='구매하기' size='50%' onClick={e => buyBook()}/>
             </div>
           </div>
         </div>

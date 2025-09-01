@@ -4,8 +4,8 @@
 # 1. 회원 테이블
 # 2. 도서 카테고리 테이블
 # 3. 도서 정보 테이블 
-# 4. 구매 테이블
-# 5. 장바구니 테이블
+# 4. 장바구니 테이블
+# 5. 구매 테이블
 
 
 # 1. 회원 테이블
@@ -72,7 +72,7 @@ CREATE TABLE BOOK_IMG (
 	, IS_MAIN VARCHAR(3) # 메인이미지 : 'Y', 서브이미지 : 'N'
 ); 
 
-SELECT * FROM BOOK_IMG;
+SELECT * FROM ;        
 
 # 4. 장바구니 테이블
 CREATE TABLE SHOP_CART (
@@ -85,6 +85,32 @@ CREATE TABLE SHOP_CART (
 ); 
 
 SELECT * FROM shop_cart;
+
+
+
+# 5. 구매 정보 테이블
+CREATE TABLE SHOP_BUY (
+	BUY_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, BOOK_NUM INT REFERENCES book (BOOK_NUM)
+	, MEM_ID VARCHAR(20) REFERENCES shop_member (MEM_ID)
+	, BUY_DATE DATETIME DEFAULT SYSDATE()
+	, BUY_CNT INT 
+);
+
+
+SELECT * FROM SHOP_BUY;
+
+# 장바구니에서 구매하기 쿼리 예시
+# cartNum = [1, 2, 3]
+# INSERT INTO SHOP_BUY (BOOK_NUM, MEM_ID, BUY_CNT) 
+# VALUES 
+# (
+# 	(SELECT BOOK_NUM FROM shop_cart WHERE CART_NUM = 1)
+#	 , 'user'
+#	 , (SELECT CART_CNT FROM shop_cart WHERE CART_NUM = 1) 
+# )
+# , (CART_NUM이 2번일 때)
+# , (CART_NUM이 2번일 때);
 
 
 INSERT INTO shop_cart (BOOK_NUM

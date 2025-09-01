@@ -1,0 +1,14 @@
+.container{
+  width: 1000px;
+  margin: 0px auto;
+  border: 1px solid black;
+}
+
+.menu > ul{
+  display: flex;
+  gap: 20px;
+}
+
+.menu li{
+  width: 100%;
+}

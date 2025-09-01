@@ -3,6 +3,8 @@
   margin: 0 auto;
 }
 
+
+
 .main{
   display: flex;
 }
@@ -13,4 +15,5 @@
 
 .content{
   padding-left: 20px;
+  width: 100%;
 }
