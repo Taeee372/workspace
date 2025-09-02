@@ -9,6 +9,8 @@ import BoardDetail from './pages/BoardDetail'
 import CartList from './pages/CartList'
 import PersonalLayout from './layout/PersonalLayout'
 import Checkbox from './components/Checkbox'
+import BuyListForUser from './pages/BuyListForUser'
+import BuyList from './pages/BuyList'
 
 function App() {
 
@@ -37,6 +39,9 @@ function App() {
 
           {/* 카테고리 관리 페이지, url : /admin/cate-manage */}
           <Route path='cate-manage' element={ <CategoryManage /> }/>
+
+          {/* 구매 이력 조회 페이지 */}
+          <Route path='buy-list' element={ <BuyList /> }/>
         </Route>
 
       
@@ -45,6 +50,10 @@ function App() {
 
             {/* 장바구니 페이지 */}
             <Route path='cart-list' element={ <CartList /> } />
+
+            {/* 구매 내역 페이지 */}
+            <Route path='buy-list' element={ <BuyListForUser /> }/>
+            
           </Route>
         
 

@@ -6,11 +6,20 @@
 <mapper namespace="com.green.backend_shop.buy.mapper.BuyMapper">
 
 	<resultMap id="buy" type="com.green.backend_shop.buy.dto.BuyDTO">
-        <id column="BUY_NUM" property="buyNum" />
-        <result column="BOOK_NUM" property="bookNum" />
-        <result column="MEM_ID" property="memId" />
-        <result column="BUY_DATE" property="buyDate" />
-        <result column="BUY_CNT" property="buyCnt" />
+        <id     column="BUY_NUM"    property="buyNum" />
+        <result column="BOOK_NUM"   property="bookNum" />
+        <result column="MEM_ID"     property="memId" />
+        <result column="BUY_DATE"   property="buyDate" />
+        <result column="BUY_CNT"    property="buyCnt" />
+        <result column="ORDER_NUM"  property="orderNum" />
+    </resultMap>
+
+    <resultMap id="buyDTOForAdmin" type="com.green.backend_shop.buy.dto.BuyDTOForAdmin">
+        <id     column="ORDER_NUM"  property="orderNum"/>
+        <result column="MEM_ID"     property="memId"/>
+        <result column="PRICE"      property="price"/>
+        <result column="BUY_DATE"   property="buyDate"/>
+        <result column="TITLE"      property="title"/>
     </resultMap>
 
     <!--상품 상세 페이지에서 구매하기-->
@@ -19,26 +28,52 @@
             BOOK_NUM
         , MEM_ID
         , BUY_CNT
+        , ORDER_NUM
         ) VALUES (
             #{bookNum}
             , #{memId}
             , #{buyCnt}
+            , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
         )
     </insert>
 
     <!--장바구니 페이지에서 구매하기-->
     <insert id="buyAll">
-        INSERT INTO SHOP_BUY (BOOK_NUM, MEM_ID, BUY_CNT)
+        INSERT INTO SHOP_BUY (BOOK_NUM, MEM_ID, BUY_CNT, ORDER_NUM)
         VALUES
         <foreach collection="cartNumList" item="cartNum" separator=",">
             (
             (SELECT BOOK_NUM FROM shop_cart WHERE CART_NUM = #{cartNum})
             , #{memId}
             , (SELECT CART_CNT FROM shop_cart WHERE CART_NUM = #{cartNum})
+            , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
             )
         </foreach>
     </insert>
 
+    <!--관리자 페이지에서 구매 이력 조회-->
+    <select id="getBuyListForAdmin" resultMap="buyDTOForAdmin">
+        SELECT ORDER_NUM
+            , MAX(MEM_ID) MEM_ID
+            , SUM((SELECT PRICE
+                    FROM book
+                    WHERE BOOK_NUM = shop_buy.BOOK_NUM) * BUY_CNT) PRICE
+            , MAX(BUY_DATE) BUY_DATE
+            , CASE COUNT(ORDER_NUM) - 1
+                WHEN 0 THEN MAX((SELECT TITLE
+                                FROM book
+                                WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+                ELSE CONCAT(MAX((SELECT TITLE
+                                FROM book
+                                WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+                                , ' 외 '
+                                , COUNT(ORDER_NUM) - 1
+                                , '건')
+                END TITLE
+        FROM shop_buy
+        GROUP BY ORDER_NUM
+        ORDER BY BUY_DATE DESC
+    </select>
 
 </mapper>
 

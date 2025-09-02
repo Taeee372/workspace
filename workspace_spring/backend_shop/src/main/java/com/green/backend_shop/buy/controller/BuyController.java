@@ -1,13 +1,13 @@
 package com.green.backend_shop.buy.controller;
 
 import com.green.backend_shop.buy.dto.BuyDTO;
+import com.green.backend_shop.buy.dto.BuyDTOForAdmin;
 import com.green.backend_shop.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/buys")
@@ -27,4 +27,11 @@ public class BuyController {
     buyService.buyAll(buyDTO);
     //System.out.println(buyDTO);
   }
+
+  //관리자 구매이력조회 페이지의 구매목록조회 api
+  @GetMapping("/buy-list-admin")
+  public List<BuyDTOForAdmin> getBuyListForAdmin(){
+    return buyService.getBuyListForAdmin();
+  }
+
 }

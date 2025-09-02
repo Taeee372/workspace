@@ -1,11 +1,14 @@
 package com.green.backend_shop.buy.service;
 
 import com.green.backend_shop.buy.dto.BuyDTO;
+import com.green.backend_shop.buy.dto.BuyDTOForAdmin;
 import com.green.backend_shop.buy.mapper.BuyMapper;
 import com.green.backend_shop.cart.mapper.CartMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +50,10 @@ public class BuyService {
 
     //구매한 장바구니 정보는 SHOP_CART 테이블에서 DELETE
     cartMapper.deleteCartAll(buyDTO);
+  }
+
+  //관리자 구매이력조회 페이지의 구매목록조회
+  public List<BuyDTOForAdmin> getBuyListForAdmin(){
+    return buyMapper.getBuyListForAdmin();
   }
 }

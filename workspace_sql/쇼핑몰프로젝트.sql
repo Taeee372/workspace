@@ -94,11 +94,38 @@ CREATE TABLE SHOP_BUY (
 	, BOOK_NUM INT REFERENCES book (BOOK_NUM)
 	, MEM_ID VARCHAR(20) REFERENCES shop_member (MEM_ID)
 	, BUY_DATE DATETIME DEFAULT SYSDATE()
-	, BUY_CNT INT 
+	, BUY_CNT INT
+	, ORDER_NUM INT # 주문번호, 한 번에 여러 상품을 구매하면 동일한 주문번호를 가짐 
 );
 
 
+# BuyList를 위한 쿼리
+SELECT ORDER_NUM
+	, MAX(MEM_ID) MEM_ID # GROUP BY(단일행 함수 조건)에 맞게 MAX로 짜부시켜주기  
+				# -> 그래야 오류 안 난다 (마리아디비는 봐주지만 오라클 등은 봐주지 않음..)
+	, SUM((SELECT PRICE 
+			FROM book 
+			WHERE BOOK_NUM = shop_buy.BOOK_NUM) * BUY_CNT) PRICE
+	, MAX(BUY_DATE) BUY_DATE
+	, CASE COUNT(ORDER_NUM) - 1
+		WHEN 0 THEN MAX((SELECT TITLE 
+								FROM book 
+								WHERE BOOK_NUM = shop_buy.BOOK_NUM))	
+		ELSE CONCAT(MAX((SELECT TITLE
+								FROM book 
+								WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+								, ' 외 '
+								, COUNT(ORDER_NUM) - 1
+								, '건')
+		END TITLE
+FROM shop_buy
+GROUP BY ORDER_NUM
+ORDER BY BUY_DATE DESC;
+
 SELECT * FROM SHOP_BUY;
+
+
+# FROM -> WHERE -> SELECT -> ORDER BY 순으로 해석
 
 # 장바구니에서 구매하기 쿼리 예시
 # cartNum = [1, 2, 3]

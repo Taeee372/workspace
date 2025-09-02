@@ -1,0 +1,6 @@
+vscode 확장 프로그램 설치
+1. python : vscode에서 python 코드 작성 및 자동 완성 가능하게 지원
+                     .py 확장자의 파이썬 파일 생성 가능
+
+2. jupyter : vscode에서 .ipynb 확장자의 파이썬 파일 생성 가능하게 지원
+                     .ipynb 파일은 .py  파일보다 문법 공부에 좀 더 적합한 구조를 지니고 있음
