@@ -1,0 +1,72 @@
+팀플 git 작업 (fork)
+1. 팀장이 프로젝트 생성 및 github에 프로젝트 올리기
+ 1-1. 팀장이 팀 프로젝트를 생성
+ 1-2. 프로젝트 파일구조 기본 생성(폴더, 패키지만 생성하고 안에 파일이 없으면 폴더가 올라가지 않으니 주의!)
+ 1-3. remote repository 생성(레포지토리명은 프로젝트명과 동일)
+ 1-4. git init
+ 1-5. git add .          (LF 경고 뜨면., git config core.autocrlf true )
+ 1-6. git commit -m "커밋메세지 상세히"
+ 1-7. git remote add origin 원격저장소url
+ 1-8. git push origin main
+ 1-9. git branch dev            (dev 브렌치 생성)
+ 1-10. git checkout dev      (dev 브렌치로 이동)
+ 1-11. git push origin dev   (dev 브렌치도 원격저장소에 저장)
+ 1-12. default branch를 main에서 dev브랜치로 변경(settings에 있음)
+ 1-13. settings -> Branches 규칙에서 Require a pull request before merging 체크
+
+2. 팀원의 최초 작업
+ 2-1. 팀장의 원격 레포에서 Fork한다.
+ 2-2. forked된(내 레포) 레포의 파일 내려받기
+          git clone 원격레포 url
+ 2-3. 팀장의 remote repo와 내 local repo를 연결
+          git remote add upstream 팀장원격저장소 url
+          (현재 지역저장소와 연결된 원격저장소를 확인하는 명령어 : git remote -v) 
+
+3. 작업 순서(팀장&팀원 공통)
+ 3-1. 작업할 개인 브랜치 생성
+          git branch 브랜치명  (브랜치명은 통상적으로 개발하려는 기능에 맞게 작성한다)
+          ex> git branch feature/board-list
+                 git branch bugfix/join
+                 git branch hotfix/reg-item
+ 3-2. 생성한 브랜치로 이동
+          git checkout 브랜치명
+          (git checkout -b 브랜치명 -> 3-1, 3-2 동시 진행)
+ 3-3. 코드 작업 
+          코드 작업은 반드시 개인이 만든 브렌치에서 작업한다. 작업 전 반드시 확인할 것!
+          코드 작업 중 개인 브렌치가 아닌 dev 브렌치에서 작업하고 있음을 인지했으면 바로 강사에게 말할 것!
+ 3-4. git add .
+ 3-5. git commit-m "커밋메세지" 
+ 3-6. 작업한 내역을 원격저장소에 올림(내 원격 저장소!)
+          git push origin 개인브랜치명
+          * commit을 했다고해서 무조건 push 하는 건 아님!
+          * push는 해당 브렌치에서 목표했던 기능이 다 만들어지면 그때 해도 됨!
+          * 단, commit은 많이 해 놓을 수록 좋음!
+          fork로 떠온 나의 원격저장소에 push하면 바로 push되지 않고, 나의 원격저장소에  pull request가 발생.
+          pull request는 작업한 내용을 원격저장소에 반영할 수 있도록 요청을 구하는 것임.
+ 3-7. pull request 실행
+          (원본(팀장) 레포에 반영해주세요~ 라는 명령)
+ 3-8. 팀장은 팀 레포지포트에서 pull request를 승인(merge)
+          (이만큼하면 팀장의 원격 저장소에만 수정 사항이 반영됨)
+ 3-9. push한 팀원은 'delete branch' 버튼 클릭 (원격 레포에서만 삭제가 됨)
+ 3-10. dev 브랜치로 이동
+            git checkout dev
+ 3-11. 팀장의 dev 브랜치 내용 받아오기(dev 브랜치의 내용 최신화)
+            팀원 : git pull upstream dev,  팀장 : git pull origin dev
+ 3-12. 최신화 시킨 로컬 레포를 본인의 원격 레포에도 반영
+             git push origin dev  (팀장은 할 필요 없음)
+ 3-13. 작업 완료한 브랜치를 삭제
+            git branch -d 삭제할브랜치명
+
+끝!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
