@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './RegSaleInfo.module.css'
 import Input from '../common/Input'
+import Select from '../common/Select'
 
 const RegSaleInfo = () => {
   return (
@@ -9,16 +10,16 @@ const RegSaleInfo = () => {
         <span>모델명</span>
         <Input />
         <span>색상</span>
-        <select>
+        <Select>
           <option value="">선택</option>
           <option value="">화이트</option>
           <option value="">블랙</option>
           <option value="">레드</option>
-        </select>
+        </Select>
         <span>모델</span>
-        <select>
-
-        </select>
+        <Select>
+          
+        </Select>
         <span>연락처</span>
         <Input />
       </div>

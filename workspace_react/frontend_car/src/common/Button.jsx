@@ -5,7 +5,9 @@ const Button = ({title='버튼', size='80px', color='blue', onClick, ...props}) 
   return (
     <button
       type='button'
-      className={`${styles.btn}`}
+      style={{width : size}}
+      className={`${styles.btn} ${styles[color]}`}
+      onClick={onClick}
       {...props}
     >
     {title}</button>

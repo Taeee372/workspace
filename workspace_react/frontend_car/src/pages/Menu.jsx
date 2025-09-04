@@ -1,17 +1,16 @@
 import React from 'react'
-import styles from './HomeLayout.module.css'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import styles from './Menu.module.css'
+import { NavLink, Outlet} from 'react-router-dom'
 
-const HomeLayout = () => {
+const Menu = () => {
 
-  const nav = useNavigate();
 
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
         <ul>
           <NavLink
-            to={'/title'}
+            to={'/home'}
           >
             <li>홈</li>
           </NavLink>
@@ -39,4 +38,4 @@ const HomeLayout = () => {
   )
 }
 
-export default HomeLayout
+export default Menu

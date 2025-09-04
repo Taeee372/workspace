@@ -3,6 +3,7 @@ import styles from './CarManage.module.css'
 import Input from '../common/Input'
 import Button from '../common/Button'
 import axios from 'axios'
+import Select from '../common/Select'
 
 const CarManage = () => {
   //등록한 차량을 담을 state 변수
@@ -11,16 +12,17 @@ const CarManage = () => {
     'price' : '',
     'brand' : ''
   })
+  console.log(car)
 
   //차량 등록
   const regCar = () => {
-    axios.post('/api/cars', {})
+    axios.post('/api/cars', car)
     .then(res => alert('등.완'))
     .catch(e => console.log(e));
   }
 
   //input에 입력한 내용으로 변경
-  const handleCar = () => {
+  const handleCar = (e) => {
     setCar({
       ...car,
       [e.target.name] : e.target.value
@@ -32,16 +34,16 @@ const CarManage = () => {
       <p>차량 등록</p>
       <div>
         <span>제조사</span>
-        <select>
+        <Select name='brand' value={car.brand} onChange={e => handleCar(e)}>
           <option value="">선택</option>
           <option value="현대">현대</option>
           <option value="기아">기아</option>
-        </select>
+        </Select>
         <span>모델명</span>
-        <Input />
+        <Input name='modelName' value={car.modelName} onChange={e => handleCar(e)} />
         <span>차량가격</span>
-        <Input />
-        <Button />
+        <Input name='price' value={car.price} onChange={e => handleCar(e)} />
+        <Button title='등록' onClick={e => regCar()}/>
       </div>
       <div>
         <p>등록된 차량 목록</p>

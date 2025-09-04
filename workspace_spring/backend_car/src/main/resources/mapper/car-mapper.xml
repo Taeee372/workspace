@@ -13,7 +13,7 @@
 
     <!--차량 등록-->
     <insert id="regCar">
-        INSERT INTO CAR (
+        INSERT INTO CAR_INFO (
             MODEL_NAME
             , PRICE
             , BRAND

@@ -9,6 +9,7 @@ const Button = ({title='버튼', size='80px', color='blue', onClick, ...props}) 
         `${styles.btn} ${styles[color]} ${props.disabled && styles.disabled}`
       }
       style={{width : size}}
+      // {onClick} : 컴포넌트로 넘어오는 onClick 안의 함수를 받음
       onClick={onClick}
       {...props}
     >{title}</button>
