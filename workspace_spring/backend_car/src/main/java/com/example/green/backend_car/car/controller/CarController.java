@@ -3,10 +3,9 @@ package com.example.green.backend_car.car.controller;
 import com.example.green.backend_car.car.dto.CarDTO;
 import com.example.green.backend_car.car.service.CarService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cars")
@@ -18,5 +17,11 @@ public class CarController {
   @PostMapping("")
   public void regCar(@RequestBody CarDTO carDTO){
     carService.regCar(carDTO);
+  }
+
+  //등록된 차량 목록 조회
+  @GetMapping("")
+  public List<CarDTO> getCarList(){
+    return carService.getCarList();
   }
 }

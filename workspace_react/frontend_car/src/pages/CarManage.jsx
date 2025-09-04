@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './CarManage.module.css'
 import Input from '../common/Input'
 import Button from '../common/Button'
@@ -6,7 +6,7 @@ import axios from 'axios'
 import Select from '../common/Select'
 
 const CarManage = () => {
-  //등록한 차량을 담을 state 변수
+  //등록한 차량을 담을 변수
   const [car, setCar] = useState({
     'modelName' : '',
     'price' : '',
@@ -14,12 +14,33 @@ const CarManage = () => {
   })
   console.log(car)
 
+  //조회한 차량을 저장할 변수
+  const [carList, setCarList] = useState([])
+
   //차량 등록
   const regCar = () => {
     axios.post('/api/cars', car)
-    .then(res => alert('등.완'))
+    .then(res => {
+      alert('등.완');
+      setCar({
+        'modelName' : '',
+        'price' : '',
+        'brand' : ''
+      })
+    })
     .catch(e => console.log(e));
   }
+
+  //차량 목록 조회
+  useEffect(() => {
+    axios.get('/api/cars')
+    .then(res => {
+      console.log(res.data);
+      setCarList(res.data);
+    })
+    .catch(e => console.log(e))
+  }, [])
+
 
   //input에 입력한 내용으로 변경
   const handleCar = (e) => {
@@ -57,7 +78,18 @@ const CarManage = () => {
             </tr>
           </thead>
           <tbody>
-
+            {
+              carList.map((car, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{carList.length - i}</td>
+                    <td>{car.modelNum}</td>
+                    <td>{car.modelName}</td>
+                    <td>{car.brand}</td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </table>
       </div>

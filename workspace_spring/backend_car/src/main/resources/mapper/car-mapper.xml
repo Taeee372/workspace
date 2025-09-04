@@ -23,6 +23,14 @@
             ,#{brand}
         )
     </insert>
+
+    <!--등록된 차량 목록 조회-->
+    <select id="getCarList" resultMap="car">
+        SELECT MODEL_NUM
+            , MODEL_NAME
+            , BRAND
+        FROM CAR_INFO
+    </select>
 </mapper>
 
 
