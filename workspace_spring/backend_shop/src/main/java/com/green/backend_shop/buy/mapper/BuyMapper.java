@@ -16,4 +16,7 @@ public interface BuyMapper {
 
   //관리자 구매이력조회 페이지의 구매목록조회
   public List<BuyDTOForAdmin> getBuyListForAdmin();
+
+  //구매내역상세 조회(BuyListModal)
+  public List<BuyDTO> getBuyDetail(int orderNum);
 }

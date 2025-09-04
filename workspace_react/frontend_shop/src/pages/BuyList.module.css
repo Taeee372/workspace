@@ -48,3 +48,11 @@ table{
   background-color: #d7dbec;
   cursor: pointer;
 }
+
+.date_div{
+  display: flex;
+  gap: 5px;
+}
+.date_div > input{
+  text-align: center;
+}

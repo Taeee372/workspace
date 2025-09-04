@@ -33,11 +33,6 @@ const Modal = ({
           {children}
         </div>
       </div>
-
-
-      
-
-
     </div>
   );
 };

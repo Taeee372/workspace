@@ -5,11 +5,18 @@ import Button from '../common/Button'
 import styles from './BuyList.module.css'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import BuyListModal from './BuyListModal'
 
 const BuyList = () => {
   //조회한 구매 목록 데이터를 저장할 state 변수
   const [buyList, setBuyList] = useState([]);
   console.log(buyList);
+
+  //조회한 구매 상세 정보를 저장할 state 변수
+  const [detailList, setDetailList] = useState([])
+  
+  //구매 상세 내역 모달의 보이기 여부를 저장할 변수
+  const [isOpen, setIsOpen] = useState(false)
   
   //마운트하면 조회한 목록 데이터 buyList 변수에 저장
   useEffect(() => {
@@ -20,6 +27,16 @@ const BuyList = () => {
     })
     .catch(e => console.log(e));
   }, [])
+
+  //행 클릭 시 구매 상세 내역 조회 함수
+  const getDetail = (orderNum) => {
+    axios.get(`/api/buys/${orderNum}`)
+    .then(res => {
+      console.log(res.data);
+      setDetailList(res.data)
+    })
+    .catch(e => console.log(e))
+  }
 
   return (
     <div className={styles.container}>
@@ -32,8 +49,10 @@ const BuyList = () => {
         <span>구매자 ID</span>
         <Input size='100px' />
         <span>구매일시</span>
-        <Input size='120px' type='date'/>-  
-        <Input size='120px' type='date' />
+        <div className={styles.date_div}>
+          <Input size='120px' type='date' />-  
+          <Input size='120px' type='date' />
+        </div>
         <Button title='검색' />
       </div>
       <div className={styles.table}>
@@ -51,15 +70,21 @@ const BuyList = () => {
          </thead>
          <tbody>
             {
-              buyList.map((e, i) => {
+              buyList.map((buy, i) => {
                 return (
-                  <tr key={i}>
+                  <tr key={i} onClick={e => {
+                    //클릭한 행의 상세 내역 조회
+                    getDetail(buy.orderNum);
+
+                    //모달을 보이게 변경
+                    setIsOpen(true);
+                  }}>
                     <td>{buyList.length - i}</td>
-                    <td>{e.orderNum}</td>
-                    <td>{e.title}</td>
-                    <td>{e.memId}</td>
-                    <td>{e.price.toLocaleString() + '원'}</td>
-                    <td>{dayjs(e.buyDate).format('YYYY.MM.DD HH:mm')}</td>
+                    <td>{buy.orderNum}</td>
+                    <td>{buy.title}</td>
+                    <td>{buy.memId}</td>
+                    <td>{buy.price.toLocaleString() + '원'}</td>
+                    <td>{dayjs(buy.buyDate).format('YYYY.MM.DD HH:mm')}</td>
                   </tr>
                 )
               })
@@ -67,6 +92,12 @@ const BuyList = () => {
          </tbody>
         </table>
       </div>
+      {/* 구매 상세 내용 */}
+      <BuyListModal 
+        detailList={detailList}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </div>
   )
 }
