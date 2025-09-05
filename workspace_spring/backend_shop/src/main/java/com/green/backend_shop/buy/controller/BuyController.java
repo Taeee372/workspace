@@ -2,6 +2,7 @@ package com.green.backend_shop.buy.controller;
 
 import com.green.backend_shop.buy.dto.BuyDTO;
 import com.green.backend_shop.buy.dto.BuyDTOForAdmin;
+import com.green.backend_shop.buy.dto.SearchBuyDTO;
 import com.green.backend_shop.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,10 +29,11 @@ public class BuyController {
     //System.out.println(buyDTO);
   }
 
-  //관리자 구매이력조회 페이지의 구매목록조회 api
+  //관리자 구매이력조회 페이지의 구매목록조회 api + 검색 기능
   @GetMapping("/buy-list-admin")
-  public List<BuyDTOForAdmin> getBuyListForAdmin(){
-    return buyService.getBuyListForAdmin();
+  public List<BuyDTOForAdmin> getBuyListForAdmin(SearchBuyDTO searchBuyDTO){
+    System.out.println(searchBuyDTO);
+    return buyService.getBuyListForAdmin(searchBuyDTO);
   }
 
   //구매내역상세 조회(BuyListModal)

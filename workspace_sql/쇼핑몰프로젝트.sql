@@ -99,7 +99,7 @@ CREATE TABLE SHOP_BUY (
 );
 
 
-# BuyList를 위한 쿼리
+# BuyList를 위한 쿼리 & 구매 이력 조회의 검색을 위한 쿼리(+ WHERE절)
 SELECT ORDER_NUM
 	, MAX(MEM_ID) MEM_ID # GROUP BY(단일행 함수 조건)에 맞게 MAX로 짜부시켜주기  
 				# -> 그래야 오류 안 난다 (마리아디비는 봐주지만 오라클 등은 봐주지 않음..)
@@ -119,8 +119,15 @@ SELECT ORDER_NUM
 								, '건')
 		END TITLE
 FROM shop_buy
+WHERE 1 = 1 # 항상 조회됨 
+AND ORDER_NUM = 1
+AND MEM_ID LIKE '%user%'
+AND BUY_DATE >= '2025-09-01'
+AND BUY_DATE <= ADDDATE('2025-09-02', 1)
 GROUP BY ORDER_NUM
 ORDER BY BUY_DATE DESC;
+
+# SELECT ADDDATE('2025-09-30', 1); 2025-09-30에서 1일 증가
 
 SELECT * FROM SHOP_BUY;
 

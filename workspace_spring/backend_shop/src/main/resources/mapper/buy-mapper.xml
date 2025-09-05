@@ -73,6 +73,22 @@
                                 , '건')
                 END TITLE
         FROM shop_buy
+        <!--모두 빈문자나 null이 들어오는 경우는 검색하지 않은 경우니까 WHERE절을 실행할 필요가 없다-->
+        <!--test 안에서 ""로 조건을 주는 경우도 있기 때문에 test를 ''로 줘도 된다 -> test=""가 아닌 test=''-->
+        <!--문자열 같은지 비교할 때 자바문법을 따라야하기 때문에 orderNum != "" 가 아닌, orderNum.equals("")를 써야한다-->
+        WHERE 1 = 1
+        <if test=' orderNum != null and !orderNum.equals("") '>
+            AND ORDER_NUM = #{orderNum}
+        </if>
+        <if test=' memId != null and !memId.equals("") '>
+            AND MEM_ID LIKE CONCAT('%', #{memId}, '%')
+        </if>
+        <if test=' fromDate != null and !fromDate.equals("") '>
+            AND BUY_DATE &gt;= #{fromDate}  <!-- &gt; = > / &lt; = < / 부등호 기호는 태그로 인식돼서 특수 문자로 바꿔서 써야한다 -->
+        </if>
+        <if test=' toDate != null and !toDate.equals("") '>
+            AND BUY_DATE &lt;= ADDDATE(#{toDate}, 1)
+        </if>
         GROUP BY ORDER_NUM
         ORDER BY BUY_DATE DESC
     </select>

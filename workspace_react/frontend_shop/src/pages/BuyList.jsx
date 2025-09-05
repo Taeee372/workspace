@@ -8,6 +8,22 @@ import dayjs from 'dayjs'
 import BuyListModal from './BuyListModal'
 
 const BuyList = () => {
+  //입력한 검색 조건 데이터를 저장할 state 변수  
+  const [searchData, setSearchData] = useState({
+    'orderNum' : '',
+    'memId' : '',
+    'fromDate' : '',
+    'toDate' : ''
+  });
+
+  //검색 데이터를 입력할 때마다 실행하는 함수
+  const handleSearchData = (e) => {
+    setSearchData({
+      ...searchData,
+      [e.target.name] : e.target.value
+    })
+  }
+
   //조회한 구매 목록 데이터를 저장할 state 변수
   const [buyList, setBuyList] = useState([]);
   console.log(buyList);
@@ -38,6 +54,13 @@ const BuyList = () => {
     .catch(e => console.log(e))
   }
 
+  //검색 버튼 클릭 시 실행 함수
+  const doSearch = () => {
+    axios.get('/api/buys/buy-list-admin', {params : searchData})
+    .then(res => setBuyList(res.data))
+    .catch(e => console.log(e));
+  }
+
   return (
     <div className={styles.container}>
       <div>
@@ -45,15 +68,38 @@ const BuyList = () => {
       </div>
       <div className={styles.search}>
         <span>주문번호</span>
-        <Input size='100px' />
+        <Input 
+          size='100px' 
+          name='orderNum' 
+          value={searchData.orderNum} 
+          onChange={e => handleSearchData(e)} 
+        />
         <span>구매자 ID</span>
-        <Input size='100px' />
+        <Input 
+          size='100px' 
+          name='memId' 
+          value={searchData.memId} 
+          onChange={e => handleSearchData(e)}
+        />
         <span>구매일시</span>
         <div className={styles.date_div}>
-          <Input size='120px' type='date' />-  
-          <Input size='120px' type='date' />
+          <Input 
+            size='120px' 
+            type='date' 
+            name='fromDate' 
+            value={searchData.fromDate} 
+            onChange={e => handleSearchData(e)}
+          />
+          <span>-</span>
+          <Input 
+            size='120px' 
+            type='date' 
+            name='toDate' 
+            value={searchData.toDate} 
+            onChange={e => handleSearchData(e)} 
+          />
         </div>
-        <Button title='검색' />
+        <Button title='검색' size='10%' onClick={e => doSearch()}/>
       </div>
       <div className={styles.table}>
         <p>총 {buyList.length}건이 검색되었습니다</p>
