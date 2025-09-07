@@ -10,7 +10,7 @@ const Menu = () => {
       <div className={styles.menu}>
         <ul>
           <NavLink
-            to={'/home'}
+            to={'/'}
           >
             <li>홈</li>
           </NavLink>

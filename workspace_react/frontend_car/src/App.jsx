@@ -15,7 +15,7 @@ function App() {
       {/* <Button /> */}
       <Routes>
         <Route path='/' element={ <Menu /> } >
-          <Route path='home' element={<Home />}/>
+          <Route path='/' element={<Home />}/>
           <Route path='car-manage' element={ <CarManage /> } />
           <Route path='reg-car-info' element={ <RegSaleInfo /> } />
           <Route path='sale-list' element={ <SaleList /> } />
