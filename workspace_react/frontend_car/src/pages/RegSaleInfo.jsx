@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './RegSaleInfo.module.css'
 import Input from '../common/Input'
 import Select from '../common/Select'
