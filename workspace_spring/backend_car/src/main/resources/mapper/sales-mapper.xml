@@ -12,6 +12,21 @@
         <result column="SALE_DATE"      property="saleDate" />
         <result column="MODEL_NUM"      property="modelNum" />
     </resultMap>
+
+    <!--판매 정보 등록-->
+    <insert id="regSaleInfo">
+        INSERT INTO SALES_INFO (
+            BUYER_NAME
+            , COLOR
+            , MODEL_NUM
+            , BUYER_TEL
+        ) VALUES (
+            #{buyerName}
+            , #{color}
+            , #{modelNum}
+            , #{buyerTel}
+        )
+    </insert>
 </mapper>
 
 

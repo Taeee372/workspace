@@ -39,10 +39,10 @@ const CarManage = () => {
       setCarList(res.data);
     })
     .catch(e => console.log(e))
-  }, [car])
+  }, [])
 
 
-  //input에 입력한 내용으로 car 정보 변경
+  //input에 입력한 내용으로 변경
   const handleCar = (e) => {
     setCar({
       ...car,

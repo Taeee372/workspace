@@ -30,7 +30,10 @@
             , MODEL_NAME
             , BRAND
         FROM CAR_INFO
+        ORDER BY MODEL_NUM DESC
     </select>
+
+
 </mapper>
 
 
