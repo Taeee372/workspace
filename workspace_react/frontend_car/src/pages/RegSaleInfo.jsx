@@ -58,9 +58,9 @@ const RegSaleInfo = () => {
         <span>색상</span>
         <Select name='color' value={saleInfo.color} onChange={e => handleSaleInfo(e)}>
           <option value="">선택</option>
-          <option value="">화이트</option>
-          <option value="">블랙</option>
-          <option value="">레드</option>
+          <option value="화이트">화이트</option>
+          <option value="블랙">블랙</option>
+          <option value="레드">레드</option>
         </Select>
         <span>모델</span>
     
