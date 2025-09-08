@@ -1,11 +1,16 @@
 .container{
-  width: 1000px;
+  width: 800px;
   margin: 0px auto;
   border: 1px solid black;
 }
 
+.menu{
+  margin-bottom: 30px;
+}
+
 .menu > ul{
   display: flex;
+  justify-content: space-evenly;
   gap: 20px;
 }
 

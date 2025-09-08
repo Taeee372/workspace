@@ -51,31 +51,38 @@ const RegSaleInfo = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
-        <span>고객명</span>
-        <Input name='buyerName' value={saleInfo.buyerName} onChange={e => handleSaleInfo(e)}/>
-        <span>색상</span>
-        <Select name='color' value={saleInfo.color} onChange={e => handleSaleInfo(e)}>
-          <option value="">선택</option>
-          <option value="화이트">화이트</option>
-          <option value="블랙">블랙</option>
-          <option value="레드">레드</option>
-        </Select>
-        <span>모델</span>
-    
-        <Select name='modelNum' value={saleInfo.modelNum} onChange={e => handleSaleInfo(e)}>  
-          <option value="">선택</option>
-          {                                                                                                                  
-            modelName.map((e, i) => {
-              return(
-                <option key={i} value={e.modelNum}>{e.modelName}</option>
-              )
-            })
-          }
-        </Select>
-        <span>연락처</span>
-        <Input name='buyerTel' value={saleInfo.buyerTel} onChange={e => handleSaleInfo(e)}/>
+        <div>
+          <span>고객명</span>
+          <Input name='buyerName' value={saleInfo.buyerName} onChange={e => handleSaleInfo(e)}/>
+        </div>
+        <div>
+          <span>색상</span>
+          <Select name='color' value={saleInfo.color} onChange={e => handleSaleInfo(e)}>
+            <option value="">선택</option>
+            <option value="화이트">화이트</option>
+            <option value="블랙">블랙</option>
+            <option value="레드">레드</option>
+          </Select>
+        </div>
+        <div>
+          <span>모델</span>
+          <Select name='modelNum' value={saleInfo.modelNum} onChange={e => handleSaleInfo(e)}>  
+            <option value="">선택</option>
+            {   
+              modelName.map((e, i) => {
+                return(
+                  <option key={i} value={e.modelNum}>{e.modelName}</option>
+                )
+              })
+            }
+          </Select>
+        </div>
+        <div>
+          <span>연락처</span>
+          <Input name='buyerTel' value={saleInfo.buyerTel} onChange={e => handleSaleInfo(e)}/>
+        </div>
         <Button title='등록' onClick={e => regSaleInfo()}/>
       </div>
     </div>

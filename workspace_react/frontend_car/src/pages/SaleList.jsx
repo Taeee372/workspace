@@ -19,7 +19,7 @@ const SaleList = () => {
   }, [])
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.table}>
         <table>
           <thead>

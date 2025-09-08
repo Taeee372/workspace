@@ -11,8 +11,6 @@ import Home from './pages/Home'
 function App() {
 
   return (
- <>
-      {/* <Button /> */}
       <Routes>
         <Route path='/' element={ <Menu /> } >
           <Route path='/' element={<Home />}/>
@@ -20,9 +18,7 @@ function App() {
           <Route path='reg-car-info' element={ <RegSaleInfo /> } />
           <Route path='sale-list' element={ <SaleList /> } />
         </Route>
-        
       </Routes>
- </>
   )
 }
 
