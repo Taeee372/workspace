@@ -1,10 +1,10 @@
 .sale_info_form{
   display: flex;
-  justify-content: space-between;
 }
 
 .sale_info_form > div{
   width: 100%;
+  border: 1px solid ;
 }
 
 .error{
@@ -12,22 +12,3 @@
   font-size: 0.8rem;
 }
 
-.buyer_name_div{
-  display: flex;
-  flex-direction: column;
-}
-
-.color_div{
-  display: flex;
-  flex-direction: column; 
-}
-
-.model_name_div{
-  display: flex;
-  flex-direction: column;
-}
-
-.buyer_tel_div{
-  display: flex;
-  flex-direction: column;
-}

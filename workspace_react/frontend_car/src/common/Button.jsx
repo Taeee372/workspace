@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './Button.module.css'
 
-const Button = ({title='버튼', size='80px', color='blue', onClick, ...props}) => {
+const Button = ({title='버튼', size='80px', color='black', onClick, ...props}) => {
   return (
     <button
       type='button'
-      style={{width : size}}
       className={`${styles.btn} ${styles[color]}`}
+      style={{width : size}}
       onClick={onClick}
       {...props}
     >

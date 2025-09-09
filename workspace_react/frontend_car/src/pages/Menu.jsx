@@ -9,26 +9,38 @@ const Menu = () => {
     <div className={styles.container}>
       <div className={styles.menu}>
         <ul>
-          <NavLink
-            to={'/'}
-          >
-            <li>홈</li>
-          </NavLink>
-          <NavLink
-            to={'/car-manage'}
-          >
-            <li>차량관리</li>
-          </NavLink>
-          <NavLink
-            to={'/reg-car-info'}
-          >
-            <li>판매정보등록</li>
-          </NavLink>
-          <NavLink
-            to={'/sale-list'}
-          >
-            <li>판매목록조회</li>
-          </NavLink>
+          <li className={styles.menu_li}>
+            <NavLink
+              to={'/'}
+              className={({isActive}) => isActive ? styles.active : null}
+            >
+              홈
+            </NavLink>
+          </li>
+          <li className={styles.menu_li}>
+              <NavLink
+                to={'/car-manage'}
+                className={({isActive}) => isActive ? styles.active : null}
+              >
+                차량관리
+              </NavLink>
+          </li>
+          <li className={styles.menu_li}>
+              <NavLink
+                to={'/reg-car-info'}
+                className={({isActive}) => isActive ? styles.active : null}
+              >
+                판매정보등록
+              </NavLink>
+          </li>
+          <li className={styles.menu_li}>
+            <NavLink
+              to={'/sale-list'}
+              className={({isActive}) => isActive ? styles.active : null}
+            >
+              판매목록조회
+            </NavLink>
+          </li>
         </ul>
       </div>
       <div className={styles.title}>

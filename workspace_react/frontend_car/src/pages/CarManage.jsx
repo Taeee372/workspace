@@ -9,12 +9,13 @@ const CarManage = () => {
   //가격 유효성 검사 (숫자만 가능)
   const priceRegex = /^[0-9]+$/;
 
+
   //필수 입력 에러메세지 저장할 변수
   const [errorMsg, setErrorMsg] = useState({
     'modelName' : '',
     'price' : '',
     'brand' : ''
-  })
+  });
 
 
   //등록 차량을 저장할 변수
@@ -22,19 +23,23 @@ const CarManage = () => {
     'modelName' : '',
     'price' : '',
     'brand' : ''
-  })
-  console.log(car)
+  });
+  console.log(car);
 
   //조회한 차량을 저장할 변수
-  const [carList, setCarList] = useState([])
+  const [carList, setCarList] = useState([]);
 
   //차량 등록 함수
   const regCar = () => {
-    if(car.modelName === '' || car.price === '', car.brand === ''){
-      alert('모든 입력사항은 필수입니다.')
+    if(car.modelName === '' || car.price === '' || car.brand === ''){
+      alert('모든 입력사항은 필수입니다.');
       return ;
     }
-
+    if(!priceRegex.test(car.price)){
+      alert('가격 입력은  숫자만 가능합니다.');
+      return ;
+    }
+   
     axios.post('/api/cars', car)
     .then(res => {
       alert('등.완');
@@ -108,7 +113,7 @@ const CarManage = () => {
         </div>
         <div>
           <span>차량가격</span>
-          <Input pattern='[0-9]*' size='100px' name='price' value={car.price} 
+          <Input size='100px' name='price' value={car.price} 
                  onChange={e => {
                   handleCar(e);
                   if(e.target.value === ''){

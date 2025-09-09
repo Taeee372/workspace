@@ -4,7 +4,7 @@ import Menu from './Menu'
 const Home = () => {
   return (
     <div>
-      <p>차량 판매 정보 시스템</p>
+      <h1 style={{textAlign : 'center', paddingTop : '100px'}}>차량 판매 정보 시스템</h1>
     </div>
   )
 }

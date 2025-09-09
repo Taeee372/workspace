@@ -5,7 +5,6 @@ import Menu from './pages/Menu'
 import CarManage from './pages/CarManage'
 import RegSaleInfo from './pages/RegSaleInfo'
 import SaleList from './pages/SaleList'
-import Button from './common/Button'
 import Home from './pages/Home'
 
 function App() {

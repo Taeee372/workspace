@@ -1,19 +1,38 @@
 .container{
   width: 800px;
   margin: 0px auto;
-  border: 1px solid black;
 }
 
 .menu{
   margin-bottom: 30px;
+  background-color: black;
 }
 
 .menu > ul{
   display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
 }
 
 .menu li{
   width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+
+a{
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.active{
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+.menu_li:has(.active){
+  color: blue;
+}
+
+.menu_li:hover a{
+  color: white;
+  border-bottom: 2px solid white;
 }

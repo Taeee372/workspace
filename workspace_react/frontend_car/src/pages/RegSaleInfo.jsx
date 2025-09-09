@@ -66,7 +66,7 @@ const RegSaleInfo = () => {
   return (
     <div className={styles.container}>
       <div className={styles.sale_info_form}>
-        <div className={styles.buyer_name_div}>
+        <div>
           <span>고객명</span>
           <Input name='buyerName' value={saleInfo.buyerName} 
                  onChange={e => {
@@ -80,7 +80,7 @@ const RegSaleInfo = () => {
           <p className={styles.error}>{errorMsg.buyerName}</p>
         </div>
         
-        <div className={styles.color_div}>
+        <div>
           <span>색상</span>
           <Select name='color' value={saleInfo.color} 
                   onChange={e => {
@@ -98,7 +98,7 @@ const RegSaleInfo = () => {
           </Select>
           <p className={styles.error}>{errorMsg.color}</p>
         </div>
-        <div className={styles.model_name_div}>
+        <div>
           <span>모델명</span>
           <Select name='modelNum' value={saleInfo.modelNum} 
                   onChange={e => {
@@ -120,27 +120,29 @@ const RegSaleInfo = () => {
           </Select>
           <p className={styles.error}>{errorMsg.modelNum}</p>
         </div>
-        <div className={styles.buyer_tel_div}>
-          <span>연락처</span>
-          <Input name='buyerTel' value={saleInfo.buyerTel} 
-                 onChange={e => {
-                  handleSaleInfo(e);
-                  setErrorMsg({
-                    ...errorMsg,
-                    'buyerTel' : !telRegex.test(e.target.value) 
-                    ? 
-                    '형식에 맞춰 입력해주세요.' 
-                    : 
-                    ''
-                  })
-                  
-                }}
-          />
-          <p>예) 010-1234-5678</p>
-          <p className={styles.error}>{errorMsg.buyerTel}</p>
+        <div>
+          <div>
+            <span>연락처</span>
+            <Input name='buyerTel' value={saleInfo.buyerTel} 
+                   onChange={e => {
+                    handleSaleInfo(e);
+                    setErrorMsg({
+                      ...errorMsg,
+                      'buyerTel' : !telRegex.test(e.target.value) 
+                      ? 
+                      '형식에 맞춰 입력해주세요.' 
+                      : 
+                      ''
+                    })
+                    
+                  }}
+            />
+          </div>
+            <p>예) 010-1234-5678</p>
+            <p className={styles.error}>{errorMsg.buyerTel}</p>
         </div>
-        <div><Button size='80px' title='등록' onClick={e => regSaleInfo()}/></div>
       </div>
+      <Button  title='등록' onClick={e => regSaleInfo()}/>
     </div>
   )
 }
