@@ -91,7 +91,7 @@ const CarManage = () => {
             <option value="현대">현대</option>
             <option value="기아">기아</option>
           </Select>
-          <p>{errorMsg.brand}</p>
+          <p className={styles.error}>{errorMsg.brand}</p>
         </div>
         <div>
           <span>모델명</span>
@@ -104,7 +104,7 @@ const CarManage = () => {
                    });
                 }} 
           />
-          <p>{errorMsg.modelName}</p>
+          <p className={styles.error}>{errorMsg.modelName}</p>
         </div>
         <div>
           <span>차량가격</span>
@@ -131,7 +131,7 @@ const CarManage = () => {
                   }
                 }} 
           />
-          <p>{errorMsg.price}</p>
+          <p className={styles.error}>{errorMsg.price}</p>
         </div>
       </div>
         <Button title='등록' onClick={e => regCar()}/>

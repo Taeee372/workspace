@@ -16,7 +16,11 @@ const RegSaleInfo = () => {
   const [modelName, setModelName] = useState([]);
 
   //필수 입력 에러메세지 저장
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState({
+    'buyerName' : '',
+    'color' : '',
+    'modelNum' : ''
+  });
 
   //등록할 판매 정보를 담을 변수
   const [saleInfo, setSaleInfo] = useState({
@@ -61,28 +65,49 @@ const RegSaleInfo = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <div>
+      <div className={styles.sale_info_form}>
+        <div className={styles.buyer_name_div}>
           <span>고객명</span>
           <Input name='buyerName' value={saleInfo.buyerName} 
-                 onChange={e => handleSaleInfo(e)}
+                 onChange={e => {
+                  handleSaleInfo(e);
+                  setErrorMsg({
+                    ...errorMsg,
+                    'buyerName' : e.target.value === '' ? '고객명은 필수 입력입니다.' : ''
+                  });
+                }}  
           />
+          <p className={styles.error}>{errorMsg.buyerName}</p>
         </div>
-        <div>
+        
+        <div className={styles.color_div}>
           <span>색상</span>
           <Select name='color' value={saleInfo.color} 
-                  onChange={e => handleSaleInfo(e)}
+                  onChange={e => {
+                    handleSaleInfo(e);
+                    setErrorMsg({
+                    ...errorMsg,
+                    'color' : e.target.value === '' ? '색상 선택은 필수입니다.' : ''
+                  });
+                  }}
           >
             <option value="">선택</option>
             <option value="화이트">화이트</option>
             <option value="블랙">블랙</option>
             <option value="레드">레드</option>
           </Select>
+          <p className={styles.error}>{errorMsg.color}</p>
         </div>
-        <div>
-          <span>모델</span>
+        <div className={styles.model_name_div}>
+          <span>모델명</span>
           <Select name='modelNum' value={saleInfo.modelNum} 
-                  onChange={e => handleSaleInfo(e)}
+                  onChange={e => {
+                    handleSaleInfo(e);
+                    setErrorMsg({
+                    ...errorMsg,
+                    'modelNum' : e.target.value === '' ? '모델명 선택은 필수입니다.' : ''
+                  });
+                  }}
           >  
             <option value="">선택</option>
             {   
@@ -93,14 +118,28 @@ const RegSaleInfo = () => {
               })
             }
           </Select>
+          <p className={styles.error}>{errorMsg.modelNum}</p>
         </div>
-        <div>
+        <div className={styles.buyer_tel_div}>
           <span>연락처</span>
           <Input name='buyerTel' value={saleInfo.buyerTel} 
-                 onChange={e => handleSaleInfo(e)}
+                 onChange={e => {
+                  handleSaleInfo(e);
+                  setErrorMsg({
+                    ...errorMsg,
+                    'buyerTel' : !telRegex.test(e.target.value) 
+                    ? 
+                    '형식에 맞춰 입력해주세요.' 
+                    : 
+                    ''
+                  })
+                  
+                }}
           />
+          <p>예) 010-1234-5678</p>
+          <p className={styles.error}>{errorMsg.buyerTel}</p>
         </div>
-        <Button title='등록' onClick={e => regSaleInfo()}/>
+        <div><Button size='80px' title='등록' onClick={e => regSaleInfo()}/></div>
       </div>
     </div>
   )

@@ -4,9 +4,9 @@
  1-2. 프로젝트 파일구조 기본 생성(폴더, 패키지만 생성하고 안에 파일이 없으면 폴더가 올라가지 않으니 주의!)
  1-3. remote repository 생성(레포지토리명은 프로젝트명과 동일)
  1-4. git init
- 1-5. git add .          (LF 경고 뜨면., git config --global core.autocrlf true )
- 1-6. git commit -m "커밋메세지 상세히"
- 1-7. git remote add origin 원격저장소url
+ 1-5. git remote add origin 원격저장소url
+ 1-6. git add .          (LF 경고 뜨면., git config --global core.autocrlf true )
+ 1-7. git commit -m "커밋메세지 상세히"
  1-8. git push origin main
  1-9. git branch dev            (dev 브렌치 생성)
  1-10. git switch dev      (dev 브렌치로 이동)
@@ -51,15 +51,16 @@
           (이만큼하면 팀장의 원격 저장소에만 수정 사항이 반영됨)
  3-9. push한 팀원은 팀장의 원격저장소 -> pull request 메뉴에 들어가서 
           'delete branch' 버튼 클릭 (원격 레포에서만 삭제가 됨)
- 3-10. dev 브랜치로 이동
+ 3-10. 팀장의 dev 브랜치 내용 받아오기(dev 브랜치의 내용 최신화)
+            - 본인 원격 저장소에서 'Sync fork'를 클릭하면 내 원격 저장소의 dev브랜치의 내용이
+               팀장 원격 저장소의 dev 브랜치의 내용으로 최신화 됨
+               (팀장은 3-10 할 필요없음)
+ 3-11. dev 브랜치로 이동
             git switch dev
- 3-11. 팀장의 dev 브랜치 내용 받아오기(dev 브랜치의 내용 최신화)
-            팀원 : git pull upstream dev,  팀장 : git pull origin dev
- 3-12. 최신화 시킨 로컬 레포를 본인의 원격 레포에도 반영
-             git push origin dev  (팀장은 할 필요 없음)
+ 3-12. 최신화된 나의 원격저장소 dev 내용을 지역저장소의 dev에도 반영.
+             git pull origin dev
  3-13. 작업 완료한 브랜치를 삭제
             git branch -d 삭제할브랜치명
-
 끝!!!!!!!
 
 
