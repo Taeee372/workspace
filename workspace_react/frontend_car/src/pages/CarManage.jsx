@@ -30,20 +30,11 @@ const CarManage = () => {
 
   //차량 등록 함수
   const regCar = () => {
-    if(car.modelName === ''){
-      setErrorMsg({
-        ...errorMsg,
-        'brand' : '제조사 선택은 필수입니다.'
-      })
+    if(car.modelName === '' || car.price === '', car.brand === ''){
+      alert('모든 입력사항은 필수입니다.')
       return ;
     }
-    else if(car.price === ''){
-      setErrorMsg({
-        ...errorMsg,
-        'price' : '가격 입력은 필수입니다'
-      })
-      return ;
-    }
+
     axios.post('/api/cars', car)
     .then(res => {
       alert('등.완');
@@ -120,16 +111,16 @@ const CarManage = () => {
           <Input pattern='[0-9]*' size='100px' name='price' value={car.price} 
                  onChange={e => {
                   handleCar(e);
-                  if(!priceRegex.test(e.target.value)){
-                    setErrorMsg({
-                      ...errorMsg,
-                      'price' : '가격 입력은 숫자만 가능합니다.'
-                    })
-                  }
-                  else if(e.target.value === ''){
+                  if(e.target.value === ''){
                     setErrorMsg({
                       ...errorMsg,
                       'price' : '가격 입력은 필수입니다.'
+                    })
+                  }
+                  else if(!priceRegex.test(e.target.value)){
+                    setErrorMsg({
+                      ...errorMsg,
+                      'price' : '가격 입력은 숫자만 가능합니다.'
                     })
                   }
                   else{
