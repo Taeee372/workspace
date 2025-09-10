@@ -4,7 +4,7 @@
 }
 
 .menu{
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   background-color: black;
 }
 
@@ -14,7 +14,7 @@
 
 .menu li{
   width: 100%;
-  padding: 5px;
+  padding: 8px;
   text-align: center;
 }
 
@@ -26,11 +26,9 @@ a{
 .active{
   color: white;
   border-bottom: 2px solid white;
+  
 }
 
-.menu_li:has(.active){
-  color: blue;
-}
 
 .menu_li:hover a{
   color: white;

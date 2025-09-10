@@ -29,14 +29,11 @@ const RegSaleInfo = () => {
     'modelNum' : '',
     'buyerTel' : ''
   });
-  console.log(saleInfo)
 
   //모델명 불러오기
   useEffect(() => {
     axios.get('/api/cars')
-    .then(res => {
-      setModelName(res.data);
-    })
+    .then(res => setModelName(res.data))
     .catch(e => console.log(e));
   }, [])
  
@@ -44,12 +41,16 @@ const RegSaleInfo = () => {
   //판매 정보 등록
   const regSaleInfo = () => {
     if(saleInfo.buyerName === '' || saleInfo.color === '' || saleInfo.modelNum === ''){
-      alert('필수정보 입력하셍요');
+      alert('필수 정보를 입력해주세요.');
+      return ;
+    }
+    if(!telRegex.test(saleInfo.buyerTel) && saleInfo.buyerTel !== ''){
+      alert('연락처를 형식에 맞춰 입력해주세요');
       return ;
     }
     axios.post('/api/sales', saleInfo)
     .then(res => {
-      alert('등.완');
+      alert('등록 완료되었습니다.');
       nav('/sale-list');
     })
     .catch(e => console.log(e));
@@ -60,89 +61,105 @@ const RegSaleInfo = () => {
     setSaleInfo({
       ...saleInfo,
       [e.target.name] : e.target.value
-    })
+    });
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.sale_info_form}>
-        <div>
-          <span>고객명</span>
-          <Input name='buyerName' value={saleInfo.buyerName} 
-                 onChange={e => {
-                  handleSaleInfo(e);
-                  setErrorMsg({
-                    ...errorMsg,
-                    'buyerName' : e.target.value === '' ? '고객명은 필수 입력입니다.' : ''
-                  });
-                }}  
-          />
-          <p className={styles.error}>{errorMsg.buyerName}</p>
-        </div>
-        
-        <div>
-          <span>색상</span>
-          <Select name='color' value={saleInfo.color} 
-                  onChange={e => {
-                    handleSaleInfo(e);
-                    setErrorMsg({
-                    ...errorMsg,
-                    'color' : e.target.value === '' ? '색상 선택은 필수입니다.' : ''
-                  });
-                  }}
-          >
-            <option value="">선택</option>
-            <option value="화이트">화이트</option>
-            <option value="블랙">블랙</option>
-            <option value="레드">레드</option>
-          </Select>
-          <p className={styles.error}>{errorMsg.color}</p>
-        </div>
-        <div>
-          <span>모델명</span>
-          <Select name='modelNum' value={saleInfo.modelNum} 
-                  onChange={e => {
-                    handleSaleInfo(e);
-                    setErrorMsg({
-                    ...errorMsg,
-                    'modelNum' : e.target.value === '' ? '모델명 선택은 필수입니다.' : ''
-                  });
-                  }}
-          >  
-            <option value="">선택</option>
-            {   
-              modelName.map((e, i) => {
-                return(
-                  <option key={i} value={e.modelNum}>{e.modelName}</option>
-                )
-              })
-            }
-          </Select>
-          <p className={styles.error}>{errorMsg.modelNum}</p>
-        </div>
-        <div>
+      <h3>판매정보등록</h3>
+      <div className={styles.reg_form_all}>
+        <div className={styles.sale_info_form}>
           <div>
-            <span>연락처</span>
-            <Input name='buyerTel' value={saleInfo.buyerTel} 
-                   onChange={e => {
+            <span>고객명</span>
+            <Input size='110px' name='buyerName' value={saleInfo.buyerName} 
+                  onChange={e => {
                     handleSaleInfo(e);
                     setErrorMsg({
                       ...errorMsg,
-                      'buyerTel' : !telRegex.test(e.target.value) 
-                      ? 
-                      '형식에 맞춰 입력해주세요.' 
-                      : 
-                      ''
-                    })
-                    
-                  }}
+                      'buyerName' : e.target.value === '' ? '고객명은 필수 입력입니다.' : ''
+                    });
+                  }} 
+                  onKeyDown={e => {
+                    if(e.key === 'Enter') regSaleInfo()
+                  }} 
             />
+            <p className={styles.error}>{errorMsg.buyerName}</p>
           </div>
-            <p>예) 010-1234-5678</p>
-            <p className={styles.error}>{errorMsg.buyerTel}</p>
+
+          <div>
+            <span>색상</span>
+            <Select size='110px' name='color' value={saleInfo.color} 
+                    onChange={e => {
+                      handleSaleInfo(e);
+                      setErrorMsg({
+                      ...errorMsg,
+                      'color' : e.target.value === '' ? '색상 선택은 필수입니다.' : ''
+                    });
+                    }}
+            >
+              <option value="">선택</option>
+              <option value="화이트">화이트</option>
+              <option value="블랙">블랙</option>
+              <option value="레드">레드</option>
+            </Select>
+            <p className={styles.error}>{errorMsg.color}</p>
+          </div>
+
+          <div>
+            <span>모델명</span>
+            <Select size='110px' name='modelNum' value={saleInfo.modelNum} 
+                    onChange={e => {
+                      handleSaleInfo(e);
+                      setErrorMsg({
+                      ...errorMsg,
+                      'modelNum' : e.target.value === '' ? '모델명 선택은 필수입니다.' : ''
+                      });
+                    }}
+                    onKeyDown={e => {
+                    if(e.key === 'Enter') regSaleInfo()
+                    }}
+            >  
+              <option value="">선택</option>
+              {   
+                modelName.map((e, i) => {
+                  return(
+                    <option key={i} value={e.modelNum}>{e.modelName}</option>
+                  )
+                })
+              }
+            </Select>
+            <p className={styles.error}>{errorMsg.modelNum}</p>
+          </div>
+
+          <div>
+            <div>
+              <span>연락처</span>
+              <Input size='110px' name='buyerTel' value={saleInfo.buyerTel}
+                    placeholder='(선택사항)' 
+                    onChange={e => {
+                      handleSaleInfo(e);
+                      setErrorMsg({
+                        ...errorMsg,
+                        'buyerTel' : !telRegex.test(e.target.value) 
+                        ? 
+                        '형식에 맞춰 입력해주세요.' 
+                        : 
+                        ''
+                      })
+                    }}
+                    onKeyDown={e => {
+                      if(e.key === 'Enter') regSaleInfo()
+                    }}
+              />
+            </div>
+              <p style={{fontSize : '0.75rem', color : '#999999', padding : '2px 0px'}}>예) 010-1234-5678</p>
+              <p className={styles.error}>{errorMsg.buyerTel}</p>
+          </div>
         </div>
-      </div>
-      <Button  title='등록' onClick={e => regSaleInfo()}/>
+        <div className={styles.btn}>
+          <Button  title='등록' onClick={e => regSaleInfo()}/>
+        </div>
+     </div>
     </div>
   )
 }

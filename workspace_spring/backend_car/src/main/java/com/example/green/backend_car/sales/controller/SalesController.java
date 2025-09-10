@@ -1,7 +1,6 @@
 package com.example.green.backend_car.sales.controller;
 
 import com.example.green.backend_car.sales.dto.SalesDTO;
-import com.example.green.backend_car.sales.mapper.SalesMapper;
 import com.example.green.backend_car.sales.service.SalesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

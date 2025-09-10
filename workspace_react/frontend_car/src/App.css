@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'OneStoreMobileGothicBody';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Regular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -48,10 +55,12 @@ table {
 /*  * -> 에스테리스크 (모든, 전부, all)   */
 *{
   box-sizing: border-box;
-	
+	font-family: 'OneStoreMobileGothicBody';
 }
 
-
+h3{
+  font-style: italic;
+}
 
 
 

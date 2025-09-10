@@ -8,7 +8,6 @@ const Input = ({size='80px', ...props}) => {
       className={styles.input}
       {...props}
     >
-
     </input>
   )
 }

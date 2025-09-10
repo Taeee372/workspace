@@ -1,14 +1,30 @@
-.sale_info_form{
-  display: flex;
+.reg_form_all{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 15px 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 
-.sale_info_form > div{
-  width: 100%;
-  border: 1px solid ;
+.sale_info_form{
+  display: flex;
+  justify-content: space-between;
+}
+
+.sale_info_form span{
+  padding-right: 10px;
 }
 
 .error{
   color: red;
   font-size: 0.8rem;
+}
+
+.btn{
+  display: flex;
+  justify-content: right;
+}
+.btn > button{
+  margin-top: 10px;
 }
 

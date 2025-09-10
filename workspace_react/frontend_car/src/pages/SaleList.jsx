@@ -11,17 +11,24 @@ const SaleList = () => {
   //판매 목록 불러오기
   useEffect(() => {
     axios.get('/api/sales')
-    .then(res => {
-      console.log(res.data)
-      setSaleList(res.data)
-    })
+    .then(res => setSaleList(res.data))
     .catch(e => console.log(e));
   }, [])
 
   return (
     <div className={styles.container}>
+      <h3>판매목록조회</h3>
       <div className={styles.table}>
         <table>
+          <colgroup>
+            <col width='%'/>
+            <col width='15%'/>
+            <col width='*'/>
+            <col width='19%'/>
+            <col width='13%'/>
+            <col width='14%'/>
+            <col width='13%'/>
+          </colgroup>
           <thead>
             <tr>
               <td rowSpan={2}>No</td>
