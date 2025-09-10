@@ -13,6 +13,7 @@ import BuyListForUser from './pages/BuyListForUser'
 import BuyList from './pages/BuyList'
 import BarChartTest from './components/BarChartTest'
 import AdminHome from './pages/AdminHome'
+import LineChartTest from './components/LineChartTest'
 
 function App() {
 
@@ -34,6 +35,8 @@ function App() {
 
           {/* 바 차트 연습용 컴포넌트 */}
           <Route path='bar-chart' element={ <BarChartTest /> }/>
+          {/* 라인 차트 연습용 컴포넌트 */}
+          <Route path='line-chart' element={ <LineChartTest /> }/>
         </Route>
 
         {/* 관리자페이지는 AdminLayout이랑 함께 열린다 */}

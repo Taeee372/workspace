@@ -62,4 +62,14 @@ public class BuyService {
   public List<BuyDTO> getBuyDetail(int orderNum){
    return buyMapper.getBuyDetail(orderNum);
   }
+
+  //최근 10일 날짜 조회
+  public List<String> getDate(){
+    return buyMapper.getDate();
+  }
+
+  //최근 10일 매출 조회
+  public List<Integer> getRecentSales(){
+    return buyMapper.getRecentSales();
+  }
 }

@@ -20,4 +20,10 @@ public interface BuyMapper {
 
   //구매내역상세 조회(BuyListModal)
   public List<BuyDTO> getBuyDetail(int orderNum);
+
+  //최근 10일 날짜 조회
+  public List<String> getDate();
+
+  //최근 10일 매출 조회
+  public List<Integer> getRecentSales();
 }
