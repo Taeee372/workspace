@@ -1,0 +1,35 @@
+아래 작업은 프로젝트 시작 시 최초 한 번만 하면 됨
+1. 프로젝트 소스코드를 작성할 폴더 생성 및 vscode 열기
+2. 개발 가상환경 구축
+    - vscode에서 터미널열기(CTRL + J)
+    - 터미널에서 다음 명령어를 입력하여 가상환경 만듬
+       python -m venv 가상환경이름
+       ex>  python -m venv project
+    - 만든 가상환경 설정으로 변경하는 명령어 입력
+       source project/bin/activate
+    - 가상환경에 진입을 하면 코딩 시작
+       (project)  xxx@xxx    :   
+    - 가상환경 종료 명령어
+        터미널에서  deactivate
+
+* 위에꺼 한 번 세팅하면 앞으로 작업은 다음의 절차를 따른다.
+  1. vscode 실행
+  2. 터미널에서 source project/bin/activate 입력하여 가상환경 진입
+  3. 코딩!!!!
+  4. 다 했으면 가상환경에 빠져나옴 deactivate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
