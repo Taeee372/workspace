@@ -74,9 +74,20 @@ const BoardDetail = () => {
     const result = JSON.parse(loginInfo);
     console.log(result);
 
-    axios.post('/api/buys', {'bookNum' : bookNum, 'memId' : result.memId, 'buyCnt' : cnt})
-    .then(res => alert('구매 완료'))
-    .catch(e => console.log(e));
+    axios.post('/api/buys', {
+      'bookNum' : bookNum, 
+      'memId' : result.memId, 
+      'buyCnt' : cnt
+    })
+    .then(res => {
+      if(res.status === 201){ //post가 성공했다면
+        alert('구매 완료');
+      }
+    })
+    .catch(e => {
+      console.log(e);
+      alert(e.response.data); //자바 ResponseEntity에서 보낸 오류 메세지 띄우기
+    });
   }
 
  

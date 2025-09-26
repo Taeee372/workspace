@@ -5,7 +5,8 @@ import com.green.backend_shop.buy.dto.BuyDTOForAdmin;
 import com.green.backend_shop.buy.dto.SearchBuyDTO;
 import com.green.backend_shop.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +17,20 @@ import java.util.List;
 public class BuyController {
   private final BuyService buyService;
 
-  //상품 상세페이지에서 구매하기 api
+  //도서 상세페이지에서 구매하기 api
   @PostMapping("")
-  public void insertBuy(@RequestBody BuyDTO buyDTO){
-    buyService.insertBuy(buyDTO);
+  public ResponseEntity<?> insertBuy(@RequestBody BuyDTO buyDTO){
+    try {
+      //실행 코드
+      buyService.insertBuy(buyDTO);
+      return ResponseEntity.status(HttpStatus.CREATED).build();
+    }catch (Exception e){
+      //오류가 발생하면 실행할 코드
+      e.printStackTrace(); //리액트로 따지면 e => console.log(e)와 같은 코드
+      return ResponseEntity
+              .status(HttpStatus.INTERNAL_SERVER_ERROR) //자바(서버)에서 오류난 거기 때문에 500 오류 보내기
+              .body("구매하기 쿼리 실행 중 오류가 발생했습니다.");
+    }
   }
 
   //장바구니 페이지에서 구매하기 api
@@ -31,9 +42,17 @@ public class BuyController {
 
   //관리자 구매이력조회 페이지의 구매목록조회 api + 검색 기능
   @GetMapping("/buy-list-admin")
-  public List<BuyDTOForAdmin> getBuyListForAdmin(SearchBuyDTO searchBuyDTO){
+  public ResponseEntity<?> getBuyListForAdmin(SearchBuyDTO searchBuyDTO){
     System.out.println(searchBuyDTO);
-    return buyService.getBuyListForAdmin(searchBuyDTO);
+
+    try {
+      //구매 목록
+      List<BuyDTOForAdmin> list = buyService.getBuyListForAdmin(searchBuyDTO);
+      return ResponseEntity.status(HttpStatus.OK).body(list);
+    }catch (Exception e){
+      e.printStackTrace();
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
   }
 
   //구매내역상세 조회(BuyListModal)

@@ -6,10 +6,10 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import del_img from '@/assets/icon/delete.png'
 import edit_img from '@/assets/icon/edit.png'
 
-const Task = () => {
+const Task = ({data}) => {
   return (
     <View style={styles.task_back}>
-      <Text style={styles.todo}>할 일 내용</Text>
+      <Text style={styles.todo}>{data.todoTitle}</Text>
       <Image 
         source={edit_img}
         style={styles.img}

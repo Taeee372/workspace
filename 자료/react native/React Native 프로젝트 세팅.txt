@@ -1,0 +1,23 @@
+1. react native 프로젝트 생성
+workspace_react-native폴더를 vscode로 열어서 아래의 명령어 입력
+npx create-expo-app@latest
+
+2. 프로젝트 실행
+npx expo start 
+폰으로 실행하려면 같은 네트워크(wifi)를 사용해야 함. 그렇지 않은 환경이라면...
+npx expo start --tunnel 명령어로 프로젝트 실행
+
+3. 프로젝트 초기화
+component, hooks, constants  폴더 안의 모든 파일 삭제
+app 폴더 안의 모든 파일 삭제
+app 폴더안에 index.jsx 생성 -> 이 파일이 최초 실행 파일임
+
+npm i react-native-safe-area-context 명령어 실행
+
+4. 컴포넌트 생성 에밋(단축키)
+리액트 : rafce,  리액트 네이티브 : rnfes
+
+
+
+
+
