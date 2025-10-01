@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //CORS 설정 클래스 파일
 // - REACT, REACT NATIVE에서 스프링 서버로 접근을 허용하는 설정
 // - CORS 설정은 기본적으로 SPRING 프로젝트(백엔드)에서 작업을 한다.
+// - CORS는 웹끼리의 통신, 앱은 해당 안 됨
 
 //Configuration 어노테이션 : 객체 생성 + 해당 클래스가 설정 파일임을 인지
 //WebMvcConfigurer 인터페이스 안에 addCorsMappings 메서드 존재
@@ -22,8 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/**")    //접근 허용할 SPRING의 API URL
             .allowedOrigins(
                     "http://localhost:5173", //react
-                    "http://localhost:8081",  //react-native web 실행
-                    "exp://192.168.30.111:8081" //react-native 에뮬레이터 실행
+                    "http://localhost:8081"  //react-native web 실행
             )  //접근을 허용할 origin 서버 (여기에 * 쓰면 모든 곳에서 접근 가능하기 때문에 위험)
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowedHeaders("*") //요청 시 허용할 헤더 정보

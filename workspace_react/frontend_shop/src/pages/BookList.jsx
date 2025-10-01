@@ -12,7 +12,10 @@ const BookList = () => {
   //마운트되면 도서목록을 조회해서 bookList 변수에 저장
   useEffect(() => {
     axios.get('/api/books')
-    .then(res => setBookList(res.data))
+    .then(res => {
+      alert('안녕');
+      setBookList(res.data);
+    })
     .catch(e => console.log(e));
   }, []);
 

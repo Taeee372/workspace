@@ -15,6 +15,19 @@
         FROM TODO
     </select>
 
+    <insert id="addTodo">
+        INSERT INTO TODO (
+            TODO_TITLE
+        ) VALUES (
+            #{todoTitle}
+        )
+    </insert>
+
+    <delete id="deleteTodo">
+        DELETE FROM TODO
+        WHERE TODO_NUM = #{todoNum}
+    </delete>
+
 </mapper>
 
 

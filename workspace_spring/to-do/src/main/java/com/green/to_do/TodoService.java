@@ -13,4 +13,12 @@ public class TodoService {
   public List<TodoDTO> getTodoList(){
    return todoMapper.getTodoList();
   }
+
+  public void addTodo(String todoTitle){
+    todoMapper.addTodo(todoTitle);
+  }
+
+  public void deleteTodo(int todoNum){
+    todoMapper.deleteTodo(todoNum);
+  }
 }
