@@ -1,0 +1,46 @@
+MCP 연결 참고 링크
+
+1. Claude + IntelliJ : https://yooputer-devlog.tistory.com/312
+claude_desktop_config.json에 아래와 같이 작성
+{
+  "mcpServers": {
+    "jetbrains": {
+      "command": "npx",
+      "args": ["-y", "@jetbrains/mcp-proxy"]
+    }
+  }
+}
+
+2. Claude + Notion : https://orangecake.tistory.com/37
+claude_desktop_config.json에 아래와 같이 작성, NOTION_TOKEN에 노션 인증 키 등록
+{
+  "mcpServers": {
+    "notionApi": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_TOKEN": "ntn_****"
+      }
+    }
+  }
+}
+
+3. Claude + VSCode
+아쉽게도 vscode는 intelliJ처럼 편하게 사용가능한 연결 방식을 아직은 지원하지 않음.
+vscode에는 claude code를 설치하여 vscode 터미널 환경에서 작업해야 함
+(실제 실무에서는 claude code를 사용하거나, cursor AI를 사용함, CURSOR AI는 별도 비용 발생)
+
+VSCode 터미널에 다음 명령어를 입력하여 vscode에 Claude Code 설치
+npm install -g @anthropic-ai/claude-code
+이 후 사용할 때에는 터미널에 claude 라고 입력 후 사용하면 됨
+처음엔 사용자 인증 절차 진행 함.
+
+명령어
+claude : 새로운 대화 시작
+claude --continue : 지난 대화에 이어서 대화 시작
+exit : claude code 종ㄷ탸
+
+
+
+
+
