@@ -11,4 +11,6 @@ public interface TodoMapper {
   public void addTodo(String todoTitle);
 
   public void deleteTodo(int todoNum);
+
+  public void updateTodo(TodoDTO todoDTO);
 }

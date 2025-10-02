@@ -56,7 +56,7 @@ const HomeScreen = () => {
     });
   }
 
-  //reloading 값 변경 함수
+  //reloading 값 변경 함수(화면 다시 그려지게 하기)
   const changeReloading = () => {
     setReloading(reloading + 1);
   }
