@@ -8,7 +8,7 @@ SELECT * FROM CHICKEN_BATCH;
 
 SELECT * FROM DANGER_NOTICE;
 
-SELECT * FROM management;
+SELECT * FROM farm_management;
 
 SELECT * FROM MEMBER;
 
@@ -16,7 +16,7 @@ SELECT * FROM NOTE;
 
 SELECT * FROM chicken_weight_history;
 
-SELECT * FROM chicken_inoculation;
+SELECT * FROM chicken_inoculation_history;
 
 INSERT INTO chicken_farm VALUES (1, '1번 양계장');
 
@@ -47,3 +47,4 @@ SET
        END;
 
 INSERT INTO chicken_inoculation (CHICKEN_ID) VALUES (1);
+
