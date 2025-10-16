@@ -12,11 +12,26 @@ SELECT * FROM farm_management;
 
 SELECT * FROM MEMBER;
 
-SELECT * FROM NOTE;
+SELECT * FROM ENV_SETTINGS;
 
 SELECT * FROM chicken_weight_history;
 
 SELECT * FROM chicken_inoculation_history;
+
+
+#배치 1인 닭들의 몸무게를 몸무게 히스토리에서 보기
+-- 배치 2025-001의 닭들 몸무게 히스토리 조회
+SELECT 
+    cwh.CHICKEN_ID,
+    c.BATCH_ID,
+    cwh.RAW_WEIGHT,
+    cwh.REC_TIME,
+    cwh.REC_AGE
+FROM chicken_weight_history cwh
+JOIN chicken c ON cwh.CHICKEN_ID = c.CHICKEN_ID
+WHERE c.BATCH_ID = '2025-012';
+
+
 
 INSERT INTO chicken_farm VALUES (1, '1번 양계장');
 
@@ -47,4 +62,6 @@ SET
        END;
 
 INSERT INTO chicken_inoculation (CHICKEN_ID) VALUES (1);
+
+SELECT * FROM TH_SENSOR;
 
