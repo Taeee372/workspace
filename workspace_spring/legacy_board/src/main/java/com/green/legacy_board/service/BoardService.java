@@ -16,11 +16,28 @@ public class BoardService {
     return boardMapper.getList();
   }
 
-  public void regBoard(BoardDTO boardDTO){
-    boardMapper.regBoard(boardDTO);
+  public void write(BoardDTO boardDTO){
+    boardMapper.write(boardDTO);
   }
 
-  public BoardDTO getBoardDetail(int boardNum){
-    return boardMapper.getBoardDetail(boardNum);
+  public BoardDTO getDetail(int boardNum){
+    return boardMapper.getDetail(boardNum);
   }
+
+  public void delete(int boardNum){
+    boardMapper.delete(boardNum);
+  }
+
+  public void update(BoardDTO boardDTO){
+    boardMapper.update(boardDTO);
+  }
+
 }
+
+
+
+
+
+
+
+

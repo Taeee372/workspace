@@ -17,4 +17,14 @@ public class MemberService {
   public MemberDTO login(MemberDTO memberDTO){
     return memberMapper.login(memberDTO);
   }
+
 }
+
+
+
+
+
+
+
+
+

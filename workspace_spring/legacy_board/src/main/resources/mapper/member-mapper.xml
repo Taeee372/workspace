@@ -5,10 +5,10 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.legacy_board.mapper.MemberMapper">
 	<resultMap id="member" type="com.green.legacy_board.dto.MemberDTO">
-    <id     column="ID"         property="id" />
-    <result column="PW"         property="pw" />
-    <result column="NAME"       property="name" />
-    <result column="ROLE"       property="role" />
+        <id column="ID"         property="id" />
+        <result column="PW"     property="pw" />
+        <result column="NAME"   property="name" />
+        <result column="ROLE"   property="role" />
     </resultMap>
 
     <insert id="join">
@@ -24,9 +24,7 @@
     </insert>
 
     <select id="login" resultMap="member">
-        SELECT ID
-            , NAME
-            , ROLE
+        SELECT ID, NAME, ROLE
         FROM MEMBER2
         WHERE ID = #{id}
         AND PW = #{pw}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+  <title>Document</title>
+  <!-- Spring 프로젝트의 css는 resource/static 폴더를 기준으로 찾아감 -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/board-list.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <!-- th:bloack은 화면 디자인에 영향을 주지 않음 -->
+      <th:block th:if="${session.loginInfo == null}">
+        <div>
+          <a href="/member/join">회원가입</a>
+        </div>
+        <div>
+          <a href="/member/login">로그인</a>
+        </div>
+      </th:block>
+      <th:block th:unless="${session.loginInfo == null}">
+        <div>
+          [[${session.loginInfo.id}]]님 반갑습니다.
+        </div>
+        <div>
+          <a href="/member/logout">로그아웃</a>
+        </div>
+      </th:block>
+    </div>
+
+    <div class="board-list-div">
+      <table class="list-table">
+        <thead>
+          <tr>
+            <td>No</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일</td>
+            <td>조회수</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- each문의 두번쨰 데이터(state)는 반복 상태 정보를 가짐 -->
+          <tr th:each="board, state : ${boardList}">
+            <td>[[${boardList.size() - state.index}]]</td>
+            <td>
+              <span th:onclick="goDetail([[${board.boardNum}]])">[[${board.title}]]</span>
+            </td>
+            <td>[[${board.writer}]]</td>
+            <!-- LocalDateTime 자료형의 날짜 형식 지정 -->
+            <td>[[${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}]]</td>
+            <td>[[${board.readCnt}]]</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="btn-div" th:if="${session.loginInfo != null}">
+      <button type="button" onclick="goWriteForm()">글쓰기</button>
+    </div>
+  </div>
+
+  <script src="/js/board-list.js"></script>
+</body>
+
+</html>

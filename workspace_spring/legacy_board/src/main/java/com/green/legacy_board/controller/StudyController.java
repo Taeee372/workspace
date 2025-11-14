@@ -36,14 +36,13 @@ public class StudyController {
     list.add(boardDTO1);
     list.add(boardDTO2);
 
-
     //model 객체에 데이터 적재하기
     model.addAttribute("name", "kim");
     model.addAttribute("age", 20);
     model.addAttribute("boardInfo", boardDTO);
     model.addAttribute("boardList", list);
 
-    //보여질 html 파일명(페이지명)을 리턴
+    //보여질 html 파일명을 리턴
     return "study_1";
   }
 

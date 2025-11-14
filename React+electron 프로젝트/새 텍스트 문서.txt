@@ -1,0 +1,3 @@
+시작 전에 npm i 명령어로 설치
+실행 명령어 : npm run electron-dev
+정보는 react + electron으로 gpt한테 물어보세요!

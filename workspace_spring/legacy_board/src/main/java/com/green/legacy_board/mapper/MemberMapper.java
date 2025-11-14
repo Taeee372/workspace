@@ -6,6 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
   public void join(MemberDTO memberDTO);
-
   public MemberDTO login(MemberDTO memberDTO);
 }

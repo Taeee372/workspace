@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>게시글 수정 페이지</h3>
+  <form action="/board/update" method="post">
+    <input type="hidden" name="boardNum" th:value="${boardDetail.boardNum}">
+    글번호 : [[${boardDetail.boardNum}]] <br>
+    제목 : <input type="text" name="title" th:value="${boardDetail.title}"><br>
+    내용 : 
+    <textarea name="content" cols="50" rows="5">[[${boardDetail.content}]]</textarea>
+    <br>
+    작성자 : [[${boardDetail.writer}]] <br>
+    작성일 : [[${boardDetail.createDate}]] <br>
+    조회수 : [[${boardDetail.readCnt}]] <br>
+
+    <button type="submit">수정</button>
+  </form>
+  <script src="/js/board-update.js"></script>
+</body>
+
+</html>

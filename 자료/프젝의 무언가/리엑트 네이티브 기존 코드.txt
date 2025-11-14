@@ -1,0 +1,263 @@
+import axios from 'axios';
+import { useRouter } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
+import { Alert, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import Button from '../../../components/Button';
+import { RefreshControl } from 'react-native';
+
+
+const ManualControl = () => {
+  const router = useRouter();
+
+  const [controlMode, setControlMode] = useState({
+    door: 'auto',
+    humPen: 'auto',
+    airPen: 'auto',
+    led: 'auto'
+  });
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const [isEnabled, setIsEnabled] = useState({
+    door : false,
+    humPen : false,
+    airPen : false,
+    led : false
+  });
+
+  const [sensorData, setSensorData] = useState({
+    temperature: '-',
+    humidity: '-',
+    lux: '-',
+    co2 : '-'
+  });
+  
+  const toggleSwitch = async (device) => {
+    // 🔥 자동 모드면 먼저 수동 모드로 전환
+    if (controlMode[device] === 'auto') {
+      try {
+        const statusRes = await axios.get('http://192.168.30.240:5000/api/status', {
+          timeout: 5000
+        });
+        
+        if(statusRes.data && statusRes.data.controls){
+          // 실제 상태로 UI 동기화
+          setIsEnabled(prev => ({
+            ...prev,
+            [device]: statusRes.data.controls[device]
+          }));
+        }
+        
+        // 수동 모드로 전환
+        setControlMode(prev => ({
+          ...prev,
+          [device]: 'manual'
+        }));
+        
+        Alert.alert('수동 모드', '수동 모드로 전환되었습니다.\n다시 스위치를 조작해주세요.');
+        console.log(`${device} 수동 모드로 전환됨`);
+        return; // 여기서 종료
+      } catch(e) {
+        console.log(e);
+        Alert.alert('오류', '상태를 가져오는데 실패했습니다.');
+        return;
+      }
+    }
+    
+    // 🔥 이미 수동 모드면 정상 제어
+    const newState = !isEnabled[device];
+
+    setIsEnabled(prev => ({
+      ...prev,
+      [device] : newState
+    }));
+
+    try {
+      await axios.post('http://192.168.30.240:5000/api/control', {
+        device : device,
+        state : newState,
+        mode : 'manual'
+      }, {
+        timeout : 5000
+      })
+      
+      setControlMode(prev => ({
+        ...prev,
+        [device]: 'manual'
+      }));
+      
+      console.log(`${device} ${newState ? 'ON' : 'OFF'} 성공`);
+
+    }catch(e){
+      console.log(e);
+
+      setIsEnabled(prev => ({
+        ...prev,
+        [device]: !newState
+      }));
+      
+      Alert.alert('제어 실패', '기기 제어에 실패했습니다.');
+    }
+  }
+
+  // 자동 모드로 전환
+  const setAutoMode = async (device) => {
+    try {
+      await axios.post('http://192.168.30.240:5000/api/control', {
+        device: device,
+        mode: 'auto'
+      }, {
+        timeout: 5000
+      });
+      
+      setControlMode(prev => ({
+        ...prev,
+        [device]: 'auto'
+      }));
+      
+      console.log(`${device} 자동 모드로 전환`);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  const getEnv = async () => {
+    try{
+      const res = await axios.get('http://192.168.30.240:5000/api/realtime');
+      const data = res.data.data;
+      setSensorData({
+        temperature : data.temperature,
+        humidity : data.humidity,
+        lux : data.lux,
+        co2 : data.co2
+      });
+
+      const statusRes = await axios.get('http://192.168.30.240:5000/api/status', {
+        timeout: 5000
+      });
+      
+      if(statusRes.data && statusRes.data.controls){
+        setIsEnabled(statusRes.data.controls);
+        console.log('현재 상태:', statusRes.data.controls);
+      }
+
+      if(statusRes.data && statusRes.data.modes){
+        setControlMode(statusRes.data.modes);
+        console.log('현재 모드:', statusRes.data.modes);
+      }
+    }catch(e){
+      console.log(e);
+    }
+  }
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await getEnv();
+    setRefreshing(false);
+  }, [])
+
+  useEffect(() => {
+   getEnv();
+  }, [])
+
+  return (
+    <ScrollView
+      refreshControl={
+        <RefreshControl 
+          refreshing={refreshing} 
+          onRefresh={onRefresh}
+        />
+      }
+    >
+      <View>
+        <View style={styles.control}>
+          <View style={styles.manual}>
+            <Text>온도</Text>
+            <Text>{sensorData.temperature}</Text>
+            <Text>문 제어</Text>
+            <Switch 
+              trackColor={{false : '#b9b8b9ff', true : '#87b3ffff'}}
+              thumbColor={isEnabled.door ? '#1e6df5ff' : '#767577'}
+              onValueChange={() => toggleSwitch('door')}
+              value={isEnabled.door}
+            />
+          </View>
+          <Button 
+            title='자동'
+            onPress={() => setAutoMode('door')}
+          />
+        </View>
+        <View style={styles.control}>
+          <View style={styles.manual}>
+            <Text>습도</Text>
+            <Text>{sensorData.humidity}</Text>
+            <Text>팬 가동</Text>
+            <Switch 
+              trackColor={{false : '#b9b8b9ff', true : '#87b3ffff'}}
+              thumbColor={isEnabled.humPen ? '#1e6df5ff' : '#767577'}
+              onValueChange={() => toggleSwitch('humPen')}
+              value={isEnabled.humPen}
+            />
+          </View>
+          <Button 
+            title='자동'
+            onPress={() => setAutoMode('humPen')}
+          />
+        </View>
+        <View style={styles.control}>
+          <View style={styles.manual}>
+            <Text>CO2</Text>
+            <Text>{sensorData.co2}</Text>
+            <Text>팬 가동</Text>
+            <Switch 
+              trackColor={{false : '#b9b8b9ff', true : '#87b3ffff'}}
+              thumbColor={isEnabled.airPen ? '#1e6df5ff' : '#767577'}
+              onValueChange={() => toggleSwitch('airPen')}
+              value={isEnabled.airPen}
+            />
+          </View>
+          <Button 
+            title='자동'
+            onPress={() => setAutoMode('airPen')}
+          />
+        </View>
+        <View style={styles.control}>
+          <View style={styles.manual}>
+            <Text>조도</Text>
+            <Text>{sensorData.lux}</Text>
+            <Text>조명</Text>
+            <Switch 
+              trackColor={{false : '#b9b8b9ff', true : '#87b3ffff'}}
+              thumbColor={isEnabled.led ? '#1e6df5ff' : '#767577'}
+              onValueChange={() => toggleSwitch('led')}
+              value={isEnabled.led}
+            />
+          </View>
+          <Button 
+            title='자동'
+            onPress={() => setAutoMode('led')}
+          />
+        </View>
+        <Button title='자동 제어 설정' onPress={() => router.push('/control/AutoControl')}/>
+
+      </View>
+    </ScrollView>
+  )
+}
+
+export default ManualControl
+
+const styles = StyleSheet.create({
+  control : {
+    flexDirection : 'row',
+    gap : 10,
+    justifyContent : 'space-around',
+    alignItems : 'center',
+    marginVertical : 20
+  },
+  manual : {
+    flexDirection : 'row',
+    alignItems : 'center',
+    gap : 30
+  }
+})

@@ -1,0 +1,19 @@
+.list_table{
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.list_table td{
+  padding: 8px;
+}
+
+.list_table > thead > tr{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.list_table > tbody > tr{
+  border-bottom: 1px solid #dddddd;
+}

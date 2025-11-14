@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h3>게시글 목록 페이지</h3>
-    
+
     <div>문자열, 숫자 데이터 받기</div>
     <div th:text="${name}"></div>
     <div th:text="${age}"></div>
@@ -21,13 +23,13 @@
     <p>[[${boardInfo.writer}]]</p>
 
     <hr>
-    <div>if문 사용</div>
+    <div>if 문 사용</div>
     <!-- 글 번호가 1번이면 -->
     <div th:if="${boardInfo.boardNum == 1}">
-        글 번호가 1번입니다.
+        글 번호가 1번 입니다.
     </div>
     <div th:if="${boardInfo.boardNum == 2}">
-        글 번호가 2번입니다.
+        글 번호가 2번 입니다.
     </div>
 
     <hr>
@@ -37,5 +39,7 @@
         <span>[[${board.title}]]</span>
     </div>
 
+
 </body>
+
 </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>게시글 상세 페이지</h3>
+  글번호 : [[${boardInfo.boardNum}]] <br>
+  제목 : [[${boardInfo.title}]] <br>
+  내용 : [[${boardInfo.content}]] <br>
+  작성자 : [[${boardInfo.writer}]] <br>
+  작성일 : [[${#temporals.format(boardInfo.createDate, 'yyyy-MM-dd HH:mm:ss')}]] <br>
+  조회수 : [[${boardInfo.readCnt}]] <br>
+
+  
+  <div>
+    <button type="button" onclick="goList()">목록가기</button>
+
+    <th:block th:if="${
+      session.loginInfo != null and 
+      (session.loginInfo.id == boardInfo.writer or
+      session.loginInfo.role == 'ADMIN')
+    }">
+      <button 
+        type="button" 
+        th:onclick="goUpdate([[${boardInfo.boardNum}]])">수정</button>
+      <button 
+        type="button" 
+        th:onclick="goDelete([[${boardInfo.boardNum}]])">삭제</button>
+    </th:block>
+  </div>
+
+  <script src="/js/board-detail.js"></script>
+</body>
+</html>

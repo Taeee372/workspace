@@ -9,8 +9,14 @@ import java.util.List;
 public interface BoardMapper {
 
   public List<BoardDTO> getList();
+  public void write(BoardDTO boardDTO);
+  public BoardDTO getDetail(int boardNum);
+  public void delete(int boardNum);
+  public void update(BoardDTO boardDTO);
 
-  public void regBoard(BoardDTO boardDTO);
-
-  public BoardDTO getBoardDetail(int boardNum);
 }
+
+
+
+
+

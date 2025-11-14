@@ -1,0 +1,36 @@
+.container{
+  width: 80%;
+  margin: 50px auto;
+}
+
+.header{
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+}
+
+.board-list-div{
+  margin: 30px 0px;
+}
+
+.list-table{
+  width: 100%;
+  text-align: center;
+}
+
+.list-table td{
+  padding: 6px;
+}
+
+.list-table thead tr{
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.list-table tbody tr{
+  border-bottom: 1px solid gray;
+}
+
+.btn-div{
+  text-align: center;
+}

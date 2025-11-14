@@ -23,12 +23,12 @@
 }
 
 .list-table thead tr{
-  border-top: 1px solid #bbbbbb;
-  border-bottom: 1px solid #bbbbbb;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 .list-table tbody tr{
-  border-bottom: 1px solid #bbbbbb;
+  border-bottom: 1px solid gray;
 }
 
 .btn-div{
