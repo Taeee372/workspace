@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className={styles.header_container}>
       <div onClick={() => nav('/join')}>회원가입</div>
-      <div>로그인</div>
+      <div onClick={() => nav('/login')}>로그인</div>
     </div>
   )
 }

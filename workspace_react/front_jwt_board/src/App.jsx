@@ -8,6 +8,7 @@ import Header from './components/Header'
 import BoardDetail from './pages/BoardDetail'
 import BoardWrite from './pages/BoardWrite'
 import Join from './pages/Join'
+import Login from './pages/Login'
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
 
         {/* 회원가입 페이지 */}
         <Route path='/join' element={ <Join /> }/>
+
+        {/* 로그인 페이지 */}
+        <Route path='/login' element={ <Login /> }/>
       </Routes>
     </>
   )

@@ -5,19 +5,25 @@ package com.green.legacy_board.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.green.legacy_board.dto.MemberDTO;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Iterator;
 
 //Username~~를 상속받아 사용
 @Slf4j //로그 출력
@@ -25,10 +31,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
   //인증 처리를 담당하는 객체
   private final AuthenticationManager authenticationManager;
 
+  //jwt 토큰 객체
+  private final JwtUtil jwtUtil;
+
   //생성자 의존성 주입
   //로그인 요청 URL, 입력한 ID, PW가 전달되는 이름 변경
-  public LoginFilter(AuthenticationManager authenticationManager){
+  public LoginFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil){
     this.authenticationManager = authenticationManager;
+    this.jwtUtil = jwtUtil;
 
     //로그인 요청 url 변경
     setFilterProcessesUrl("/member/login");
@@ -73,5 +83,36 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     //로그인 유저의 정보가 담긴 authentication객체를 리턴하면 authentication객체가 session에 저장됨
     //세션에 저장하는 이유는 security의 권한 처리를 위해서는 세션에 로그인 정보가 있어야 되기 때문.
     return authentication;
+  }
+
+  //로그인 검증 성공 시 실행
+  @Override
+  protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    log.info("로그인 검증 성공!");
+
+    //로그인 검증 성공 유저의 아이디 (이메일)
+    String username = authResult.getName();
+
+    //로그인 검증 성공 유저의 권한
+    Collection<? extends GrantedAuthority> authorities = authResult.getAuthorities();
+    Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
+    GrantedAuthority auth = iterator.next();
+    String role = auth.getAuthority();
+
+    //jwt 토큰 생성 1000 -> 1초
+    String accessToken = jwtUtil.createJwt(username, role, 1000 * 60 * 10); // 10분
+
+    //생성한 토큰을 http 헤더에 담아 클라이언트에 전달
+    response.setHeader("Access-Control-Expose-Headers", "Authorization");
+    response.setHeader("Authorization", "Bearer " + accessToken);
+    response.setStatus(HttpStatus.OK.value());
+
+  }
+
+  //로그인 검증 실패 시 실행
+  @Override
+  protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+    log.info("로그인 검증 실패");
+    response.setStatus(401); //인증 안 됨
   }
 }

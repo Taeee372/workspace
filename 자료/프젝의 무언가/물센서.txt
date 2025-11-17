@@ -1,0 +1,358 @@
+"""양계장 물 측정 시스템 - 초음파 센서 기반 수위 및 소비량 측정 (DB 수정)"""
+import mysql.connector
+import time
+import RPi.GPIO as GPIO
+import logging
+from dataclasses import dataclass, field
+from typing import Optional, List, Dict, Any
+from contextlib import contextmanager
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('water_monitor.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class WaterConfig:
+    """물 센서 설정"""
+    ULTRASONIC_TRIGGER_PIN: int = 20
+    ULTRASONIC_ECHO_PIN: int = 21
+    
+    EMPTY_CUP_DISTANCE_CM: Optional[float] = None
+    FULL_CUP_DISTANCE_CM: Optional[float] = None
+    KNOWN_WATER_VOLUME_ML: Optional[float] = None
+    
+    MIN_WATER_CONSUMPTION_ML: float = 10.0
+    
+    FARM_NUM: int = 1
+
+
+@dataclass
+class WaterState:
+    """물 시스템 상태"""
+    session_water_consumption: float = 0.0
+    last_water_level: Optional[float] = None
+    is_water_stable: bool = False
+    water_readings_buffer: List[float] = field(default_factory=list)
+
+
+class DatabaseManager:
+    """데이터베이스 연결 관리"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+    
+    @contextmanager
+    def get_connection(self):
+        conn = None
+        try:
+            conn = mysql.connector.connect(**self.config)
+            yield conn
+        except mysql.connector.Error as err:
+            logger.error(f'데이터베이스 연결 오류: {err}')
+            yield None
+        finally:
+            if conn:
+                conn.close()
+    
+    def save_water_consumption(self, water_consumption: float, farm_num: int) -> bool:
+        """물 소비량 저장"""
+        with self.get_connection() as conn:
+            if not conn:
+                return False
+            
+            try:
+                cursor = conn.cursor()
+                # FARM_MANAGEMENT 테이블의 외래키는 FARM_NUM
+                sql = """
+                INSERT INTO FARM_MANAGEMENT(
+                    FEED_CONSUMPTION_G, WATER_CONSUMPTION_ML, FARM_NUM
+                ) VALUES(0, %s, %s)
+                """
+                cursor.execute(sql, (water_consumption, farm_num))
+                conn.commit()
+                logger.info(f"물 소비량 저장: {water_consumption}ml")
+                return True
+            except mysql.connector.Error as err:
+                logger.error(f'물 소비량 저장 오류: {err}')
+                return False
+            finally:
+                cursor.close()
+
+
+class UltrasonicSensor:
+    """HC-SR04 초음파 센서"""
+    
+    def __init__(self, trigger_pin: int, echo_pin: int):
+        self.TRIGGER_PIN = trigger_pin
+        self.ECHO_PIN = echo_pin
+        
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.TRIGGER_PIN, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(self.ECHO_PIN, GPIO.IN)
+        time.sleep(0.1)
+    
+    def measure_distance_cm(self, timeout: float = 0.5) -> Optional[float]:
+        GPIO.output(self.TRIGGER_PIN, GPIO.HIGH)
+        time.sleep(0.00001)
+        GPIO.output(self.TRIGGER_PIN, GPIO.LOW)
+        
+        pulse_start = time.time()
+        pulse_end = time.time()
+        
+        timeout_start = time.time()
+        while GPIO.input(self.ECHO_PIN) == GPIO.LOW:
+            pulse_start = time.time()
+            if pulse_start - timeout_start > timeout:
+                return None
+        
+        timeout_start = time.time()
+        while GPIO.input(self.ECHO_PIN) == GPIO.HIGH:
+            pulse_end = time.time()
+            if pulse_end - timeout_start > timeout:
+                return None
+        
+        duration = pulse_end - pulse_start
+        distance = (duration * 34300) / 2
+        
+        return distance
+    
+    def measure_average(self, samples: int = 5) -> Optional[float]:
+        readings = []
+        for _ in range(samples):
+            distance = self.measure_distance_cm()
+            if distance and 2 < distance < 400:
+                readings.append(distance)
+            time.sleep(0.06)
+        
+        if not readings:
+            return None
+        
+        readings.sort()
+        if len(readings) >= 3:
+            trim = len(readings) // 5
+            if trim > 0:
+                readings = readings[trim:-trim]
+        
+        return sum(readings) / len(readings)
+
+
+class WaterMonitorSystem:
+    """물 측정 시스템"""
+    
+    def __init__(self):
+        self.config = WaterConfig()
+        self.state = WaterState()
+        
+        db_config = {
+            'host': '192.168.30.152',
+            'port': 3306,
+            'user': 'rasberry',
+            'password': 'mariadb',
+            'database': 'team_db'
+        }
+        
+        self.db_manager = DatabaseManager(db_config)
+        self.sensor = UltrasonicSensor(
+            self.config.ULTRASONIC_TRIGGER_PIN,
+            self.config.ULTRASONIC_ECHO_PIN
+        )
+        
+        logger.info("물 측정 시스템 초기화 완료")
+    
+    def calibrate(self) -> bool:
+        print("\n" + "="*60)
+        print("초음파 센서 2점 보정")
+        print("="*60)
+        
+        print("\n[1단계] 빈 컵을 센서 아래에 놓으세요")
+        input("준비 후 Enter >>> ")
+        print("측정 중...")
+        
+        empty_distance = self.sensor.measure_average(samples=10)
+        if not empty_distance:
+            print("❌ 측정 실패")
+            return False
+        
+        print(f"✓ 빈 컵 거리: {empty_distance:.2f}cm")
+        
+        print("\n[2단계] 물을 정확히 측정해서 넣으세요")
+        print("  (예: 계량컵으로 200ml)")
+        
+        while True:
+            try:
+                volume = float(input("넣은 물의 양(ml) >>> "))
+                if volume > 0:
+                    break
+                print("0보다 큰 값을 입력하세요")
+            except ValueError:
+                print("숫자를 입력하세요")
+        
+        input("물을 넣었으면 Enter >>> ")
+        print("측정 중...")
+        
+        full_distance = self.sensor.measure_average(samples=10)
+        if not full_distance:
+            print("❌ 측정 실패")
+            return False
+        
+        print(f"✓ 물 넣은 상태: {full_distance:.2f}cm")
+        
+        self.config.EMPTY_CUP_DISTANCE_CM = empty_distance
+        self.config.FULL_CUP_DISTANCE_CM = full_distance
+        self.config.KNOWN_WATER_VOLUME_ML = volume
+        
+        print("\n" + "="*60)
+        print("보정 완료!")
+        print("="*60)
+        print(f"빈 컵 거리    : {empty_distance:.2f}cm")
+        print(f"물 {volume}ml 거리: {full_distance:.2f}cm")
+        print(f"거리 변화     : {empty_distance - full_distance:.2f}cm")
+        print(f"1cm당 용량    : {volume/(empty_distance - full_distance):.1f}ml/cm")
+        print("="*60)
+        
+        return True
+    
+    def get_water_volume(self) -> Optional[float]:
+        if not all([self.config.EMPTY_CUP_DISTANCE_CM,
+                    self.config.FULL_CUP_DISTANCE_CM,
+                    self.config.KNOWN_WATER_VOLUME_ML]):
+            logger.warning("보정 필요")
+            return None
+        
+        distance = self.sensor.measure_average()
+        if not distance:
+            return None
+        
+        if distance >= self.config.EMPTY_CUP_DISTANCE_CM:
+            return 0.0
+        
+        distance_range = self.config.EMPTY_CUP_DISTANCE_CM - self.config.FULL_CUP_DISTANCE_CM
+        distance_from_empty = self.config.EMPTY_CUP_DISTANCE_CM - distance
+        
+        ratio = distance_from_empty / distance_range
+        volume = self.config.KNOWN_WATER_VOLUME_ML * ratio
+        
+        return max(0.0, volume)
+    
+    def get_water_percentage(self) -> Optional[float]:
+        volume = self.get_water_volume()
+        if not volume or not self.config.KNOWN_WATER_VOLUME_ML:
+            return None
+        
+        percentage = (volume / self.config.KNOWN_WATER_VOLUME_ML) * 100
+        return min(100.0, max(0.0, percentage))
+    
+    def is_stable(self) -> bool:
+        if len(self.state.water_readings_buffer) < 5:
+            return False
+        
+        recent = self.state.water_readings_buffer[-5:]
+        return (max(recent) - min(recent)) <= 5.0
+    
+    def track_consumption(self) -> float:
+        current_volume = self.get_water_volume()
+        
+        if current_volume is None:
+            return 0
+        
+        self.state.water_readings_buffer.append(current_volume)
+        if len(self.state.water_readings_buffer) > 10:
+            self.state.water_readings_buffer.pop(0)
+        
+        self.state.is_water_stable = self.is_stable()
+        
+        if self.state.last_water_level is None:
+            if self.state.is_water_stable:
+                self.state.last_water_level = current_volume
+                logger.info(f"물 기준점: {current_volume:.1f}ml")
+            return 0
+        
+        if current_volume < self.state.last_water_level - self.config.MIN_WATER_CONSUMPTION_ML:
+            consumption = self.state.last_water_level - current_volume
+            self.state.session_water_consumption += consumption
+            self.state.last_water_level = current_volume
+            logger.info(f"물 소비: {consumption:.1f}ml (누적: {self.state.session_water_consumption:.1f}ml)")
+            return consumption
+        
+        elif current_volume > self.state.last_water_level + 50.0:
+            logger.info(f"급수: {self.state.last_water_level:.1f}ml → {current_volume:.1f}ml")
+            self.state.is_water_stable = False
+            self.state.water_readings_buffer = []
+            self.state.last_water_level = None
+        
+        return 0
+    
+    def run(self):
+        logger.info("="*60)
+        logger.info("물 측정 시스템 시작")
+        logger.info("="*60)
+        
+        print("\n보정을 진행하시겠습니까?")
+        if input("y/n >>> ").lower() == 'y':
+            if not self.calibrate():
+                logger.error("보정 실패")
+                return
+        else:
+            logger.warning("보정 건너뛰기 - 이전 보정값 필요")
+        
+        print("\n명령어: q=종료\n")
+        
+        accumulated = 0.0
+        loop_count = 0
+        
+        try:
+            while True:
+                consumption = self.track_consumption()
+                accumulated += consumption
+                
+                if loop_count % 5 == 0:
+                    volume = self.get_water_volume()
+                    percentage = self.get_water_percentage()
+                    stable = "O" if self.state.is_water_stable else "X"
+                    
+                    if volume and percentage:
+                        print(f"[{time.strftime('%H:%M:%S')}] "
+                              f"물: {volume:.0f}ml ({percentage:.0f}%) (안정:{stable}) | "
+                              f"세션 소비: {self.state.session_water_consumption:.1f}ml")
+                    else:
+                        print(f"[{time.strftime('%H:%M:%S')}] 측정 실패")
+                
+                # 10분마다 DB 저장
+                if loop_count % 600 == 0 and accumulated > 0:
+                    self.db_manager.save_water_consumption(
+                        accumulated, self.config.FARM_NUM)
+                    accumulated = 0.0
+                
+                time.sleep(1)
+                loop_count += 1
+        
+        except KeyboardInterrupt:
+            logger.info("\n모니터링 종료")
+            if accumulated > 0:
+                self.db_manager.save_water_consumption(
+                    accumulated, self.config.FARM_NUM)
+        
+        finally:
+            GPIO.cleanup()
+
+
+def main():
+    try:
+        system = WaterMonitorSystem()
+        system.run()
+    except Exception as e:
+        logger.error(f"시스템 오류: {e}", exc_info=True)
+        raise
+    finally:
+        GPIO.cleanup()
+
+
+if __name__ == "__main__":
+    main()
