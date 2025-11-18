@@ -9,11 +9,25 @@ import BoardDetail from './pages/BoardDetail'
 import BoardWrite from './pages/BoardWrite'
 import Join from './pages/Join'
 import Login from './pages/Login'
+import { axiosInstance, getToken } from './jwt/jwt_util'
+import axios from 'axios'
 
 function App() {
+  const token = getToken();
 
   return (
     <>
+      {/* 토큰 전달 연습용 */}
+      <button type='button' onClick={() => {
+        axiosInstance.get('/test1')
+        .then()
+        .catch();
+      }}>test1</button>
+
+      <button type='button' onClick={() => {}}>test2</button>
+
+      <button type='button' onClick={() => {}}>test3</button>
+
       <Header />
       <Routes>
         {/* 게시글 목록 페이지 */}

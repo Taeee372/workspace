@@ -24,7 +24,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 //SpringSecurity의 인증과 인가에 대한 설정 파일
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+//해당 어노테이션이 있으면 컨트롤러에서 인가에 대한 어노테이션 사용 가능
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
   private final JwtUtil jwtUtil;
@@ -35,7 +36,6 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationConfiguration authConfig) throws Exception{
     //인증을 담당하는 객체 생성
     AuthenticationManager authenticationManager = authConfig.getAuthenticationManager();
-
 
     http
       //아래의 cors 설정을 위한 객체의 내용을 적용시키겠다

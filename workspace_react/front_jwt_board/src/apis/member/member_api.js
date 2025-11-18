@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosInstance } from "../../jwt/jwt_util";
 
 /**
  * 회원가입 API
@@ -6,7 +7,7 @@ import axios from "axios";
  */
 export const join = async (joinData) => {
   try{
-    await axios.post('/api/member', joinData);
+    await axiosInstance.post('/member', joinData);
   }catch(e){
     console.log('회원가입 API 오류, join()');
     console.log(e);
@@ -17,7 +18,7 @@ export const join = async (joinData) => {
 //로그인 API
 export const login = async (loginData) => {
   try{
-    const response = await axios.post('/api/member/login', loginData);
+    const response = await axiosInstance.post('/member/login', loginData);
 
     //응답헤더에 담긴 토큰 정보 추출 / 받을 때는 authorization 소문자로 받아야 함
     const accessToken = response.headers['authorization'];

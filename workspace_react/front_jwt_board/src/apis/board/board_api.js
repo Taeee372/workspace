@@ -1,11 +1,12 @@
 //게시글과 관련된 api를 모아놓는 파일
 
 import axios from "axios"
+import { axiosInstance } from "../../jwt/jwt_util";
 
 //게시글 목록 조회
 export const getBoardListApi = async () => {
   try{
-    const res = await axios.get('/api/board');
+    const res = await axiosInstance.get('/board');
     //조회한 다음 코드 작성
     return res.data;
   }catch(e){
@@ -20,7 +21,7 @@ export const getBoardListApi = async () => {
  */
 export const getBoardDetail = async (boardNum) => {
   try{
-    const res = await axios.get(`/api/board/${boardNum}`);
+    const res = await axiosInstance.get(`/board/${boardNum}`);
     return res.data;
   }catch(e){
     console.log('게시글 상세 조회 API 오류, getBoardDetail()');
@@ -34,7 +35,7 @@ export const getBoardDetail = async (boardNum) => {
  */
 export const regBoard = async (boardInfo) => {
   try{
-    await axios.post('/api/board', boardInfo);
+    await axiosInstance.post('/board', boardInfo);
   }catch(e){
     console.log('게시글 등록 API 오류, regBoard()');
     console.log(e);
