@@ -1,0 +1,8 @@
+# 모든 ip 접근 허용(단, 강의실 밖에서는 안됨)
+GRANT ALL PRIVILEGES ON 데이터베이스명.테이블명 TO '계정명'@'%' IDENTIFIED BY '패스워드';
+
+# 특정 대역의 ip만 허용
+GRANT ALL PRIVILEGES ON 데이터베이스명.테이블명 TO '계정명'@'192.168.0.%' IDENTIFIED BY '패스워드';
+
+# 특정 ip만 허용
+GRANT ALL PRIVILEGES ON 데이터베이스명.테이블명 TO '계정명'@'192.168.0.19' IDENTIFIED BY '패스워드';
